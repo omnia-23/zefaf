@@ -7,3 +7,34 @@
     text-wrap: balance;
   }
 }
+
+.swiper {
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.swiper-slide {
+  padding: 0 10px;
+}
+
+.swiper-pagination-bullet {
+  background: #DB0962;
+  opacity: 0.5;
+  width: 12px;
+  height: 12px;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.swiper-button-next, 
+.swiper-button-prev {
+  color: #DB0962;
+}
+
+@media (max-width: 768px) {
+  .swiper-slide {
+    padding: 0 5px;
+  }
+}

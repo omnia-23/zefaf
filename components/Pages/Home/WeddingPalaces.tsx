@@ -4,7 +4,7 @@ import React from "react";
 import useSWR from "swr";
 import { RenderHTML } from "@/components/shared";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = (url: any) => fetch(url).then((res) => res.json());
 const Palaces = () => {
   const { data, isLoading } = useSWR(
     "https://zafaf.sa/public/api/getRondomHalls",
@@ -29,7 +29,7 @@ const Palaces = () => {
 
       {/* Grid Container */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-full w-full">
-        {data?.map((palace) => (
+        {data?.map((palace: any) => (
           <a
             href={`/halls/${palace.id}`}
             key={palace.id}

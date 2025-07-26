@@ -18,20 +18,10 @@ import {
 } from "@heroicons/react/24/outline";
 import {
   Bars4Icon,
-  GlobeAmericasIcon,
-  NewspaperIcon,
-  PhoneIcon,
-  RectangleGroupIcon,
   SquaresPlusIcon,
-  SunIcon,
-  TagIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
-import {
-  useWindowSize,
-  useWindowWidth,
-  useWindowHeight,
-} from "@react-hook/window-size";
+import { useWindowWidth } from "@react-hook/window-size";
 import Image from "next/image";
 
 const HallsIcon = () => (
@@ -88,9 +78,13 @@ function NavListMenu() {
   const renderItems = navListMenuItems.map(
     ({ icon, title, description }, key) => (
       <a href="#" key={key}>
-        <MenuItem className="flex items-center  gap-3 rounded-lg">
+        <MenuItem
+          placeholder=""
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+          className="flex items-center  gap-3 rounded-lg"
+        >
           <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50">
-            {" "}
             {React.createElement(icon, {
               strokeWidth: 2,
               className: "h-6 text-gray-900 w-6",
@@ -98,6 +92,9 @@ function NavListMenu() {
           </div>
           <div>
             <Typography
+              placeholder=""
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
               variant="h6"
               className="flex items-center !text-black text-sm font-bold"
             >
@@ -315,44 +312,52 @@ function DropDownItem({
 }
 
 const navListItems = [
+  // {
+  //   id: 1,
+  //   title: "الرئيسية",
+  //   url: "/",
+  //   icon: "/images/gps.svg",
+  //   isDropDown: false,
+  //   subMenu: [],
+  // },
   {
     id: 1,
-    title: "الرئيسية",
-    url: "/",
-    icon: "/images/gps.svg",
-    isDropDown: false,
-    subMenu: [],
-  },
-  {
-    id: 2,
     title: "قاعات الزفاف",
     url: "/wedding-venues",
-    icon: "/images/discount-2.svg",
+    icon: "/images/nav/wedding-invitation.svg",
     isDropDown: true,
     subMenu: [],
   },
   {
-    id: 3,
-    title: "المقالات",
-    url: "/blogs",
-    icon: "/images/discount-2.svg",
-    isDropDown: false,
+    id: 2,
+    title: "خدمات الافراح",
+    url: "/wedding-services",
+    icon: "/images/nav/group.svg",
+    isDropDown: true,
     subMenu: [],
   },
+  // {
+  //   id: 2,
+  //   title: "المقالات",
+  //   url: "/blogs",
+  //   icon: "/images/discount-2.svg",
+  //   isDropDown: false,
+  //   subMenu: [],
+  // },
   {
     id: 4,
     title: "صحة العروسين",
     url: "/bride-groom-health",
     icon: "/images/Health.svg",
-    isDropDown: false,
+    isDropDown: true,
     subMenu: [],
   },
   {
     id: 5,
     title: "اكتشف",
     url: "/discover",
-    icon: "/images/discount-2.svg",
-    isDropDown: false,
+    icon: "/images/nav/gps.svg",
+    isDropDown: true,
     subMenu: [],
   },
   {
@@ -367,7 +372,7 @@ const navListItems = [
     id: 7,
     title: "خطط لحفل زفافك",
     url: "/plan-your-wedding",
-    icon: "/images/wedding-rings 1.svg",
+    icon: "/images/nav/wedding-rings.svg",
     isDropDown: false,
     subMenu: [],
   },
@@ -379,7 +384,7 @@ function NavList() {
       placeholder=""
       onPointerEnterCapture={() => {}}
       onPointerLeaveCapture={() => {}}
-      className="mt-4 mb-6  lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 "
+      className="mt-4 mb-6 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 "
     >
       {navListItems.map(({ id, title, url, icon, isDropDown }, key) => (
         <>
