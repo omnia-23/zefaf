@@ -3,13 +3,14 @@ import React from "react";
 import { Hotel } from "./Hotels";
 import HeartIcon from "@/public/images/heart.svg";
 import { RenderHTML } from "@/components/shared";
+import { Palace } from "./WeddingPalaces";
 
-export default function HotelCard({ hotel }: { hotel: Hotel }) {
+export default function PalaceCard({ palace }: { palace: Palace }) {
   return (
     <div>
       <a
-        href={`/hotels/${hotel.id}`}
-        key={hotel.id}
+        href={`/palace/${palace.id}`}
+        key={palace.id}
         className="bg-white flex-wrap lg:flex-nowrap gap-4 rounded-lg overflow-hidden max-w-[681px] h-[247px] p-4 flex items-start space-x-4 border-2"
       >
         {/* Image Section */}
@@ -17,8 +18,8 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
           <Image
             height={200}
             width={193}
-            src={hotel.image}
-            alt={hotel.name}
+            src={palace.image}
+            alt={palace.name}
             className="w-[193px] object-cover h-[200px] rounded-lg"
           />
           <button className="absolute top-2 right-2 bg-white text-gray-500 rounded-full p-1 shadow">
@@ -35,12 +36,12 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
               <h3 className="text-lg font-bold">
                 <RenderHTML
                   length={20}
-                  htmlContent={hotel.name}
+                  htmlContent={palace.name}
                   renderInTable={true}
                 />
               </h3>
               <h5 className="text-[#990645] font-bold text-lg">
-                {hotel.priceRange}
+                {palace.priceRange}
               </h5>
             </div>
 
@@ -55,7 +56,7 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
                 >
                   <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z" />
                 </svg>
-                <span className="text-[#6D0431] mx-1">{hotel.location}</span>
+                <span className="text-[#6D0431] mx-1">{palace.location}</span>
                 <svg
                   className="w-4 h-4 mx-1 text-green-500"
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,21 +72,21 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
                   />
                 </svg>
                 <span className="text-green-600 font-semibold">
-                  ({hotel.rating})
+                  ({palace.rating})
                 </span>
               </div>
-              <div className="text-sm">{hotel.capacity}</div>
+              <div className="text-sm">{palace.capacity}</div>
             </div>
           </div>
 
           {/* Description */}
           <p className="text-gray-500 text-sm">
-            <RenderHTML htmlContent={hotel.description} renderInTable={true} />
+            <RenderHTML htmlContent={palace.description} renderInTable={true} />
           </p>
 
           {/* <div className="flex w-full justify-between items-center">
-            <p className="text-[#6D0431] font-semibold text-lg">{hotel.size}</p>
-            <p>{hotel.price}</p>
+            <p className="text-[#6D0431] font-semibold text-lg">{palace.size}</p>
+            <p>{palace.price}</p>
           </div> */}
         </div>
       </a>

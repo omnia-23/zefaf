@@ -19,7 +19,7 @@ const page = () => {
       <JoinUs />
       <Hotels />
       <OffersSection />
-      <AllViews />
+      {/* <AllViews /> */}
       <Palaces />
       <PopularArticles />
       <OurServices />

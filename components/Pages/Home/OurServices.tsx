@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const OurServices = () => {
@@ -42,15 +43,17 @@ const OurServices = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="flex flex-wrap gap-6 max-w-full justify-center w-full">
+      <div className="flex flex-wrap gap-2 max-w-full justify-center w-full">
         {services.map((service) => (
           <div
             key={service.id}
-            className="flex w-[411px] h-[183px] flex-col items-end gap-6 border border-[color:var(--neutral-5,#F3F3F3)] [background:var(--Neutral-White,#FFF)] p-6 rounded-lg border-solid"
+            className="flex w-[411px] h-[183px] flex-col items-end  border border-[color:var(--neutral-5,#F3F3F3)] [background:var(--Neutral-White,#FFF)] p-6 rounded-lg border-solid"
           >
             <div className="flex-1 w-full h-full relative">
               <div className="flex items-center gap-5">
-                <img
+                <Image
+                  width={40}
+                  height={40}
                   className="size-[40px]"
                   src={service.icon}
                   alt={service.title}

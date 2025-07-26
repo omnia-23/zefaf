@@ -100,7 +100,6 @@ const Hotels = () => {
       </div>
 
       {/* Section Body */}
-      {/* Section Body */}
       <div className="w-full px-4 lg:px-0">
         <Swiper
           spaceBetween={24}
