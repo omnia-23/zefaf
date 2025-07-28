@@ -6,16 +6,11 @@ import { CgLogOut } from "react-icons/cg";
 import Image from "next/image";
 import logo from "@/public/images/new-logo.svg";
 import HomeSearchTabs from "./HomeSearchTabs";
+import { useAuth } from "@/context/AuthContext";
+import Link from "next/link";
 
 const MainNavbar = () => {
-  const [user, setUser] = React.useState<any>(null);
-
-  React.useEffect(() => {
-    const user = localStorage.getItem("user_data");
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  }, []);
+  const { user, logout } = useAuth();
 
   return (
     <section
@@ -68,7 +63,7 @@ const MainNavbar = () => {
                 </Button>
                 <Button
                   onClick={() => {
-                    localStorage.removeItem("user_data");
+                    logout();
                     window.location.href = "/";
                   }}
                   className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent"
@@ -81,26 +76,26 @@ const MainNavbar = () => {
               </>
             ) : (
               <>
-                <a href="/login">
+                <Link href="/auth/login">
                   <Button
                     placeholder=""
                     onPointerEnterCapture={() => {}}
                     onPointerLeaveCapture={() => {}}
                     className="flex w-[120px] h-10 text-white bg-transparent  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                   >
-                    انضم الينا
+                    تسجيل الدخول
                   </Button>
-                </a>
-                <a href="/company-register">
+                </Link>
+                <Link href="/auth/register">
                   <Button
                     placeholder=""
                     onPointerEnterCapture={() => {}}
                     onPointerLeaveCapture={() => {}}
                     className="flex min-w-[120px] w-fit h-10 text-white bg-transparent   flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                   >
-                    سجل كشركة
+                    إنشاء حساب
                   </Button>
-                </a>
+                </Link>
               </>
             )}
           </div>
