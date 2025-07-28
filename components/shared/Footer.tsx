@@ -1,5 +1,4 @@
 import React from "react";
-import { Facebook, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 const Footer = () => {
@@ -8,14 +7,17 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Logo and Description */}
-          <div className="text-center space-y-2 md:text-right">
-            <Image
-              src={"/images/footer/logo-footer.svg"}
-              alt="logo"
-              width={50}
-              height={55}
-            />
-            <p className="text-sm text-gray-600 leading-relaxed">
+          <div className="space-y-2 text-center md:text-right">
+            <div className="flex justify-center md:justify-start">
+              <Image
+                src="/images/new-logo.svg"
+                alt="logo"
+                width={200}
+                height={55}
+                priority
+              />
+            </div>
+            <p className="text-sm text-gray-600 leading-relaxed mt-3">
               لوريم إبسوم دولور سيت اميتلوريم إبسوم دولور سيت اميتلوريم إبسوم.
             </p>
           </div>
