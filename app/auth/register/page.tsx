@@ -72,7 +72,7 @@ export default function RegisterPage() {
         <h1 className="text-2xl font-bold text-gray-800">
           مرحباً بك في زفاف وإيرادك
         </h1>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 my-2 text-sm leading-relaxed">
           أنشئ حسابك اليوم للاستفادة من خدماتنا المتميزة في تنظيم حفلات الزفاف
           والمناسبات
         </p>
@@ -109,9 +109,7 @@ export default function RegisterPage() {
 
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* Create New Account Header */}
-          <h2 className="text-base font-semibold text-gray-800">
-            إنشاء حساب جديد
-          </h2>
+          <h2 className="text-base font-bold text-gray-800">إنشاء حساب جديد</h2>
           {/* name */}
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -201,6 +199,8 @@ export default function RegisterPage() {
               )}
             </div>
           </div>
+          
+          {/* password */}
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
               كلمة المرور
