@@ -17,12 +17,12 @@ const page = () => {
       <MainSection />
       <WeddingServices />
       <JoinUs />
-      <Hotels />
-      <OffersSection />
+      {/* <Hotels />
+      <OffersSection /> */}
       {/* <AllViews /> */}
-      <Palaces />
+      {/* <Palaces />
       <PopularArticles />
-      <OurServices />
+      <OurServices /> */}
     </>
   );
 };

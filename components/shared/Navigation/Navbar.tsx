@@ -30,7 +30,7 @@ const MainNavbar = () => {
               width={200}
               height={40}
               src={logo}
-              alt="Zafaf.sa Logo"
+              alt="Zafaf Logo"
               className="w-[200px] h-[40px]"
               style={{ width: "190px", height: "60px" }}
             />

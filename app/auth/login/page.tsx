@@ -54,11 +54,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="mt-8">
+    <div>
       <div className="text-center">
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-          تسجيل الدخول
-        </h2>
+        <h1 className="text-2xl font-bold text-gray-800">تسجيل الدخول</h1>
         <p className="text-gray-600 my-2 text-sm leading-relaxed">
           أنشئ حسابك اليوم للاستفادة من خدماتنا المتميزة في تنظيم حفلات الزفاف
           والمناسبات

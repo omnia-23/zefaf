@@ -30,7 +30,7 @@ export default function AuthLayout({
               alt="Zefaf Logo"
               width={188}
               height={40}
-              className="h-auto w-auto"
+              // className="h-auto w-auto"
               priority
             />
           </div>
