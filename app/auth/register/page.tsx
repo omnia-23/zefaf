@@ -70,7 +70,7 @@ export default function RegisterPage() {
     <div>
       <div className="text-center">
         <h1 className="text-2xl font-bold text-gray-800">
-          مرحباً بك في زفاف وإيرادك
+          مرحباً بك في عالم زفاف
         </h1>
         <p className="text-gray-600 my-2 text-sm leading-relaxed">
           أنشئ حسابك اليوم للاستفادة من خدماتنا المتميزة في تنظيم حفلات الزفاف
@@ -199,7 +199,7 @@ export default function RegisterPage() {
               )}
             </div>
           </div>
-          
+
           {/* password */}
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">
