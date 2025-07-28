@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 export default function AuthLayout({
   children,
@@ -7,29 +7,37 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen">
-      <div className="flex-1 flex flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-        <div className="mx-auto w-full max-w-sm lg:w-96">
-          <div className="flex justify-center">
-            <Image
-              src="/images/logo.png"
-              alt="Zefaf Logo"
-              width={150}
-              height={50}
-              className="h-auto w-auto"
-            />
-          </div>
-          {children}
-        </div>
-      </div>
-      <div className="hidden lg:block relative w-0 flex-1">
+    <div className="relative flex min-h-screen">
+      {/* Background Image - Fixed and covers entire viewport */}
+      <div className="fixed inset-0 -z-10 h-full w-full">
         <Image
-          className="absolute inset-0 h-full w-full object-cover"
           src="/images/auth-bg.png"
           alt="Authentication background"
           fill
+          className="object-cover"
           priority
+          quality={100}
         />
+      </div>
+
+      {/* Content Container - Responsive padding and centering */}
+      <div className="flex w-full items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div className="w-full max-w-sm rounded-2xl bg-white/95 p-6 shadow-xl backdrop-blur-sm sm:p-8 md:max-w-md lg:max-w-lg">
+          {/* Logo Container with responsive padding */}
+          <div className="mb-6 flex justify-center sm:mb-8">
+            <Image
+              src="/images/new-logo.svg"
+              alt="Zefaf Logo"
+              width={188}
+              height={40}
+              className="h-auto w-auto"
+              priority
+            />
+          </div>
+
+          {/* Children content */}
+          <div className="space-y-6">{children}</div>
+        </div>
       </div>
     </div>
   );

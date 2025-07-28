@@ -38,3 +38,28 @@
     padding: 0 5px;
   }
 }
+
+.iti{
+  width: 100% !important;
+  direction: ltr;
+}
+
+.iti__country-container{
+  left: 0 !important;
+}
+
+.iti__sa{
+  width: 50px;
+}
+
+.iti__selected-country-primary{
+ background-color: rgb(203, 196, 196);
+ width: 45px;
+ display: flex;
+ justify-content: center;
+ margin-right: 5px;
+}
+
+.iti__arrow{
+  display: none
+}
