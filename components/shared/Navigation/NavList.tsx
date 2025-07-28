@@ -312,16 +312,16 @@ function DropDownItem({
 }
 
 const navListItems = [
-  // {
-  //   id: 1,
-  //   title: "الرئيسية",
-  //   url: "/",
-  //   icon: "/images/gps.svg",
-  //   isDropDown: false,
-  //   subMenu: [],
-  // },
   {
     id: 1,
+    title: "الرئيسية",
+    url: "/",
+    icon: "/images/nav/gps.svg",
+    isDropDown: false,
+    subMenu: [],
+  },
+  {
+    id:2 ,
     title: "قاعات الزفاف",
     url: "/wedding-venues",
     icon: "/images/nav/wedding-invitation.svg",
@@ -329,7 +329,7 @@ const navListItems = [
     subMenu: [],
   },
   {
-    id: 2,
+    id: 3,
     title: "خدمات الافراح",
     url: "/wedding-services",
     icon: "/images/nav/group.svg",
