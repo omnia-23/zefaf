@@ -1,5 +1,5 @@
-import DOMPurify from "dompurify";
 import React, { memo } from "react";
+import sanitizeHtml from "sanitize-html";
 
 export const RenderHTML = memo(
   ({
@@ -11,8 +11,18 @@ export const RenderHTML = memo(
     renderInTable?: boolean;
     length?: number;
   }) => {
-    // Sanitize only once
-    const sanitizedContent = DOMPurify.sanitize(htmlContent || "");
+    // Sanitize safely for server/client
+    const sanitizedContent = sanitizeHtml(htmlContent || "", {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+        "img",
+        "h1",
+        "h2",
+      ]),
+      allowedAttributes: {
+        a: ["href", "name", "target"],
+        img: ["src", "alt", "width", "height"],
+      },
+    });
 
     // Truncate if needed
     const truncatedContent =
@@ -24,4 +34,4 @@ export const RenderHTML = memo(
   }
 );
 
-RenderHTML.displayName = "RenderHTML"; // Helps with debugging in React DevTools
+RenderHTML.displayName = "RenderHTML";

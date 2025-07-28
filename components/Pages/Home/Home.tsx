@@ -11,24 +11,24 @@ import OurServices from "./OurServices";
 import AllViews from "./AllViews";
 
 const Home = () => {
-    return (
-        <div>
-            <MainSection />
-            <WeddingServices />
-            <JoinUs />
-            <Hotels />
-            <OffersSection />
-            <AllViews />
-            <Palaces />
-            <PopularArticles />
-            <OurServices />
-        </div>
-    );
+  return (
+    <div>
+      <MainSection />
+      <WeddingServices />
+      <JoinUs />
+      <Hotels />
+      <OffersSection />
+      <AllViews />
+      <Palaces />
+      <PopularArticles />
+      <OurServices />
+    </div>
+  );
 };
 
 export default Home;
 
-if (document.getElementById("home")) {
-    const Index = ReactDOM.createRoot(document.getElementById("home"));
-    Index.render(<Home />);
-}
+// if (document.getElementById("home")) {
+//   const Index = ReactDOM.createRoot(document.getElementById("home"));
+//   Index.render(<Home />);
+// }
