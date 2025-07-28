@@ -69,7 +69,7 @@ export default function RegisterPage() {
   return (
     <div>
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-800">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-800">
           مرحباً بك في عالم زفاف
         </h1>
         <p className="text-gray-600 my-2 text-sm leading-relaxed">
@@ -111,7 +111,7 @@ export default function RegisterPage() {
           {/* Create New Account Header */}
           <h2 className="text-base font-bold text-gray-800">إنشاء حساب جديد</h2>
           {/* name */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label
                 htmlFor="first_name"
