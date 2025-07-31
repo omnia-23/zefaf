@@ -1,14 +1,15 @@
 import {
   AllViews,
-  Hotels,
+  HotelsSection,
   JoinUs,
   MainSection,
   OffersSection,
-  OurServices,
+  OurServicesSection,
   WeddingServices,
   Palaces,
-  PopularArticles,
+  BlogsSection,
 } from "@/components/Pages/Home";
+
 import React from "react";
 
 const page = () => {
@@ -17,12 +18,12 @@ const page = () => {
       <MainSection />
       <WeddingServices />
       <JoinUs />
-      {/* <Hotels />
-      <OffersSection /> */}
-      {/* <AllViews /> */}
-      {/* <Palaces />
-      <PopularArticles />
-      <OurServices /> */}
+      <HotelsSection />
+      <OffersSection />
+      {/* <AllViews />        //  commented out for now */}
+      <Palaces />
+      <BlogsSection />
+      <OurServicesSection />
     </>
   );
 };

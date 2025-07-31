@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { Article } from "./Blogs";
+import { Article } from "./BlogsSection";
 
 export default function BlogCard({ article }: { article: Article }) {
   return (
-    <div key={article.id} className="w-[302px] h-[444px]  relative">
+    <div key={article.id} className="w-[302px] h-[444px]">
       <div className="relative w-full h-full rounded-lg overflow-hidden">
         {/* Image with overlay */}
         <Image

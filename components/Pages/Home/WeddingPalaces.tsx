@@ -71,71 +71,69 @@ const Palaces = () => {
   );
 
   return (
-    <section className="container mx-auto px-4 lg:px-8 flex flex-col items-start gap-20 self-stretch py-10 lg:py-[120px] text-black">
-      {/* Section Header */}
-      <div className="w-full flex flex-col gap-6">
-        <div className="w-full flex items-center gap-4">
-          <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
-          <p className="text-[color:var(--Text-Color,#221F20)] [leading-trim:both] [text-edge:cap] text-2xl font-bold leading-[normal]">
-            قصور الإفراح
-          </p>
-        </div>
+    <section className="lg:min-h-[650px]">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto py-10 lg:py-[120px]">
+        {/* Section Header */}
+        <div className="w-full flex flex-col gap-6">
+          <div className="w-full flex items-center gap-4">
+            <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
+            <h2 className="text-[color:var(--Text-Color,#221F20)] [leading-trim:both] [text-edge:cap] text-2xl font-bold leading-[normal]">
+              قصور الإفراح
+            </h2>
+          </div>
 
-        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
-          <div className="flex-1">
-            <p className="text-right text-gray-600 text-base font-normal leading-relaxed max-w-[569px]">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
               قاعات قصور الأفراح تجمع بين الفخامة والرحابة لتمنحك أجواء ملكية
               مثالية ليوم زفافك، مع تصاميم راقية وخدمات متكاملة لإبهار ضيوفك.{" "}
             </p>
-          </div>
-          <div className="md:self-end">
+
             <a
               href="/palaces"
-              className="text-[#AF074E] hover:text-[#8a063d] underline transition-colors duration-200 text-sm font-medium"
+              className="text-[#AF074E] hover:text-[#8a063d] underline transition-colors text-sm font-medium"
             >
               عرض الكل
             </a>
           </div>
         </div>
-      </div>
 
-      <div className="w-full px-4 lg:px-0">
-        <Swiper
-          spaceBetween={24}
-          slidesPerView={"auto"}
-          breakpoints={{
-            // Mobile: 1 slide
-            640: {
-              slidesPerView: 1,
-              spaceBetween: 16,
-            },
-            // Tablet: 2 slides
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            // Desktop: 3 slides with centered layout
-            1024: {
-              slidesPerView: 1.9,
-              spaceBetween: 20,
-            },
-          }}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: true,
-            pauseOnMouseEnter: true,
-          }}
-          modules={[Autoplay]}
-          className="palaces-swiper"
-          grabCursor={true}
-          loop={true}
-        >
-          {palaces?.map((palace: Palace) => (
-            <SwiperSlide key={palace.id} className="pb-10">
-              <PalaceCard palace={palace} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="mt-10 w-full">
+          <Swiper
+            spaceBetween={16}
+            breakpoints={{
+              0: {
+                slidesPerView: 1.05,
+              },
+              640: {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 1.9,
+                spaceBetween: 20,
+              },
+            }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: true,
+              pauseOnMouseEnter: true,
+            }}
+            modules={[Autoplay]}
+            className="palaces-swiper"
+            grabCursor={true}
+            loop={true}
+          >
+            {palaces?.map((palace: Palace) => (
+              <SwiperSlide key={palace.id} className="pb-10">
+                <PalaceCard palace={palace} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </section>
   );

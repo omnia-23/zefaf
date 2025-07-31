@@ -4,10 +4,10 @@ import MainSection from "./MainSection";
 import OffersSection from "./OffersSection";
 import WeddingServices from "./WeddingServices";
 import JoinUs from "./JoinUs";
-import Hotels from "./Hotels";
+import Hotels from "./HotelsSection";
 import Palaces from "./WeddingPalaces";
-import PopularArticles from "./Blogs";
-import OurServices from "./OurServices";
+import PopularArticles from "./BlogsSection";
+import OurServicesSection from "./OurServicesSection";
 import AllViews from "./AllViews";
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
       <AllViews />
       <Palaces />
       <PopularArticles />
-      <OurServices />
+      <OurServicesSection />
     </div>
   );
 };

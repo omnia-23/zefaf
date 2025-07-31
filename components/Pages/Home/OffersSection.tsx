@@ -4,6 +4,7 @@ import useSWR from "swr";
 import OfferCard from "./OfferCard";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 export interface Offer {
   id: number;
@@ -72,30 +73,28 @@ const OffersSection = () => {
     fetcher
   );
 
-  console.log({ data });
-
   return (
-    <section className="mx-auto py-10 lg:py-[120px] bg-[#FDF3F7] text-black">
-      <div className="w-full h-full container px-4 lg:px-8 mx-auto flex flex-col items-start self-stretch gap-20">
+    <section className="bg-[#FDF3F7] lg:min-h-[650px]">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto py-10 lg:py-[120px]">
+        {/* Section Header */}
         <div className="w-full flex flex-col gap-6">
           <div className="flex items-center gap-4">
             <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
-            <p className="text-[color:var(--Text-Color,#221F20)] text-2xl font-bold leading-[normal]">
+            <h2 className="text-[color:var(--Text-Color,#221F20)] text-2xl font-bold leading-[normal]">
               افضل العروض
-            </p>
+            </h2>
           </div>
 
-          <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
-            <div className="flex-1">
-              <p className="text-right text-gray-600 text-base font-normal leading-relaxed max-w-[569px]">
-                مع عالم زفاف، استمتع بأفضل العروض والتخفيضات على قاعات الزفاف
-                والخدمات المميزة، لضمان إتمام حفل أحلامك بأفضل سعر وجودة!{" "}
-              </p>
-            </div>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
+              مع عالم زفاف، استمتع بأفضل العروض والتخفيضات على قاعات الزفاف
+              والخدمات المميزة، لضمان إتمام حفل أحلامك بأفضل سعر وجودة!{" "}
+            </p>
+
             <div className="md:self-end">
               <a
                 href="/offers"
-                className="text-[#AF074E] hover:text-[#8a063d] underline transition-colors duration-200 text-sm font-medium"
+                className="text-[#AF074E] hover:text-[#8a063d] underline transition-colors text-sm font-medium"
               >
                 عرض الكل
               </a>
@@ -103,15 +102,17 @@ const OffersSection = () => {
           </div>
         </div>
 
-        <div className="w-full px-4 lg:px-0">
+        <div className="w-full mt-10">
           <Swiper
-            spaceBetween={24}
-            slidesPerView={"auto"}
+            spaceBetween={16}
             breakpoints={{
               // Mobile: 1 slide
+              0: {
+                slidesPerView: 1.05,
+              },
               640: {
-                slidesPerView: 1,
-                spaceBetween: 16,
+                slidesPerView: 1.2,
+                spaceBetween: 20,
               },
               // Tablet: 2 slides
               768: {
@@ -120,7 +121,7 @@ const OffersSection = () => {
               },
               // Desktop: 3 slides with centered layout
               1024: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.9,
                 spaceBetween: 20,
               },
             }}
@@ -131,8 +132,8 @@ const OffersSection = () => {
             }}
             modules={[Autoplay]}
             className="hotels-swiper"
-            grabCursor={true}
-            loop={true}
+            loop
+            grabCursor
           >
             {offers?.map((offer: Offer) => (
               <SwiperSlide key={offer.id} className="pb-10">
