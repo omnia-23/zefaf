@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { NavList } from "./NavList";
 
-export function MenuDefault() {
+export function MainMenuDefault() {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {

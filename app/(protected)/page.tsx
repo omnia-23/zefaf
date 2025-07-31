@@ -1,5 +1,4 @@
 import {
-  AllViews,
   HotelsSection,
   JoinUs,
   MainSection,
@@ -9,12 +8,15 @@ import {
   Palaces,
   BlogsSection,
 } from "@/components/Pages/Home";
+import Footer from "@/components/shared/Footer";
+import MainNavbar from "@/components/shared/Navigation/MainNavbar";
 
 import React from "react";
 
 const page = () => {
   return (
     <>
+      <MainNavbar />
       <MainSection />
       <WeddingServices />
       <JoinUs />
@@ -24,6 +26,7 @@ const page = () => {
       <Palaces />
       <BlogsSection />
       <OurServicesSection />
+      <Footer />
     </>
   );
 };

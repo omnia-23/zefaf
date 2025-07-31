@@ -1,19 +1,28 @@
 "use client";
 import { Button } from "@material-tailwind/react";
 import React from "react";
+import { MainMenuDefault } from "./Menu";
 import { CgLogOut } from "react-icons/cg";
 import Image from "next/image";
 import logo from "@/public/images/new-logo.svg";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
-import { MainMenuDefault } from "./Menu";
 
-const Navbar = () => {
+const MainNavbar = () => {
   const { user, logout } = useAuth();
 
   return (
-    <section className="flex flex-col items-center text-center py-6  h-fit">
-      <div className="mx-auto w-full border-b border-solid pb-6">
+    <section
+      className="flex flex-col items-center text-center py-6  bg-cover bg-center min-h-screen h-fit"
+      style={{
+        backgroundImage: "url(/images/Home-Banner.svg)",
+      }}
+    >
+      <div
+        style={{ borderColor: "#88888848" }}
+        className="mx-auto w-full border-b border-solid pb-6"
+        id="header"
+      >
         <div className="container mx-auto w-full px-4 lg:px-8 py-4">
           <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
             {/* Logo */}
@@ -96,9 +105,30 @@ const Navbar = () => {
 
         {/* items list */}
         <MainMenuDefault />
+
+        <div className="px-4 container lg:px-8 flex flex-col w-full">
+          <div className="mt-[40px] lg:mt-[116px] w-full flex justify-start ">
+            <p className="text-[color:var(--Neutral-White,#FFF)] text-right [leading-trim:both] [text-edge:cap] text-2xl font-medium leading-[normal]">
+              التخطيط لحفل زفافك يبدأ الآن!
+            </p>
+          </div>
+
+          <div className="mt-4 lg:mt-[56px] w-full flex justify-start container lg:px-0 ">
+            <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg lg:text-[56px] font-extrabold leading-[50px] lg:leading-[100px]">
+              <span className="text-[#DB0962] ml-1">عالم زفاف,</span>
+              <span className="text-white">
+                الدليل الأكبر لجميع
+                <br className="hidden lg:inline-flex" />
+                خدمات حفل الزفاف في السعودية.
+              </span>
+            </p>
+          </div>
+
+          {/* <HomeSearchTabs /> */}
+        </div>
       </div>
     </section>
   );
 };
 
-export default Navbar;
+export default MainNavbar;

@@ -165,6 +165,7 @@ export function DropDownItem({
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
               {starterIcon && (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img src={starterIcon} alt={title} className="w-6 h-6" />
               )}
 
