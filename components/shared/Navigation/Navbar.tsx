@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@material-tailwind/react";
 import React from "react";
-import { MegaMenuDefault } from "./NavList";
+import { MenuDefault } from "./Menu";
 import { CgLogOut } from "react-icons/cg";
 import Image from "next/image";
 import logo from "@/public/images/new-logo.svg";
@@ -20,7 +20,7 @@ const MainNavbar = () => {
     >
       <div
         style={{ borderColor: "#88888848" }}
-        className="mx-auto  w-full   border-b border-solid pb-6"
+        className="mx-auto w-full border-b border-solid pb-6"
         id="header"
       >
         <div className="container mx-auto w-full px-4 lg:px-8 py-4">
@@ -102,7 +102,9 @@ const MainNavbar = () => {
             </div>
           </div>
         </div>
-        <MegaMenuDefault />
+
+        {/* items list */}
+        <MenuDefault />
 
         <div className="px-4 container lg:px-8 flex flex-col w-full">
           <div className="mt-[40px] lg:mt-[116px] w-full flex justify-start ">
