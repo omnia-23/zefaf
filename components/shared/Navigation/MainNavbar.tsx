@@ -7,6 +7,7 @@ import Image from "next/image";
 import logo from "@/public/images/new-logo.svg";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
+import HomeSearchTabs from "./HomeSearchTabs";
 
 const MainNavbar = () => {
   const { user, logout } = useAuth();
@@ -20,7 +21,7 @@ const MainNavbar = () => {
     >
       <div
         style={{ borderColor: "#88888848" }}
-        className="mx-auto w-full border-b border-solid pb-6"
+        className="mx-auto w-full pb-6"
         id="header"
       >
         <div className="container mx-auto w-full px-4 lg:px-8 py-4">
@@ -113,18 +114,21 @@ const MainNavbar = () => {
             </p>
           </div>
 
-          <div className="mt-4 lg:mt-[56px] w-full flex justify-start container lg:px-0 ">
-            <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg lg:text-[56px] font-extrabold leading-[50px] lg:leading-[100px]">
+          <div className="mt-4 lg:mt-[56px] w-full flex justify-start container lg:px-0">
+            <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg md:text-2xl lg:text-[56px] font-extrabold leading-[50px] lg:leading-[100px]">
               <span className="text-[#DB0962] ml-1">عالم زفاف,</span>
               <span className="text-white">
                 الدليل الأكبر لجميع
-                <br className="hidden lg:inline-flex" />
+                <br className="inline-flex" />
                 خدمات حفل الزفاف في السعودية.
               </span>
             </p>
           </div>
 
-          {/* <HomeSearchTabs /> */}
+          {/* search tabs */}
+          <div className="mt-8">
+            <HomeSearchTabs />
+          </div>
         </div>
       </div>
     </section>

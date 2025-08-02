@@ -34,7 +34,6 @@ export function MainMenuDefault() {
           <div className="hidden lg:block">
             <NavList />
           </div>
-
           <IconButton
             placeholder=""
             onPointerEnterCapture={() => {}}
