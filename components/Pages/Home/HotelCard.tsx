@@ -31,8 +31,8 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
           {/* Title and Location */}
           <div className="flex flex-col gap-3">
             {/* Title  */}
-            <div className="flex flex-col sm:flex-row sm:justify-between items-start gap-2 sm:gap-0">
-              <h3 className="text-base sm:text-lg font-bold sm:w-2/3">
+            <div className="flex flex-col items-start gap-2">
+              <h3 className="text-base sm:text-lg font-bold">
                 {/* <RenderHTML
                   length={20}
                   htmlContent={hotel.name}
