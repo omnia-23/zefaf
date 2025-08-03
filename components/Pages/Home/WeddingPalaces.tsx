@@ -16,7 +16,6 @@ export interface Palace {
   image: string;
 }
 
-const fetcher = (url: any) => fetch(url).then((res) => res.json());
 const Palaces = () => {
   const palaces = [
     {
@@ -65,10 +64,11 @@ const Palaces = () => {
     },
   ];
 
-  const { data, isLoading } = useSWR(
-    "https://zafaf.sa/public/api/getRondomHalls",
-    fetcher
-  );
+  // const fetcher = (url: any) => fetch(url).then((res) => res.json());
+  // const { data, isLoading } = useSWR(
+  //   "https://zafaf.sa/public/api/getRondomHalls",
+  //   fetcher
+  // );
 
   return (
     <section className="lg:min-h-[650px]">

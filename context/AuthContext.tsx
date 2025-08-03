@@ -1,5 +1,5 @@
 "use client";
-import { authAPI } from "@/lib/authApis";
+
 import React, {
   createContext,
   useContext,
@@ -7,15 +7,17 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { authAPI } from "@/lib/authApis"; // Make sure this wraps axios
+import axios from "axios";
 
 type User = {
-  id: string;
+  id: string | number;
   name: string;
   email: string;
 } | null;
 
-type registerData = {
+type RegisterData = {
   first_name: string;
   last_name: string;
   email: string;
@@ -26,7 +28,7 @@ type registerData = {
 type AuthContextType = {
   user: User;
   login: (email: string, password: string) => Promise<void>;
-  register: (userData: registerData) => Promise<void>;
+  register: (data: RegisterData) => Promise<void>;
   logout: () => void;
   isLoading: boolean;
 };
@@ -38,67 +40,75 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in from localStorage
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
+    const storedToken = localStorage.getItem("access_token");
+
+    if (storedUser && storedToken) {
       setUser(JSON.parse(storedUser));
+      // axios.defaults.headers.common.Authorization = `Bearer ${storedToken}`;
     }
+
     setIsLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      // Call the login API
       const response = await authAPI.login(email, password);
+      const { access_token, user } = response;
 
-      // Set user data from response
-      const userData = {
-        id: response.user.id,
-        name:
-          response.user.name ||
-          `${response.user.first_name} ${response.user.last_name}`,
-        email: response.user.email,
+      if (!access_token) throw new Error("Missing access token");
+
+      const userInfo = {
+        id: user?.id ?? null,
+        name: user?.name ?? null,
+        email: user?.email ?? null,
       };
 
-      setUser(userData);
-      localStorage.setItem("user", JSON.stringify(userData));
+      setUser(userInfo);
+      localStorage.setItem("user", JSON.stringify(userInfo));
+      localStorage.setItem("access_token", access_token);
 
-      // Show success toast
+      // Optional: set default Authorization header for future API calls
+      axios.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+
       toast.success("تم تسجيل الدخول بنجاح");
     } catch (error: any) {
-      // Show error toast
-      toast.error(error.response?.data?.message || "فشل تسجيل الدخول");
-      throw error;
+      console.error("Login error:", error?.response?.data || error);
+      toast.error(
+        error?.response?.data?.message === "Unauthorized"
+          ? "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+          : "فشل تسجيل الدخول"
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
-  const register = async (userData: registerData) => {
+  const register = async (data: RegisterData) => {
     setIsLoading(true);
     try {
-      // Call the register API
       const response = await authAPI.register({
-        name: `${userData.first_name} ${userData.last_name}`,// Combine first and last name
-        email: userData.email,
-        password: userData.password,
-        phone: userData.phone,
+        name: `${data.first_name} ${data.last_name}`,
+        email: data.email,
+        password: data.password,
+        phone: data.phone,
       });
-      console.log({ response });
-      // Set user data from response
+      // console.log({ response });
+      const accessToken = response.access_token;
       const userInfo = {
         id: response.user.id,
-        name: `${userData.first_name} ${userData.last_name}`,
-        email: userData.email,
+        name: response.user.name,
+        email: response.user.email,
       };
+
       setUser(userInfo);
       localStorage.setItem("user", JSON.stringify(userInfo));
+      localStorage.setItem("access_token", accessToken);
+      axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
-      // Show success toast
       toast.success("تم إنشاء الحساب بنجاح");
     } catch (error: any) {
-      // Show error toast
       toast.error("فشل إنشاء الحساب");
       throw error;
     } finally {
@@ -106,28 +116,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const logout = async () => {
+  const logout = () => {
     try {
-      // Call the logout API
-      // await authAPI.logout();
-
-      // Clear user data
       setUser(null);
       localStorage.removeItem("user");
+      localStorage.removeItem("access_token");
+      delete axios.defaults.headers.common.Authorization;
 
-      // Show success toast
       toast.success("تم تسجيل الخروج بنجاح");
-    } catch (error: any) {
-      // Show error toast but still clear local data
+    } catch (error) {
       toast.error("حدث خطأ أثناء تسجيل الخروج");
-      setUser(null);
-      localStorage.removeItem("user");
     }
   };
 
   return (
     <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
-      <Toaster position="top-center" />
       {children}
     </AuthContext.Provider>
   );
@@ -135,7 +138,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;

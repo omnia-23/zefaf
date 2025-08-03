@@ -17,15 +17,14 @@ export interface Hotel {
   image: string;
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 const HotelsSection = () => {
-  const { data, isLoading } = useSWR(
-    "https://zafaf.sa/public/api/getRondomHotels",
-    fetcher
-  );
+  // const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  // const { data, isLoading } = useSWR(
+  //   "https://zafaf.sa/public/api/getRondomHotels",
+  //   fetcher
+  // );
 
-  const hotels = data ?? [
+  const hotels = [
     {
       id: 1,
       name: "فندق ذهب المركز المالي",

@@ -67,11 +67,11 @@ const OffersSection = () => {
     },
   ];
 
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data } = useSWR(
-    "https://zafaf.sa/public/api/halls/keywords",
-    fetcher
-  );
+  // const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  // const { data } = useSWR(
+  //   "https://zafaf.sa/public/api/halls/keywords",
+  //   fetcher
+  // );
 
   return (
     <section className="bg-[#FDF3F7] lg:min-h-[650px]">

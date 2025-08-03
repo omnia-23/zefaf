@@ -55,13 +55,15 @@ export default function RegisterPage() {
     try {
       await registerUser(data);
       // Redirect to home page after successful registration
-      // router.push("/");
+      router.push("/auth/login");
     } catch (error: any) {
-      // Error is already shown via toast in AuthContext
-      setRegisterError(
-        error.response?.data?.message ||
-          "فشل إنشاء الحساب. يرجى المحاولة مرة أخرى."
-      );
+      console.log({ error });
+      const msg =
+        error?.response?.data?.message === "The email has already been taken."
+          ? "البريد الإلكتروني مستخدم بالفعل."
+          : "فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.";
+
+      setRegisterError(msg);
     }
   };
 
@@ -242,9 +244,6 @@ export default function RegisterPage() {
             >
               إنشاء حساب
             </button>
-            <div>
-              <p className="mt-2 text-sm text-red-600">{registerError}</p>
-            </div>
           </div>
           <div className="text-center text-sm">
             لديك حساب بالفعل؟{" "}

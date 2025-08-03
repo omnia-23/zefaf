@@ -78,7 +78,8 @@ export function DropDownItem({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(navListMenuItems[0]);
   const onlyWidth = useWindowWidth();
-  console.log({ onlyWidth });
+
+  // console.log({ onlyWidth });
   // React.useEffect(() => {
   //     window.addEventListener(
   //         "resize",

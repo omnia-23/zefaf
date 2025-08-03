@@ -10,8 +10,6 @@ export interface Article {
   image: string;
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 const BlogsSection = () => {
   const articles = [
     {
@@ -40,7 +38,8 @@ const BlogsSection = () => {
     },
   ];
 
-  const { data } = useSWR("https://zafaf.sa/public/api/minBlog", fetcher);
+  // const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  // const { data } = useSWR("https://zafaf.sa/public/api/minBlog", fetcher);
 
   return (
     <section className="lg:min-h-[650px]">

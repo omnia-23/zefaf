@@ -13,40 +13,41 @@ import Image from "next/image";
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 const MainSection = () => {
-  const { data, isLoading } = useSWR(
-    "https://zafaf.sa/public/api/WeddingVenues",
-    fetcher
-  );
-  console.log({ data });
+  // const { data, isLoading } = useSWR(
+  //   "https://zafaf.sa/public/api/WeddingVenues",
+  //   fetcher
+  // );
+  // console.log({ data });
 
   const slides = [
     {
       title: "قصور الأفراح",
-      count: data?.halls?.length || 10,
+      count: 10,
+      // count: data?.halls?.length || 10,
       image: "/images/hotels.png",
       alt: "Wedding Halls",
     },
     {
       title: "الفنادق",
-      count: data?.hotels?.length || 10,
+      count: 10,
       image: "/images/halls.png",
       alt: "Hotels",
     },
     {
       title: "الاستراحات",
-      count: data?.resort?.length || 10,
+      count: 10,
       image: "/images/resorts.png",
       alt: "Resorts",
     },
     {
       title: "قصور الأفراح",
-      count: data?.halls?.length || 10,
+      count: 10,
       image: "/images/hotels.png",
       alt: "Wedding Halls",
     },
     {
       title: "الاستراحات",
-      count: data?.resort?.length || 10,
+      count: 10,
       image: "/images/resorts.png",
       alt: "Resorts",
     },
