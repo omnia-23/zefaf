@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
 
-import IntlPhoneInput, { PhoneInputRef } from "@/components/shared/PhoneInput";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 // Validation schema
 const schema = yup
@@ -35,34 +36,32 @@ export default function RegisterPage() {
   const [registerError, setRegisterError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  // Add this to useForm:
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     setValue,
+    watch,
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
-  const phoneInputRef = useRef<PhoneInputRef>(null);
+  // Watch phone value in form
+  const phone = watch("phone");
 
   const onSubmit = async (data: FormData) => {
     setRegisterError("");
-    const phoneNumber = phoneInputRef.current?.value;
-
-    if (!phoneNumber || !phoneInputRef.current?.isValid()) {
-      setRegisterError("رقم الهاتف غير صالح");
-      return;
-    }
-
-    console.log("Phone number:", phoneNumber);
     try {
-      // await registerUser(data.first_name, data.last_name, data.email, data.password);
-      // Redirect to login page after successful registration
-      router.push("/auth/login");
-    } catch (error) {
-      setRegisterError("فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.");
+      await registerUser(data);
+      // Redirect to home page after successful registration
+      // router.push("/");
+    } catch (error: any) {
+      // Error is already shown via toast in AuthContext
+      setRegisterError(
+        error.response?.data?.message ||
+          "فشل إنشاء الحساب. يرجى المحاولة مرة أخرى."
+      );
     }
   };
 
@@ -191,7 +190,21 @@ export default function RegisterPage() {
               رقم الهاتف
             </label>
             <div className="relative">
-              <IntlPhoneInput ref={phoneInputRef} />
+              <PhoneInput
+                country={"sa"}
+                value={phone}
+                onChange={(phone) => {
+                  setValue("phone", phone);
+                }}
+                inputClass="!w-full !text-base !pl-[50px] !py-2 !border !border-gray-300 !rounded-md !shadow-sm focus:!outline-none focus:!ring-blue-500 focus:!border-blue-500"
+                containerClass="!w-full"
+                buttonClass="!bg-white !left-0"
+                inputProps={{
+                  name: "phone",
+                  required: true,
+                  autoFocus: false,
+                }}
+              />
               {errors.phone && (
                 <p className="mt-2 text-sm text-red-600">
                   {errors.phone.message}
@@ -217,7 +230,6 @@ export default function RegisterPage() {
                 type={showPassword ? "text" : "password"}
                 placeholder="****************"
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none transition-all text-right"
-                required
                 {...register("password")}
               />
             </div>

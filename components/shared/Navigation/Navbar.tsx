@@ -6,10 +6,12 @@ import Image from "next/image";
 import logo from "@/public/images/new-logo.svg";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { MainMenuDefault } from "./Menu";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const router = useRouter();
 
   return (
     <section className="flex flex-col items-center text-center py-6  h-fit">
@@ -54,9 +56,9 @@ const Navbar = () => {
                     اهلا بك {user.name}
                   </Button>
                   <Button
-                    onClick={() => {
-                      logout();
-                      window.location.href = "/";
+                    onClick={async () => {
+                      await logout();
+                      router.push("/");
                     }}
                     className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent"
                     placeholder=""

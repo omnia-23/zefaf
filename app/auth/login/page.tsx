@@ -46,9 +46,10 @@ export default function LoginPage() {
       await login(data.email, data.password);
       // Redirect to protected area after successful login
       router.push("/");
-    } catch (error) {
+    } catch (error: any) {
+      // Error is already shown via toast in AuthContext
       setLoginError(
-        "فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك."
+        error.response?.data?.message || "فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك."
       );
     }
   };

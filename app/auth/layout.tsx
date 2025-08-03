@@ -17,6 +17,8 @@ export default function AuthLayout({
           className="object-cover"
           priority
           quality={100}
+          // width={500}
+          // height={500}
         />
       </div>
 

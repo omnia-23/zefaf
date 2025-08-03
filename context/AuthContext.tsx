@@ -1,5 +1,5 @@
 "use client";
-
+import { authAPI } from "@/lib/authApis";
 import React, {
   createContext,
   useContext,
@@ -7,6 +7,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 type User = {
   id: string;
@@ -14,10 +15,18 @@ type User = {
   email: string;
 } | null;
 
+type registerData = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  phone: string;
+};
+
 type AuthContextType = {
   user: User;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  register: (userData: registerData) => Promise<void>;
   logout: () => void;
   isLoading: boolean;
 };
@@ -40,57 +49,85 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
-      // This is a mock implementation
-      // In a real app, you would make an API call to your backend
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Call the login API
+      const response = await authAPI.login(email, password);
 
-      // Mock successful login
-      const mockUser = {
-        id: "1",
-        name: "مستخدم تجريبي",
-        email,
+      // Set user data from response
+      const userData = {
+        id: response.user.id,
+        name:
+          response.user.name ||
+          `${response.user.first_name} ${response.user.last_name}`,
+        email: response.user.email,
       };
 
-      setUser(mockUser);
-      localStorage.setItem("user", JSON.stringify(mockUser));
-    } catch (error) {
-      throw new Error("فشل تسجيل الدخول");
+      setUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      // Show success toast
+      toast.success("تم تسجيل الدخول بنجاح");
+    } catch (error: any) {
+      // Show error toast
+      toast.error(error.response?.data?.message || "فشل تسجيل الدخول");
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (userData: registerData) => {
     setIsLoading(true);
     try {
-      // This is a mock implementation
-      // In a real app, you would make an API call to your backend
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Mock successful registration
-      // In a real app, you might not log the user in automatically after registration
-      const mockUser = {
-        id: "1",
-        name,
-        email,
+      // Call the register API
+      const response = await authAPI.register({
+        name: `${userData.first_name} ${userData.last_name}`,// Combine first and last name
+        email: userData.email,
+        password: userData.password,
+        phone: userData.phone,
+      });
+      console.log({ response });
+      // Set user data from response
+      const userInfo = {
+        id: response.user.id,
+        name: `${userData.first_name} ${userData.last_name}`,
+        email: userData.email,
       };
+      setUser(userInfo);
+      localStorage.setItem("user", JSON.stringify(userInfo));
 
-      setUser(mockUser);
-      localStorage.setItem("user", JSON.stringify(mockUser));
-    } catch (error) {
-      throw new Error("فشل إنشاء الحساب");
+      // Show success toast
+      toast.success("تم إنشاء الحساب بنجاح");
+    } catch (error: any) {
+      // Show error toast
+      toast.error("فشل إنشاء الحساب");
+      throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
+  const logout = async () => {
+    try {
+      // Call the logout API
+      // await authAPI.logout();
+
+      // Clear user data
+      setUser(null);
+      localStorage.removeItem("user");
+
+      // Show success toast
+      toast.success("تم تسجيل الخروج بنجاح");
+    } catch (error: any) {
+      // Show error toast but still clear local data
+      toast.error("حدث خطأ أثناء تسجيل الخروج");
+      setUser(null);
+      localStorage.removeItem("user");
+    }
   };
 
   return (
     <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+      <Toaster position="top-center" />
       {children}
     </AuthContext.Provider>
   );
