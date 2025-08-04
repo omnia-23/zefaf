@@ -22,7 +22,7 @@ const HallsIcon = () => (
     fill="none"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
-    stroke="#000"
+    stroke="#fff"
     className="size-6"
   >
     <path
@@ -104,19 +104,15 @@ export function DropDownItem({
             }
           }}
           className={`flex items-center gap-3 p-0 rounded-lg font-bold text-[#db0962] hover:bg-gray-200 ${
-            selectedItem.title === title
-              ? onlyWidth > 960
-                ? "bg-gray-200"
-                : " "
-              : ""
+            selectedItem.title === title ? (onlyWidth > 960 ? "" : " ") : ""
           }`}
         >
-          <div className="flex items-center justify-center rounded-lg !bg-blue-gray-50 p-2 ">
+          <div className="flex items-center justify-center rounded-lg p-2 ">
             {" "}
             {React.createElement(icon, {
               strokeWidth: 2,
-              className: `h-6 w-6 ${
-                onlyWidth > 960 ? "text-gray-900" : "text-white"
+              className: `h-6 w-6 text-white
+                // onlyWidth > 960 ? "text-gray-900" : "text-white"
               }
                                   `,
             })}
@@ -129,7 +125,7 @@ export function DropDownItem({
               variant="h6"
               color="blue-gray"
               className={`flex items-center text-sm font-bold ${
-                onlyWidth > 960 ? "text-black" : "text-white"
+                onlyWidth > 960 ? "text-white" : "text-white"
               }`}
             >
               {title}
@@ -190,7 +186,7 @@ export function DropDownItem({
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
-          className="hidden rounded-xl lg:block container w-fit"
+          className="hidden bg-black/50 border-0 rounded-xl lg:block container w-fit"
         >
           <ul className="flex flex-col gap-y-2 outline-none outline-0">
             {renderItems}

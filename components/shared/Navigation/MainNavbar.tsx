@@ -38,7 +38,11 @@ const MainNavbar = () => {
               />
             </div>
 
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-2 items-start">
+              {/* Mobile Menu */}
+              <div className="block lg:hidden">
+                <MainMenuDefault />
+              </div>
               <Button
                 placeholder=""
                 onPointerEnterCapture={() => {}}
@@ -53,6 +57,7 @@ const MainNavbar = () => {
                   className="cursor-pointer"
                 />
               </Button>
+
               {user ? (
                 <>
                   <Button
@@ -104,9 +109,9 @@ const MainNavbar = () => {
           </div>
         </div>
 
-        {/* items list */}
-        <MainMenuDefault />
-
+        <div className="lg:block hidden">
+          <MainMenuDefault />
+        </div>
         <div className="px-4 container lg:px-8 flex flex-col w-full">
           <div className="mt-[40px] lg:mt-[116px] w-full flex justify-start ">
             <p className="text-[color:var(--Neutral-White,#FFF)] text-right [leading-trim:both] [text-edge:cap] text-2xl font-medium leading-[normal]">

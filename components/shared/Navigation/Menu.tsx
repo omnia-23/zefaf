@@ -22,13 +22,13 @@ export function MainMenuDefault() {
         borderRightColor: "transparent",
         borderTopColor: "transparent",
       }}
-      className="w-full border-solid border z-50"
+      className="md:w-full border-solid border z-50"
     >
       <Navbar
         placeholder=""
         onPointerEnterCapture={() => {}}
         onPointerLeaveCapture={() => {}}
-        className="container mx-auto px-0 py-6 bg-transparent shadow-none backdrop-filter-none border-none rounded-none "
+        className="container mx-auto py-0 px-0 lg:py-6 bg-transparent shadow-none backdrop-filter-none border-none rounded-none "
       >
         <div className="container mx-auto flex items-center justify-between ">
           <div className="hidden lg:block">
@@ -40,7 +40,7 @@ export function MainMenuDefault() {
             onPointerLeaveCapture={() => {}}
             variant="text"
             color="blue-gray"
-            className="lg:hidden"
+            className="lg:hidden py-0 px-2 border-0"
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (
@@ -50,8 +50,13 @@ export function MainMenuDefault() {
             )}
           </IconButton>
         </div>
-        <Collapse className="" open={openNav}>
-          <NavList />
+        <Collapse
+          open={openNav}
+          className="absolute right-5 z-50 w-2/3 bg-black/90 text-white rounded-md shadow-lg border-0"
+        >
+          <div className="p-2">
+            <NavList />
+          </div>
         </Collapse>
       </Navbar>
     </div>
