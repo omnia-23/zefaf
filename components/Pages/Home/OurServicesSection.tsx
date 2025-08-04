@@ -44,7 +44,7 @@ const OurServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="flex flex-wrap gap-2 max-w-full justify-center w-full">
+        <div className="flex flex-wrap gap-2 max-w-full justify-center w-full mt-5">
           {services.map((service) => (
             <div
               key={service.id}
