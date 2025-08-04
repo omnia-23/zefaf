@@ -75,3 +75,8 @@
 .selected-flag .flag {
   left: 13px !important;
 }
+
+.flag-dropdown {
+  direction: ltr !important;
+  text-align: right !important;
+}
