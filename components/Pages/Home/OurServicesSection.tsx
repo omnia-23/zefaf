@@ -37,18 +37,18 @@ const OurServicesSection = () => {
               خدماتنا
             </h2>
           </div>
-          <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
             في عالم زفاف، نوفر لك فريق عمل محترف، أسعار تنافسية تناسب الجميع،
             وعروض مميزة تضمن لك تجربة زفاف استثنائية بأعلى جودة.{" "}
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="flex flex-wrap gap-2 max-w-full justify-center w-full mt-5">
+        <div className="flex flex-wrap gap-2 max-w-full justify-center w-full mt-7">
           {services.map((service) => (
             <div
               key={service.id}
-              className="flex w-[411px] h-[183px] flex-col items-end  border border-[color:var(--neutral-5,#F3F3F3)] [background:var(--Neutral-White,#FFF)] p-6 rounded-lg border-solid"
+              className="flex max-w-[411px] min-h-[183px] flex-col items-end  border border-[color:var(--neutral-5,#F3F3F3)] [background:var(--Neutral-White,#FFF)] p-6 rounded-lg border-solid"
             >
               <div className="flex-1 w-full h-full relative">
                 <div className="flex items-center gap-5">

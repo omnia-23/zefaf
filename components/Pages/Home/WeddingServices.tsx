@@ -1,8 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import rightIcon from "@/public/images/icons/right-icon.svg";
-import leftIcon from "@/public/images/icons/left-icon.svg";
-import Image from "next/image";
 type Service = {
   id: number;
   title: string;
@@ -17,8 +14,8 @@ const WeddingServices = () => {
     { id: 4, title: "أزياء زفاف راقية", count: 130 },
     { id: 5, title: "مكياج وشعر", count: 130 },
     { id: 6, title: "تزيين وقاعات الكوشة", count: 130 },
-    { id: 7, title: "ضيافة واستقبال", count: 130 },
-    { id: 8, title: "خدمات التنقل", count: 130 },
+    // { id: 7, title: "ضيافة واستقبال", count: 130 },
+    // { id: 8, title: "خدمات التنقل", count: 130 },
   ];
 
   const cardsPerPage = 6;
@@ -51,7 +48,7 @@ const WeddingServices = () => {
             خدمات الافراح
           </p>
         </div>
-        <p>
+        <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
           مع عالم زفاف نوفر لك كل ما تحتاجه ليوم زفاف مثالي، من قاعات ملكية
           وتنسيق الحفلات، إلى التصوير الاحترافي، الأزياء الراقية، والتجميل، مع
           أفضل النصائح لاستقبال ضيوفك الكرام.
@@ -64,7 +61,7 @@ const WeddingServices = () => {
           <div
             key={service.id}
             style={{ borderRight: "11px solid #e65391" }}
-            className="flex flex-col justify-center h-[120px] gap-2 border border-[color:var(--neutral-5,#F3F3F3)] bg-white shadow-sm px-6 py-4 rounded-lg"
+            className="flex flex-col justify-center h-[120px] gap-2 border border-[color:var(--neutral-5,#F3F3F3)] bg-white shadow-md px-6 py-4 rounded-lg"
           >
             <p className="text-[color:var(--Text-Color,#221F20)] text-lg font-semibold">
               {service.title}
@@ -77,19 +74,17 @@ const WeddingServices = () => {
       </div>
 
       {/* Pagination Controls */}
-      {totalPages > 1 && (
+      {/* {totalPages > 1 && (
         <div className="flex justify-center md:justify-end items-center gap-4 mt-6">
           <button onClick={handlePrev} disabled={currentPage === 1}>
             <Image src={rightIcon} alt="previous" width={30} height={30} />
           </button>
-          {/* <span>
-            الصفحة {currentPage} من {totalPages}
-          </span> */}
+
           <button onClick={handleNext} disabled={currentPage === totalPages}>
             <Image src={leftIcon} alt="next" width={30} height={30} />
           </button>
         </div>
-      )}
+      )} */}
     </section>
   );
 };

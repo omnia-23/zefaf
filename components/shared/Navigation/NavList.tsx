@@ -76,7 +76,7 @@ export function NavList() {
       placeholder=""
       onPointerEnterCapture={() => {}}
       onPointerLeaveCapture={() => {}}
-      className="mt-4 mb-6 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 font-bold"
+      className="mt-4 mb-6 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1 !font-bold"
     >
       {navListItems.map(({ id, title, url, icon, isDropDown }, key) => (
         <>
@@ -92,7 +92,7 @@ export function NavList() {
               key={key}
               variant="small"
               color="blue-gray"
-              className="font-noto font-medium text-white !bg-transparent !hover:bg-transparent"
+              className="font-noto !font-bold text-white !bg-transparent !hover:bg-transparent"
             >
               <ListItem
                 key={id}

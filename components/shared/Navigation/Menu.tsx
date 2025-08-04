@@ -20,7 +20,7 @@ export function MainMenuDefault() {
         borderColor: "#88888848",
         borderLeftColor: "transparent",
         borderRightColor: "transparent",
-        borderTopColor: "transparent",
+        borderTopColor: "#88888848",
       }}
       className="md:w-full border-solid border z-50"
     >
@@ -28,9 +28,9 @@ export function MainMenuDefault() {
         placeholder=""
         onPointerEnterCapture={() => {}}
         onPointerLeaveCapture={() => {}}
-        className="container mx-auto py-0 px-0 lg:py-6 bg-transparent shadow-none backdrop-filter-none border-none rounded-none "
+        className="container mx-auto py-0 px-0 lg:py-4 bg-transparent shadow-none backdrop-filter-none border-none rounded-none "
       >
-        <div className="container mx-auto flex items-center justify-between ">
+        <div className="container mx-auto flex items-center justify-between">
           <div className="hidden lg:block">
             <NavList />
           </div>
@@ -40,7 +40,7 @@ export function MainMenuDefault() {
             onPointerLeaveCapture={() => {}}
             variant="text"
             color="blue-gray"
-            className="lg:hidden py-0 px-2 border-0"
+            className="lg:hidden py-0 px-2 border-0 text-[#db0962]"
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (
@@ -52,7 +52,7 @@ export function MainMenuDefault() {
         </div>
         <Collapse
           open={openNav}
-          className="absolute right-5 z-50 w-2/3 bg-black/90 text-white rounded-md shadow-lg border-0"
+          className="absolute top-[145px] right-5 z-50 w-2/3 bg-black/90 text-white rounded-md shadow-lg border-0"
         >
           <div className="p-2">
             <NavList />

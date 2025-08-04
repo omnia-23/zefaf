@@ -54,7 +54,7 @@ const BlogsSection = () => {
           </div>
 
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
               اكتشف أشهر المقالات على عالم زفاف، من نصائح تنسيق الزفاف وأحدث
               صيحات الموضة إلى أفكار إبداعية لضمان يوم زفاف لا يُنسى.{" "}
             </p>

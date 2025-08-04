@@ -86,7 +86,7 @@ const OffersSection = () => {
           </div>
 
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
               مع عالم زفاف، استمتع بأفضل العروض والتخفيضات على قاعات الزفاف
               والخدمات المميزة، لضمان إتمام حفل أحلامك بأفضل سعر وجودة!{" "}
             </p>

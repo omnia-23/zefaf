@@ -83,7 +83,7 @@ const HomeSearchTabs = () => {
       label: "إبحث الأن",
       value: "search",
       body: (
-        <div className="bg-black/20 backdrop-blur-md rounded-md p-7 flex flex-col md:flex-row md:items-end md:justify-between gap-4 w-full">
+        <div className="bg-[#FFFFFF1F] backdrop-blur-md rounded-md p-7 flex flex-col md:flex-row md:items-end md:justify-between gap-4 w-full">
           {/* Category Dropdown */}
           <div className="w-full md:w-1/3">
             <h3 className="text-[#CFCFCF] text-lg mb-1 text-right" dir="rtl">
@@ -220,7 +220,7 @@ const HomeSearchTabs = () => {
           className="w-fit rounded-none bg-black/20 p-0"
           indicatorProps={{
             className:
-              "bg-black/40 border-b-2 border-white shadow-none rounded-none",
+              "bg-[#FFFFFF1F] border-b-2 border-white shadow-none rounded-none",
           }}
         >
           {data.map(({ label, value }) => (

@@ -84,7 +84,7 @@ const HotelsSection = () => {
           </div>
 
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
               قاعات الفنادق هي الخيار المثالي لزفاف فاخر وأنيق يليق بك، مع توفير
               خدمات متكاملة، وضيافة مميزة تضمن لك ولضيوفك تجربة لا تُنسى.
             </p>

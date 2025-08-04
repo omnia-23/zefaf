@@ -62,7 +62,7 @@ const MainSection = () => {
             قاعات الزفاف
           </p>
         </div>
-        <p className="text-sm md:text-base lg:text-lg">
+        <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
           عالم زفاف يوفر لك اجمل قاعات الزفاف التي تناسب كل الأذواق، مع خيارات
           متنوعة تضمن حصولك على قاعة مثالية ليومك المميز.
         </p>
