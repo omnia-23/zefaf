@@ -125,7 +125,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center text-sm text-gray-500 border-t pt-4">
-          جميع الحقوق محفوظة © عالم زفاف ٢٠٢٤. تم التطوير بواسطة ديجي فلاي
+          © ٢٠٢٤ عالم زفاف — جميع الحقوق محفوظة. تم التطوير بواسطة فريق التطوير.
         </div>
       </div>
     </footer>
