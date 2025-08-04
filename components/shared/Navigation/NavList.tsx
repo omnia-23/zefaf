@@ -92,7 +92,7 @@ export function NavList() {
               key={key}
               variant="small"
               color="blue-gray"
-              className="font-medium text-white !bg-transparent !hover:bg-transparent"
+              className="font-noto font-medium text-white !bg-transparent !hover:bg-transparent"
             >
               <ListItem
                 key={id}

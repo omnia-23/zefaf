@@ -124,7 +124,7 @@ export function DropDownItem({
               onPointerLeaveCapture={() => {}}
               variant="h6"
               color="blue-gray"
-              className={`flex items-center text-sm font-bold ${
+              className={`font-noto flex items-center text-sm font-bold ${
                 onlyWidth > 960 ? "text-white" : "text-white"
               }`}
             >
@@ -151,13 +151,13 @@ export function DropDownItem({
             onPointerEnterCapture={() => {}}
             onPointerLeaveCapture={() => {}}
             variant="small"
-            className="font-medium text-white !bg-transparent !hover:bg-transparent outline-none border-none"
+            className="font-noto font-medium text-white !bg-transparent !hover:bg-transparent outline-none border-none"
           >
             <ListItem
               placeholder=""
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
-              className="flex items-center gap-2 py-2 pr-4 !bg-transparent  text-white hover:text-[#db0962] outline-none border-none"
+              className="font-noto flex items-center gap-2 py-2 pr-4 !bg-transparent  text-white hover:text-[#db0962] outline-none border-none"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >

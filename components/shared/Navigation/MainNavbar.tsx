@@ -47,7 +47,7 @@ const MainNavbar = () => {
                 placeholder=""
                 onPointerEnterCapture={() => {}}
                 onPointerLeaveCapture={() => {}}
-                className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent"
+                className="w-fit min-w-fit h-10 p-2 text-center flex justify-center items-center bg-transparent"
               >
                 <Image
                   alt="search icon"
@@ -88,7 +88,7 @@ const MainNavbar = () => {
                       placeholder=""
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
-                      className="flex w-[120px] h-10 text-white bg-transparent  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
+                      className="font-noto flex w-[120px] h-10 text-white bg-transparent  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
                       تسجيل الدخول
                     </Button>
@@ -98,7 +98,7 @@ const MainNavbar = () => {
                       placeholder=""
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
-                      className="flex min-w-[120px] w-fit h-10 text-white bg-transparent   flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
+                      className="font-noto flex min-w-[120px] w-fit h-10 text-white bg-transparent flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
                       إنشاء حساب
                     </Button>

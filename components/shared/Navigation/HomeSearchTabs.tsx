@@ -115,7 +115,7 @@ const HomeSearchTabs = () => {
                 placeholder=""
                 onPointerEnterCapture={() => {}}
                 onPointerLeaveCapture={() => {}}
-                className="text-right"
+                className="text-right text-white bg-black/80 border-0 rounded-md"
                 dir="rtl"
               >
                 {categories.map((category) => (
@@ -165,7 +165,7 @@ const HomeSearchTabs = () => {
                 placeholder=""
                 onPointerEnterCapture={() => {}}
                 onPointerLeaveCapture={() => {}}
-                className="text-right"
+                className="text-right text-white bg-black/80 border-0 rounded-md"
                 dir="rtl"
               >
                 {cities.map((city) => (
