@@ -2,9 +2,18 @@
 // pages/index.js
 import Head from "next/head";
 import { useState } from "react";
-import { ChevronDown, Heart, Star } from "lucide-react";
+import { ChevronDown, Heart, MapPinIcon, Star } from "lucide-react";
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import SideBarFilters from "@/components/Pages/Halls/SideBarFilters";
+import {
+  AppstoreOutlined,
+  DownOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
+import type { MenuProps } from "antd";
+import { Dropdown, Menu, Space, Typography } from "antd";
+import Image from "next/image";
+import HotelCard from "@/components/Pages/Halls/HotelCard";
 
 export default function PropertyListing() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -26,8 +35,21 @@ export default function PropertyListing() {
     }));
   };
 
+  const sortOptions = [
+    // { key: "default", label: "ترتيب", disabled: true },
+    { key: "1", label: "الأحدث" },
+    { key: "2", label: "الأقدم" },
+    { key: "3", label: "الأعلى سعراً" },
+    { key: "4", label: "الأقل سعراً" },
+  ];
+
+  const [selectedKey, setSelectedKey] = useState("default");
+
+  const selectedLabel =
+    sortOptions.find((item) => item.key === selectedKey)?.label ?? "ترتيب";
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#FDFDFD]">
       <Head>
         <title>قصور الأفراح - العقارات</title>
         <meta name="description" content="أفضل قصور الأفراح والعقارات" />
@@ -35,7 +57,14 @@ export default function PropertyListing() {
       </Head>
 
       {/* Header Section */}
-      <HeaderSection />
+      <HeaderSection
+        title="قصور الأفراح"
+        description="لوريم إيبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل..."
+        breadcrumbs={[
+          { label: "الرئيسية", href: "/" },
+          { label: "قصور الأفراح", href: "/halls" }, // Active (last) item will be pink
+        ]}
+      />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
@@ -48,13 +77,30 @@ export default function PropertyListing() {
             {/* Results Header */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
-                <select className="p-2 border border-gray-300 rounded-lg text-sm">
-                  <option>ترتيب</option>
-                  <option>الأحدث</option>
-                  <option>الأقدم</option>
-                  <option>الأعلى سعراً</option>
-                  <option>الأقل سعراً</option>
-                </select>
+                <Dropdown
+                  menu={{
+                    items: sortOptions,
+                    selectable: true,
+                    selectedKeys:
+                      selectedKey !== "default" ? [selectedKey] : [],
+                    onSelect: ({ key }) => {
+                      if (key !== "default") {
+                        setSelectedKey(key);
+                      }
+                    },
+                  }}
+                  placement="bottomLeft"
+                >
+                  <button className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm text-black hover:bg-gray-50 transition-all flex items-center gap-1">
+                    {selectedLabel}
+                    <DownOutlined className="text-xs" />
+                  </button>
+                </Dropdown>
+
+                <button className="text-sm flex items-center border border-gray-300 rounded-md px-2 py-1 font-medium">
+                  <MapPinIcon className="w-4 h-4 mx-1" />
+                  خريطة
+                </button>
               </div>
               <div className="text-gray-600">
                 <span>500 منتج متاح</span>
@@ -70,56 +116,7 @@ export default function PropertyListing() {
             </div>
 
             {/* Property Card */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6 hover:shadow-md transition-shadow">
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3 relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-                    alt="فندق ومطعم"
-                    className="w-full h-48 md:h-full object-cover"
-                  />
-                  <button className="absolute top-3 left-3 p-2 bg-white rounded-full shadow-md hover:bg-gray-50">
-                    <Heart className="w-4 h-4 text-gray-600" />
-                  </button>
-                </div>
-                <div className="md:w-2/3 p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-semibold text-gray-800">
-                      فندق ومطعم المركز العالي
-                    </h3>
-                    <div className="text-left">
-                      <div className="text-red-500 font-bold text-lg">
-                        800 - 600
-                      </div>
-                      <div className="text-sm text-gray-500">150 - 800 شخص</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center mb-3">
-                    <div className="flex items-center ml-4">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <Star className="w-4 h-4 text-gray-300" />
-                      <span className="text-sm text-gray-600 mr-1">(4.0)</span>
-                    </div>
-                    <span className="text-sm text-red-500 bg-red-50 px-2 py-1 rounded">
-                      ● بلدية الطائف
-                    </span>
-                  </div>
-
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    لكنها سلسلة من الكلمات الالتينية التي لا تحمل معنى كامل،
-                    وتظل صحيفة بيضاء. لدينا كتاب سيرد عدد لدينا كتاب سيرد عدد
-                    لدينا كتاب سيرد عدد لدينا كتاب... ولكنها تعطي الحياة إلى
-                    النص أنها تمثل ميزة مفيدة لدينا كتاب سيرد عدد كتاب سيرد
-                    البيانات تحمي الحياة في البناء لدينا كتاب سيرد عدد كتاب سيرد
-                    البيانات
-                  </p>
-                </div>
-              </div>
-            </div>
+            <HotelCard />
 
             {/* Load More */}
             <div className="text-center mt-8">

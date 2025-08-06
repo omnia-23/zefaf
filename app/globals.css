@@ -80,3 +80,19 @@
   direction: ltr !important;
   text-align: right !important;
 }
+
+.custom-breadcrumb .ant-breadcrumb-link,
+.custom-breadcrumb .ant-breadcrumb-separator {
+  color: white !important;
+}
+
+/* global.css or tailwind.css */
+.custom-modal .ant-modal-content {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.custom-modal .ant-modal-close-x {
+  color: #fff !important; /* White */
+  font-size: 16px;
+}
