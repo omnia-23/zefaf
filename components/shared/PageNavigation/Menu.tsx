@@ -39,7 +39,7 @@ export function MainMenuDefault() {
             onPointerLeaveCapture={() => {}}
             variant="text"
             color="blue-gray"
-            className="lg:hidden py-0 px-2 border-0 text-bla[ck"
+            className="lg:hidden py-0 px-2 border-0 text-black"
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (
