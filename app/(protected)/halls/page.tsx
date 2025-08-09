@@ -13,7 +13,7 @@ import {
 import type { MenuProps } from "antd";
 import { Dropdown, Menu, Space, Typography } from "antd";
 import Image from "next/image";
-import HotelCard from "@/components/Pages/Halls/HotelCard";
+import HallCard from "@/components/Pages/Halls/HallCard";
 
 export default function PropertyListing() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -116,7 +116,7 @@ export default function PropertyListing() {
             </div>
 
             {/* Property Card */}
-            <HotelCard />
+            <HallCard />
 
             {/* Load More */}
             <div className="text-center mt-8">

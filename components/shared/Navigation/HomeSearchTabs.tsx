@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { Search, ChevronDown } from "lucide-react";
 import {
@@ -60,22 +59,22 @@ const HomeSearchTabs = () => {
       search: selectedCity,
     }).toString();
 
-    // switch (selectedCategory) {
-    //   case "hotels":
-    //     router.push(`/hotels?${query}`);
-    //     break;
-    //   case "palaces":
-    //     router.push(`/palaces?${query}`);
-    //     break;
-    //   case "halls":
-    //     router.push(`/halls?${query}`);
-    //     break;
-    //   case "outdoor":
-    //     router.push(`/outdoor?${query}`);
-    //     break;
-    //   default:
-    //     router.push(`/search?${query}`);
-    // }
+    switch (selectedCategory) {
+      case "hotels":
+        router.push(`/hotels?${query}`);
+        break;
+      case "palaces":
+        router.push(`/palaces?${query}`);
+        break;
+      case "halls":
+        router.push(`/halls?${query}`);
+        break;
+      case "outdoor":
+        router.push(`/outdoor?${query}`);
+        break;
+      default:
+        router.push(`/search?${query}`);
+    }
   };
 
   const data = [

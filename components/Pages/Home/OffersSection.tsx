@@ -6,22 +6,26 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-export interface Offer {
+export interface IOffer {
   id: number;
   image: string;
   title: string;
   hotel_name: string;
+  description: string;
   options: string[];
   price: string;
+  endDate?: string;
 }
 
 const OffersSection = () => {
-  const offers: Offer[] = [
+  const offers: IOffer[] = [
     {
       id: 1,
       image: "/images/Frame 18 (1).svg",
       title: "باقة عروض شهر اغسطس",
       hotel_name: "فندق روش ريحان من روتانا",
+      description:
+        "إنها سلسلة من الكلمات اللاتينية التي ، عند وضعها في موضعها ،لا تشكل جملًا بمعنى كامل ، ولكنها تعطي الحياة لنص اختبار مفيد لملء الفراغات.",
       price: "800 - 600 ر.س",
       options: [
         "500 - 1000 شخص",
@@ -38,6 +42,8 @@ const OffersSection = () => {
       image: "/images/Frame 18 (1).svg",
       title: "باقة عروض شهر اغسطس",
       hotel_name: "فندق روش ريحان من روتانا",
+      description:
+        "إنها سلسلة من الكلمات اللاتينية التي ، عند وضعها في موضعها ،لا تشكل جملًا بمعنى كامل ، ولكنها تعطي الحياة لنص اختبار مفيد لملء الفراغات.",
       price: "800 - 600 ر.س",
       options: [
         "500 - 1000 شخص",
@@ -54,6 +60,8 @@ const OffersSection = () => {
       image: "/images/Frame 18 (1).svg",
       title: "باقة عروض شهر اغسطس",
       hotel_name: "فندق روش ريحان من روتانا",
+      description:
+        "إنها سلسلة من الكلمات اللاتينية التي ، عند وضعها في موضعها ،لا تشكل جملًا بمعنى كامل ، ولكنها تعطي الحياة لنص اختبار مفيد لملء الفراغات.",
       price: "800 - 600 ر.س",
       options: [
         "500 - 1000 شخص",
@@ -135,7 +143,7 @@ const OffersSection = () => {
             loop
             grabCursor
           >
-            {offers?.map((offer: Offer) => (
+            {offers?.map((offer: IOffer) => (
               <SwiperSlide key={offer.id} className="pb-10">
                 <OfferCard offer={offer} />
               </SwiperSlide>

@@ -50,7 +50,7 @@ export default function VenueImageSlider({ images }: { images: string[] }) {
                 />
                 {isBlurred && (
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold text-sm">
-                    +{images.length - 3} صور
+                    + {images.length - 3} صور
                   </div>
                 )}
               </div>
@@ -65,7 +65,7 @@ export default function VenueImageSlider({ images }: { images: string[] }) {
         onCancel={() => setIsModalOpen(false)}
         footer={null}
         centered
-        width="75%"
+        width="70%"
         className="!p-0 custom-modal"
         style={{ background: "rgba(0, 0, 0, 0.3)", borderRadius: "10px" }}
       >

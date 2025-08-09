@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-export default function HotelCard() {
+export default function HallCard() {
   const router = useRouter();
 
   return (

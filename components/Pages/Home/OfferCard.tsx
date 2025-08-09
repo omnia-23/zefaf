@@ -1,8 +1,8 @@
 import React from "react";
-import { Offer } from "./OffersSection";
+import { IOffer } from "./OffersSection";
 import Image from "next/image";
 
-export default function OfferCard({ offer }: { offer: Offer }) {
+export default function OfferCard({ offer }: { offer: IOffer }) {
   return (
     <a
       href={`/offer/${offer.id}`}
