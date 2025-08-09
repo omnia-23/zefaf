@@ -9,7 +9,7 @@ import {
   BlogsSection,
 } from "@/components/Pages/Home";
 import Footer from "@/components/shared/Footer";
-import MainNavbar from "@/components/shared/Navigation/MainNavbar";
+import MainNavbar from "@/components/shared/HomeNavigation/MainNavbar";
 
 import React from "react";
 

@@ -28,7 +28,7 @@ type FormData = yup.InferType<typeof schema>;
 export default function LoginPage() {
   const router = useRouter();
   const { login } = useAuth();
-  const [loginError, setLoginError] = useState("");
+  // const [loginError, setLoginError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -40,7 +40,7 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data: FormData) => {
-    setLoginError("");
+    // setLoginError("");
 
     try {
       await login(data.email, data.password);
@@ -48,9 +48,7 @@ export default function LoginPage() {
       router.push("/");
     } catch (error: any) {
       // Error is already shown via toast in AuthContext
-      setLoginError(
-        error.response?.data?.message || "فشل تسجيل الدخول. يرجى التحقق من بيانات الاعتماد الخاصة بك."
-      );
+      console.log({ err: error.response?.data?.message });
     }
   };
 
@@ -67,11 +65,10 @@ export default function LoginPage() {
       </div>
 
       <div className="mt-8">
-        {loginError && (
+        {/* {loginError && (
           <div className="rounded-md bg-red-50 p-4 mb-4">
             <div className="flex">
               <div className="flex-shrink-0">
-                {/* Error icon */}
                 <svg
                   className="h-5 w-5 text-red-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +90,7 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* Create New Account Header */}

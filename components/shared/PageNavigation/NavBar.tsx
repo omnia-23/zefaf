@@ -1,21 +1,20 @@
 "use client";
-import { Button } from "@material-tailwind/react";
 import React from "react";
+import { MainMenuDefault } from "./Menu";
+import { Button } from "@material-tailwind/react";
 import { CgLogOut } from "react-icons/cg";
 import Image from "next/image";
 import logo from "@/public/images/new-logo.svg";
-import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { MainMenuDefault } from "./Menu";
+import { useAuth } from "@/context/AuthContext";
+import { Search } from "lucide-react";
 
-const Navbar = () => {
+export default function NavBar() {
   const { user, logout } = useAuth();
-  const router = useRouter();
-
+  console.log({ user });
   return (
-    <section className="flex flex-col items-center text-center py-6  h-fit">
-      <div className="mx-auto w-full border-b border-solid pb-6">
+    <section className="flex flex-col items-center text-center h-fit">
+      <div className="mx-auto w-full" id="header">
         <div className="container mx-auto w-full px-4 lg:px-8 py-4">
           <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
             {/* Logo */}
@@ -30,37 +29,31 @@ const Navbar = () => {
               />
             </div>
 
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-row gap-2 items-start">
+              {/* Mobile Menu */}
+              <div className="block lg:hidden">
+                <MainMenuDefault />
+              </div>
               <Button
                 placeholder=""
                 onPointerEnterCapture={() => {}}
                 onPointerLeaveCapture={() => {}}
-                className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent"
+                className="w-fit shadow-none min-w-fit h-10 p-2 text-center flex justify-center items-center bg-transparent"
               >
-                <Image
-                  alt="search icon"
-                  width={20}
-                  height={20}
-                  src="/images/search(1).svg"
-                  className="cursor-pointer"
-                />
+                <Search size={20} color="black" />
               </Button>
+
               {user ? (
                 <>
+                  <span className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent text-black shadow-none">
+                    اهلا بك {user.name.split(" ")[0]}
+                  </span>
                   <Button
-                    placeholder=""
-                    onPointerEnterCapture={() => {}}
-                    onPointerLeaveCapture={() => {}}
-                    className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent"
-                  >
-                    اهلا بك {user.name}
-                  </Button>
-                  <Button
-                    onClick={async () => {
-                      await logout();
-                      router.push("/");
+                    onClick={() => {
+                      logout();
+                      window.location.href = "/";
                     }}
-                    className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent"
+                    className="w-fit min-w-fit h-10 px-4 py-2 text-center flex justify-center items-center bg-transparent text-black shadow-none"
                     placeholder=""
                     onPointerEnterCapture={() => {}}
                     onPointerLeaveCapture={() => {}}
@@ -75,7 +68,7 @@ const Navbar = () => {
                       placeholder=""
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
-                      className="flex w-[120px] h-10 text-white bg-transparent  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
+                      className="font-noto flex w-[120px] h-10 text-black  bg-transparent shadow-none  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
                       تسجيل الدخول
                     </Button>
@@ -85,7 +78,7 @@ const Navbar = () => {
                       placeholder=""
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
-                      className="flex min-w-[120px] w-fit h-10 text-white bg-transparent   flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
+                      className="font-noto flex min-w-[120px] w-fit h-10 text-black  bg-transparent shadow-none flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
                       إنشاء حساب
                     </Button>
@@ -96,11 +89,10 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* items list */}
-        <MainMenuDefault />
+        <div className="lg:block hidden">
+          <MainMenuDefault />
+        </div>
       </div>
     </section>
   );
-};
-
-export default Navbar;
+}

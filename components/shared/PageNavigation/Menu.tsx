@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar, Collapse, IconButton } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
 import { NavList } from "./NavList";
 
 export function MainMenuDefault() {
@@ -40,7 +39,7 @@ export function MainMenuDefault() {
             onPointerLeaveCapture={() => {}}
             variant="text"
             color="blue-gray"
-            className="lg:hidden py-0 px-2 border-0 text-[#db0962]"
+            className="lg:hidden py-0 px-2 border-0 text-bla[ck"
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (

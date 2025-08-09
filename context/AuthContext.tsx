@@ -80,6 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           ? "البريد الإلكتروني أو كلمة المرور غير صحيحة."
           : "فشل تسجيل الدخول"
       );
+      throw error;
     } finally {
       setIsLoading(false);
     }
