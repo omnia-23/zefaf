@@ -6,7 +6,7 @@ import VenueImageSlider from "@/components/shared/VenueImageSlider";
 import BookingForm from "@/components/Pages/Halls/BookingForm";
 import LoadingSpinner from "@/components/shared/LoadingSpinner"; // You should create this component
 import ErrorMessage from "@/components/shared/ErrorMessage"; // You should create this component
-import HallInfo from "@/components/Pages/Halls/HallInfo";
+import HallInfo from "@/components/Pages/Halls/HallData";
 
 export default function HallPage({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug);

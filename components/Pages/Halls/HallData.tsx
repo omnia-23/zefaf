@@ -3,7 +3,7 @@ import { Heart, Share2Icon, Star } from "lucide-react";
 import TabsSections from "./TabsSections";
 import { IHall } from "@/services/halls";
 
-export default function HallInfo({ hallDetails }: { hallDetails: IHall }) {
+export default function HallData({ hallDetails }: { hallDetails: IHall }) {
   return (
     <div className="my-10">
       <div className="flex flex-col md:flex-row justify-between items-start my-8 gap-4">
