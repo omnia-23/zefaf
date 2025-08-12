@@ -3,10 +3,10 @@ import React from "react";
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import { useHall } from "@/hooks/useHall";
 import VenueImageSlider from "@/components/shared/VenueImageSlider";
-import HallInfo from "@/components/Pages/Halls/HallInfo";
 import BookingForm from "@/components/Pages/Halls/BookingForm";
 import LoadingSpinner from "@/components/shared/LoadingSpinner"; // You should create this component
 import ErrorMessage from "@/components/shared/ErrorMessage"; // You should create this component
+import HallInfo from "@/components/Pages/Halls/HallInfo";
 
 export default function HallPage({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug);
