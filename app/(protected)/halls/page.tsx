@@ -1,19 +1,13 @@
 "use client";
-// pages/index.js
 import Head from "next/head";
 import { useState } from "react";
-import { ChevronDown, Heart, MapPinIcon, Star } from "lucide-react";
+import { MapPinIcon } from "lucide-react";
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import SideBarFilters from "@/components/Pages/Halls/SideBarFilters";
-import {
-  AppstoreOutlined,
-  DownOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Dropdown, Menu, Space, Typography } from "antd";
-import Image from "next/image";
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown } from "antd";
 import HallCard from "@/components/Pages/Halls/HallCard";
+import { useHalls } from "@/hooks/useHalls";
 
 export default function PropertyListing() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -22,31 +16,41 @@ export default function PropertyListing() {
     area: "",
   });
 
-  const [isFilterOpen, setIsFilterOpen] = useState({
-    bedrooms: false,
-    city: false,
-    area: false,
+  const [selectedKey, setSelectedKey] = useState("1");
+
+  const {
+    halls,
+    totalHalls,
+    error,
+    isLoadingInitialData,
+    isLoadingMore,
+    isReachingEnd,
+    size,
+    setSize,
+  } = useHalls({
+    ...selectedFilters,
+    sort: selectedKey,
   });
 
-  const toggleFilter = (filterName: string) => {
-    setIsFilterOpen((prev) => ({
-      ...prev,
-      //   [filterName]: !prev[filterName],
-    }));
-  };
-
   const sortOptions = [
-    // { key: "default", label: "ترتيب", disabled: true },
     { key: "1", label: "الأحدث" },
     { key: "2", label: "الأقدم" },
     { key: "3", label: "الأعلى سعراً" },
     { key: "4", label: "الأقل سعراً" },
   ];
 
-  const [selectedKey, setSelectedKey] = useState("default");
-
   const selectedLabel =
     sortOptions.find((item) => item.key === selectedKey)?.label ?? "ترتيب";
+
+  const handleFilterChange = (newFilters: Partial<typeof selectedFilters>) => {
+    setSelectedFilters((prev) => ({ ...prev, ...newFilters }));
+    // Reset to first page when filters change
+    setSize(1);
+  };
+
+  const handleLoadMore = () => {
+    setSize(size + 1);
+  };
 
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
@@ -62,7 +66,7 @@ export default function PropertyListing() {
         description="لوريم إيبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل..."
         breadcrumbs={[
           { label: "الرئيسية", href: "/" },
-          { label: "قصور الأفراح", href: "/halls" }, // Active (last) item will be pink
+          { label: "قصور الأفراح", href: "/halls" },
         ]}
       />
 
@@ -70,7 +74,10 @@ export default function PropertyListing() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
-          <SideBarFilters />
+          <SideBarFilters
+            onFilterChange={handleFilterChange}
+            selectedFilters={selectedFilters}
+          />
 
           {/* Main Content Area */}
           <div className="lg:w-3/4">
@@ -81,12 +88,10 @@ export default function PropertyListing() {
                   menu={{
                     items: sortOptions,
                     selectable: true,
-                    selectedKeys:
-                      selectedKey !== "default" ? [selectedKey] : [],
+                    selectedKeys: [selectedKey],
                     onSelect: ({ key }) => {
-                      if (key !== "default") {
-                        setSelectedKey(key);
-                      }
+                      setSelectedKey(key);
+                      setSize(1);
                     },
                   }}
                   placement="bottomLeft"
@@ -103,7 +108,7 @@ export default function PropertyListing() {
                 </button>
               </div>
               <div className="text-gray-600">
-                <span>500 منتج متاح</span>
+                <span>{totalHalls} منتج متاح</span>
               </div>
             </div>
 
@@ -115,15 +120,45 @@ export default function PropertyListing() {
               </div>
             </div>
 
-            {/* Property Card */}
-            <HallCard />
+            {/* Loading and Error States */}
+            {isLoadingInitialData && (
+              <div className="text-center py-10">جاري التحميل...</div>
+            )}
 
-            {/* Load More */}
-            <div className="text-center mt-8">
-              <button className="bg-red-500 text-white px-8 py-3 rounded-lg hover:bg-red-600 transition-colors">
-                عرض المزيد
-              </button>
-            </div>
+            {error && (
+              <div className="text-center text-red-500 py-10">
+                فشل في تحميل البيانات. يرجى المحاولة مرة أخرى لاحقًا.
+              </div>
+            )}
+
+            {/* Empty State */}
+            {!isLoadingInitialData && halls.length === 0 && !error && (
+              <div className="text-center py-10">
+                لا توجد نتائج مطابقة للبحث
+              </div>
+            )}
+
+            {/* Property Cards */}
+            {!error && (
+              <>
+                {halls.map((hall) => (
+                  <HallCard key={hall.id} hall={hall} />
+                ))}
+
+                {/* Load More */}
+                {!isReachingEnd && (
+                  <div className="text-center mt-8">
+                    <button
+                      onClick={handleLoadMore}
+                      disabled={isLoadingMore}
+                      className="bg-red-500 text-white px-8 py-3 rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50"
+                    >
+                      {isLoadingMore ? "جاري التحميل..." : "عرض المزيد"}
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

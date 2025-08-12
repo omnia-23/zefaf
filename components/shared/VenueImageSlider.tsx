@@ -3,8 +3,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Modal, Carousel } from "antd";
 
-export default function VenueImageSlider({ images }: { images: string[] }) {
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+export default function VenueImageSlider({
+  images,
+}: {
+  images: { sort: number; url: string }[];
+}) {
+  const [selectedImage, setSelectedImage] = useState<{
+    sort: number;
+    url: string;
+  }>(images[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStartIndex, setModalStartIndex] = useState(0);
 
@@ -23,7 +30,7 @@ export default function VenueImageSlider({ images }: { images: string[] }) {
           onClick={() => openModal(images.indexOf(selectedImage))}
         >
           <Image
-            src={selectedImage}
+            src={selectedImage.url}
             alt="selectedImage"
             fill
             className="object-cover"
@@ -43,7 +50,7 @@ export default function VenueImageSlider({ images }: { images: string[] }) {
                 onClick={() => openModal(indexInImages)}
               >
                 <Image
-                  src={img}
+                  src={img.url}
                   alt={`image-${idx}`}
                   fill
                   className={`object-cover ${isBlurred ? "blur-sm" : ""}`}
@@ -78,7 +85,7 @@ export default function VenueImageSlider({ images }: { images: string[] }) {
           {images.map((img, i) => (
             <div key={`modal-image-${i}`} className="relative w-full h-[80vh]">
               <Image
-                src={img}
+                src={img.url}
                 alt={`modal-${i}`}
                 fill
                 className="object-contain rounded-md"

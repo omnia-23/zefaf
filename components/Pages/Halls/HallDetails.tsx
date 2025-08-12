@@ -4,13 +4,9 @@ import menHallIcon from "@/public/images/halls/men-hall.svg";
 import dressIcon from "@/public/images/halls/dress.svg";
 import foodIcon from "@/public/images/halls/fork-and-spoon.svg";
 import drinkIcon from "@/public/images/halls/drink.svg";
-import { IHallDetails } from "@/app/(protected)/halls/[id]/page";
+import { IHall } from "@/services/halls";
 
-export default function HallDetails({
-  hallDetails,
-}: {
-  hallDetails: IHallDetails;
-}) {
+export default function HallDetails({ hallDetails }: { hallDetails: IHall }) {
   return (
     <div className="font-noto text-black px-4 md:px-0">
       {/* description */}
@@ -108,31 +104,33 @@ export default function HallDetails({
         <div className="w-full rounded-md overflow-hidden">
           {/* Table Rows */}
           <div className="grid md:grid-cols-2 justify-items-center-safe">
-            {[...Array(Math.ceil(hallDetails.features.length / 2))].map(
-              (_, colIndex) => (
-                <div key={colIndex}>
-                  {hallDetails.features
-                    .slice(colIndex * 2, colIndex * 2 + 2)
-                    .map((item, index) => (
-                      <div
-                        key={item.id}
-                        className={`grid justify-items-center md:justify-items-start grid-cols-2 gap-x-6 p-3 ${
-                          (colIndex * 2 + index) % 2 === 0
-                            ? "bg-pink-50"
-                            : "bg-white"
-                        }`}
-                      >
-                        <div className="font-semibold text-sm w-fit">
-                          {item.label}
-                        </div>
-                        <div className="font-medium text-sm text-center text-[#707070] w-fit">
-                          {item.value}
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              )
-            )}
+            {hallDetails.features &&
+              [...Array(Math.ceil(hallDetails.features.length / 2))].map(
+                (_, colIndex) => (
+                  <div key={colIndex}>
+                    {hallDetails.features &&
+                      hallDetails.features
+                        .slice(colIndex * 2, colIndex * 2 + 2)
+                        .map((item, index) => (
+                          <div
+                            key={item.id}
+                            className={`grid justify-items-center md:justify-items-start grid-cols-2 gap-x-6 p-3 ${
+                              (colIndex * 2 + index) % 2 === 0
+                                ? "bg-pink-50"
+                                : "bg-white"
+                            }`}
+                          >
+                            <div className="font-semibold text-sm w-fit">
+                              {item.label}
+                            </div>
+                            <div className="font-medium text-sm text-center text-[#707070] w-fit">
+                              {item.value}
+                            </div>
+                          </div>
+                        ))}
+                  </div>
+                )
+              )}
           </div>
         </div>
       </div>

@@ -1,7 +1,23 @@
 import { ChevronDown } from "lucide-react";
 import React from "react";
 
-export default function SideBarFilters({}) {
+export default function SideBarFilters({
+  onFilterChange,
+  selectedFilters,
+}: {
+  selectedFilters: {
+    bedrooms: string;
+    city: string;
+    area: string;
+  };
+  onFilterChange: (
+    newFilters: Partial<{
+      bedrooms: string;
+      city: string;
+      area: string;
+    }>
+  ) => void;
+}) {
   return (
     <div className="lg:w-1/4">
       <div className="bg-white rounded-lg shadow-sm p-6 sticky top-4">

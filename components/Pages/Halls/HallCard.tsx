@@ -2,13 +2,15 @@ import { Heart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { IHall } from "@/services/halls";
 
-export default function HallCard() {
+export default function HallCard({ hall }: { hall: IHall }) {
+  // console.log({ hall });
   const router = useRouter();
 
   return (
     <div
-      onClick={() => router.push("/halls/1")}
+      onClick={() => router.push(`/halls/${hall.slug}`)}
       className="cursor-pointer bg-white rounded-lg shadow-md overflow-hidden mb-6 hover:shadow-lg transition-shadow p-3 max-w-[954px] w-full"
     >
       <div className="flex flex-col md:flex-row">
@@ -17,8 +19,8 @@ export default function HallCard() {
           <Image
             width={500}
             height={700}
-            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
-            alt="فندق ومطعم"
+            src={`${hall.images[0].url}`}
+            alt={hall.name}
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
@@ -32,9 +34,7 @@ export default function HallCard() {
           {/* Title and Price */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between gap-2">
-              <h3 className="text-base sm:text-lg font-bold">
-                فندق روش ريحان من روتانا
-              </h3>
+              <h3 className="text-base sm:text-lg font-bold">{hall.name}</h3>
               <h5 className="text-[#990645] font-bold text-base sm:text-lg">
                 1000 - 700 ر.س
               </h5>
@@ -51,7 +51,7 @@ export default function HallCard() {
                   <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z" />
                 </svg>
                 <span className="text-[#6D0431] mx-1  font-medium">
-                  بلدية العليا
+                  {hall.address}
                 </span>
 
                 <svg
@@ -69,16 +69,13 @@ export default function HallCard() {
                 </svg>
                 <span className="text-green-600 font-semibold">(4.8)</span>
               </div>
-              <div className="text-sm text-gray-600">200 - 1000 شخص</div>
+              <div className="text-sm text-gray-600">{hall.capacity} شخص</div>
             </div>
           </div>
 
           {/* Description */}
           <p className="text-gray-500 text-base font-normal line-clamp-4">
-            إنها سلسلة من الكلمات اللاتينية التي ، عند وضعها في موضعها ،لا تشكل
-            جملًا بمعنى كامل ، ولكنها تعطي الحياة لنص اختبار مفيد لملء الفراغات.
-            تعطي الحياة لنص اختبار مفيد لملء الفراغات. تعطي الحياة لنص اختبار
-            مفيد لملء الفراغات.
+            {hall.description}
           </p>
         </div>
       </div>

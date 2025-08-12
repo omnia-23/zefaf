@@ -15,7 +15,7 @@ type FormDataType = {
   phone: string;
 };
 
-const BookingForm = () => {
+const BookingForm = ({ hallId }: { hallId: number }) => {
   const { user } = useAuth();
 
   const [formData, setFormData] = useState<FormDataType>({

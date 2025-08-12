@@ -7,18 +7,14 @@ import {
   TabsBody,
   TabsHeader,
 } from "@material-tailwind/react";
-import { IHallDetails } from "@/app/(protected)/halls/[id]/page";
 import HallDetails from "./HallDetails";
 import HallOffers from "./HallOffers";
 import ContactInfo from "./ContactInfo";
 import ReviewsSection from "./ReviewSection";
 import FAQSection from "./FAQSection";
+import { IHall } from "@/services/halls";
 
-export default function TabsSections({
-  hallDetails,
-}: {
-  hallDetails: IHallDetails;
-}) {
+export default function TabsSections({ hallDetails }: { hallDetails: IHall }) {
   const [activeTab, setActiveTab] = useState<string>("hotel-details");
 
   const items = [
