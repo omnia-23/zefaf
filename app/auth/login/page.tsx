@@ -48,7 +48,7 @@ export default function LoginPage() {
       router.push("/");
     } catch (error: any) {
       // Error is already shown via toast in AuthContext
-      console.log({ err: error.response?.data?.message });
+      // console.log({ err: error.response?.data?.message });
     }
   };
 

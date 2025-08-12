@@ -76,7 +76,7 @@ export const fetchHallBySlug = async (slug: string): Promise<HallResponse> => {
 
   try {
     const response = await fetch(`${API_BASE_URL}/halls/${encodedSlug}`);
-    console.log({ response });
+    // console.log({ response });
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
@@ -86,7 +86,7 @@ export const fetchHallBySlug = async (slug: string): Promise<HallResponse> => {
 
     return response.json();
   } catch (error) {
-    console.error("Error fetching hall by slug:", error);
+    // console.error("Error fetching hall by slug:", error);
     throw error;
   }
 };

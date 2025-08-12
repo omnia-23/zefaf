@@ -57,7 +57,7 @@ export default function RegisterPage() {
       // Redirect to home page after successful registration
       router.push("/auth/login");
     } catch (error: any) {
-      console.log({ error });
+      // console.log({ error });
       const msg =
         error?.response?.data?.message === "The email has already been taken."
           ? "البريد الإلكتروني مستخدم بالفعل."

@@ -11,7 +11,7 @@ import { Search } from "lucide-react";
 
 export default function NavBar() {
   const { user, logout } = useAuth();
-  console.log({ user });
+  // console.log({ user });
   return (
     <section className="flex flex-col items-center text-center h-fit">
       <div className="mx-auto w-full" id="header">

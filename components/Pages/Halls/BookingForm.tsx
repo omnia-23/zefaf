@@ -143,7 +143,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("Form Data:", formData);
+      // console.log("Form Data:", formData);
       toast.success("تم إرسال طلب الحجز بنجاح!");
       setFormData({
         eventType: "",

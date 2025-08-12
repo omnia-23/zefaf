@@ -75,6 +75,9 @@ export default function VenueImageSlider({
         width="70%"
         className="!p-0 custom-modal"
         style={{ background: "rgba(0, 0, 0, 0.3)", borderRadius: "10px" }}
+        maskClosable
+        mask={true}
+        getContainer={false} // renders inside current DOM
       >
         <Carousel
           initialSlide={modalStartIndex}

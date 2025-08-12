@@ -11,7 +11,7 @@ import HallInfo from "@/components/Pages/Halls/HallData";
 export default function HallPage({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug);
   const { hall, isLoading, error } = useHall(slug);
-  console.log({ HallPage: hall });
+  // console.log({ HallPage: hall });
 
   if (isLoading) {
     return <LoadingSpinner />;

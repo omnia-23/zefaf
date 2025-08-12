@@ -42,10 +42,10 @@ const IntlPhoneInput = forwardRef<PhoneInputRef, {}>((_, ref) => {
       } as any);
 
       phoneInputRef.current.addEventListener("countrychange", () => {
-        console.log(
-          "Country changed:",
-          itiRef.current?.getSelectedCountryData()
-        );
+        // console.log(
+        //   "Country changed:",
+        //   itiRef.current?.getSelectedCountryData()
+        // );
       });
     }
 
