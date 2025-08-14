@@ -1,6 +1,7 @@
 // hooks/useHalls.ts
 import useSWRInfinite from "swr/infinite";
-import { fetchHalls, IHall } from "@/services/halls";
+import { IHall } from "@/types/hall";
+import { fetchHalls } from "@/services/halls";
 
 export const useHalls = (filters: {
   bedrooms?: string;
