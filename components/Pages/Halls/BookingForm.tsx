@@ -3,22 +3,13 @@ import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Dropdown } from "@/components/shared/Dropdown";
 import toast from "react-hot-toast";
+import { FormInputsType } from "@/types/hall";
 
-type FormDataType = {
-  eventType: string;
-  date: string;
-  guestCount: string;
-  budget: string;
-  inquiry: string;
-  name: string;
-  email: string;
-  phone: string;
-};
 
 const BookingForm = ({ hallId }: { hallId: number }) => {
   const { user } = useAuth();
 
-  const [formData, setFormData] = useState<FormDataType>({
+  const [formData, setFormData] = useState<FormInputsType>({
     eventType: "",
     date: "",
     guestCount: "",
@@ -30,7 +21,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     phone: "",
   });
 
-  const [errors, setErrors] = useState<Record<keyof FormDataType, string>>({
+  const [errors, setErrors] = useState<Record<keyof FormInputsType, string>>({
     eventType: "",
     date: "",
     guestCount: "",
@@ -68,7 +59,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     "20000+ ريال",
   ];
 
-  const handleInputChange = (field: keyof FormDataType, value: string) => {
+  const handleInputChange = (field: keyof FormInputsType, value: string) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -143,7 +134,9 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // console.log("Form Data:", formData);
+      console.log("Form Data:", formData);
+      console.log("User Data:", user);
+      
       toast.success("تم إرسال طلب الحجز بنجاح!");
       setFormData({
         eventType: "",

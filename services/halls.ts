@@ -1,6 +1,6 @@
-import { IHall } from "@/types/hall";
+import { FormInputsType, IHall } from "@/types/hall";
+import axios from "axios";
 
-// services/halls.ts
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export interface HallsResponse {
@@ -29,35 +29,52 @@ export const fetchHalls = async (params: {
   if (params.page) query.append("page", params.page.toString());
   if (params.limit) query.append("limit", params.limit.toString());
 
-  const response = await fetch(`${API_BASE_URL}/halls?${query.toString()}`);
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch halls");
+  try {
+    const response = await axios.get<HallsResponse>(
+      `${API_BASE_URL}/halls?${query.toString()}`
+    );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Failed to fetch halls");
   }
-
-  return response.json();
 };
 
 export const fetchHallBySlug = async (slug: string): Promise<HallResponse> => {
-  if (!slug) {
-    throw new Error("Slug is required");
-  }
-  // Encode Arabic and special characters if not already encoded
+  if (!slug) throw new Error("Slug is required");
+
   const encodedSlug = encodeURIComponent(decodeURIComponent(slug));
 
   try {
-    const response = await fetch(`${API_BASE_URL}/halls/${encodedSlug}`);
-    // console.log({ response });
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        errorData.message || `Failed to fetch hall details: ${response.status}`
-      );
-    }
+    const response = await axios.get<HallResponse>(
+      `${API_BASE_URL}/halls/${encodedSlug}`
+    );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message ||
+        `Failed to fetch hall details: ${error.response?.status || "Unknown"}`
+    );
+  }
+};
 
-    return response.json();
-  } catch (error) {
-    // console.error("Error fetching hall by slug:", error);
-    throw error;
+export const sendFormSubmit = async (
+  slug: string,
+  formData: FormInputsType
+): Promise<any> => {
+  if (!slug) throw new Error("Slug is required");
+
+  const encodedSlug = encodeURIComponent(decodeURIComponent(slug));
+
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/halls/${encodedSlug}/leads`,
+      formData
+    );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message ||
+        `Failed to submit form: ${error.response?.status || "Unknown"}`
+    );
   }
 };

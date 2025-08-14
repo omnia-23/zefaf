@@ -74,3 +74,14 @@ export interface ICapacity {
   unit_label: string;
   range: string;
 }
+
+export type FormInputsType = {
+  eventType: string;
+  date: string;
+  guestCount: string;
+  budget: string;
+  inquiry: string;
+  name: string;
+  email: string;
+  phone: string;
+};
