@@ -42,7 +42,7 @@ export default function HallPage({ params }: { params: { slug: string } }) {
         <div className="flex flex-col lg:flex-row gap-2">
           {/* Left column - Images */}
           <div className="lg:w-2/3">
-            <VenueImageSlider images={hall.images} />
+            <VenueImageSlider images={hall.media} />
 
             {/* Header with name and price */}
             <HallInfo hallDetails={hall} />

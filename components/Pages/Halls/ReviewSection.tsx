@@ -1,34 +1,40 @@
 "use client";
-import React, { useState } from "react";
-import ReviewCard from "./ReviewCard";
+import React from "react";
 
-const ReviewsSection = () => {
-  const [reviews] = useState([
-    {
-      id: 1,
-      name: "محمد زيدان",
-      date: "25 نوفمبر 2025",
-      rating: 3,
-      text: "لوريم إيبسوم دولار سيت آميت، كونسيكتيتور آديبيسسيتنغ إيليت، سيد دو إيوسمود تيمبور إنكيديدونت يوت لابوري إت دولوري ماجنا أليكوا. يوت إنيم آد مينيم فنيام كواس",
-      avatar: "👤",
-    },
-    {
-      id: 2,
-      name: "محمد زيدان",
-      date: "25 نوفمبر 2025",
-      rating: 3,
-      text: "لوريم إيبسوم دولار سيت آميت، كونسيكتيتور آديبيسسيتنغ إيليت، سيد دو إيوسمود تيمبور إنكيديدونت يوت لابوري إت دولوري ماجنا أليكوا. يوت إنيم آد مينيم فنيام كواس",
-      avatar: "👤",
-    },
-    {
-      id: 3,
-      name: "محمد زيدان",
-      date: "25 نوفمبر 2025",
-      rating: 3,
-      text: "لوريم إيبسوم دولار سيت آميت، كونسيكتيتور آديبيسسيتنغ إيليت، سيد دو إيوسمود تيمبور إنكيديدونت يوت لابوري إت دولوري ماجنا أليكوا. يوت إنيم آد مينيم فنيام كواس",
-      avatar: "👤",
-    },
-  ]);
+const ReviewsSection = ({
+  reviews,
+}: {
+  reviews: {
+    average: number;
+    count: number;
+  } | null;
+}) => {
+  // const [reviews] = useState([
+  //   {
+  //     id: 1,
+  //     name: "محمد زيدان",
+  //     date: "25 نوفمبر 2025",
+  //     rating: 3,
+  //     text: "لوريم إيبسوم دولار سيت آميت، كونسيكتيتور آديبيسسيتنغ إيليت، سيد دو إيوسمود تيمبور إنكيديدونت يوت لابوري إت دولوري ماجنا أليكوا. يوت إنيم آد مينيم فنيام كواس",
+  //     avatar: "👤",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "محمد زيدان",
+  //     date: "25 نوفمبر 2025",
+  //     rating: 3,
+  //     text: "لوريم إيبسوم دولار سيت آميت، كونسيكتيتور آديبيسسيتنغ إيليت، سيد دو إيوسمود تيمبور إنكيديدونت يوت لابوري إت دولوري ماجنا أليكوا. يوت إنيم آد مينيم فنيام كواس",
+  //     avatar: "👤",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "محمد زيدان",
+  //     date: "25 نوفمبر 2025",
+  //     rating: 3,
+  //     text: "لوريم إيبسوم دولار سيت آميت، كونسيكتيتور آديبيسسيتنغ إيليت، سيد دو إيوسمود تيمبور إنكيديدونت يوت لابوري إت دولوري ماجنا أليكوا. يوت إنيم آد مينيم فنيام كواس",
+  //     avatar: "👤",
+  //   },
+  // ]);
 
   return (
     <div className="w-full px-4 md:max-w-4xl md:mx-auto md:p-6" dir="rtl">
@@ -55,9 +61,10 @@ const ReviewsSection = () => {
 
       {/* Reviews Container */}
       <div className="space-y-4 md:space-y-6">
-        {reviews.map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
+        {/* <RatingsDisplay rating={reviews} /> */}
+        {/* {reviews?.map((review, index) => (
+          <ReviewCard key={index} review={review} />
+        ))} */}
       </div>
 
       {/* Load More Button (optional) */}

@@ -2,7 +2,7 @@ import { Heart } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { IHall } from "@/services/halls";
+import { IHall } from "@/types/hall";
 
 export default function HallCard({ hall }: { hall: IHall }) {
   // console.log({ hall });
@@ -19,7 +19,7 @@ export default function HallCard({ hall }: { hall: IHall }) {
           <Image
             width={500}
             height={700}
-            src={`${hall.images[0].url}`}
+            src={`${hall.media.cover}`}
             alt={hall.name}
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
@@ -51,7 +51,7 @@ export default function HallCard({ hall }: { hall: IHall }) {
                   <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z" />
                 </svg>
                 <span className="text-[#6D0431] mx-1  font-medium">
-                  {hall.address}
+                  {hall.location.address}
                 </span>
 
                 <svg
@@ -69,7 +69,7 @@ export default function HallCard({ hall }: { hall: IHall }) {
                 </svg>
                 <span className="text-green-600 font-semibold">(4.8)</span>
               </div>
-              <div className="text-sm text-gray-600">{hall.capacity} شخص</div>
+              <div className="text-sm text-gray-600">{hall.capacities.overall.range} شخص</div>
             </div>
           </div>
 

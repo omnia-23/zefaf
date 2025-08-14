@@ -161,8 +161,8 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
   };
 
   return (
-    <div className="w-full md:px-4 md:max-w-sm md:mx-auto" dir="rtl">
-      <div className="md:shadow-md rounded-lg p-4 md:p-6 bg-white">
+    <div className="w-full md:px-4 lg:max-w-sm md:mx-auto" dir="rtl">
+      <div className="lg:shadow-md rounded-lg p-4 md:p-6 bg-white">
         <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
           {/* User Information (only shown if not logged in) */}
           {!user && (

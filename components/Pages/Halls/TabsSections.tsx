@@ -12,7 +12,7 @@ import HallOffers from "./HallOffers";
 import ContactInfo from "./ContactInfo";
 import ReviewsSection from "./ReviewSection";
 import FAQSection from "./FAQSection";
-import { IHall } from "@/services/halls";
+import { IHall } from "@/types/hall";
 
 export default function TabsSections({ hallDetails }: { hallDetails: IHall }) {
   const [activeTab, setActiveTab] = useState<string>("hotel-details");
@@ -23,14 +23,26 @@ export default function TabsSections({ hallDetails }: { hallDetails: IHall }) {
       value: "hotel-details",
       body: <HallDetails hallDetails={hallDetails} />,
     },
-    { label: "العروض", value: "offers", body: <HallOffers /> },
+    {
+      label: "العروض",
+      value: "offers",
+      body: <HallOffers offers={hallDetails.offers} />,
+    },
     {
       label: "معلومات التواصل",
       value: "contact-info",
       body: <ContactInfo />,
     },
-    { label: "التقييمات", value: "reviews", body: <ReviewsSection /> },
-    { label: "الأسئلة المتداولة", value: "faq", body: <FAQSection /> },
+    {
+      label: "التقييمات",
+      value: "reviews",
+      body: <ReviewsSection reviews={hallDetails.stats.ratings} />,
+    },
+    {
+      label: "الأسئلة المتداولة",
+      value: "faq",
+      body: <FAQSection faq={hallDetails.faqs} />,
+    },
   ];
 
   return (

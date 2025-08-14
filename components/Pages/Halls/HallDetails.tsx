@@ -4,7 +4,7 @@ import menHallIcon from "@/public/images/halls/men-hall.svg";
 import dressIcon from "@/public/images/halls/dress.svg";
 import foodIcon from "@/public/images/halls/fork-and-spoon.svg";
 import drinkIcon from "@/public/images/halls/drink.svg";
-import { IHall } from "@/services/halls";
+import { IHall } from "@/types/hall";
 
 export default function HallDetails({ hallDetails }: { hallDetails: IHall }) {
   return (
@@ -33,7 +33,7 @@ export default function HallDetails({ hallDetails }: { hallDetails: IHall }) {
                 قاعة الرجال
               </h4>
               <p className="font-medium text-xs md:text-sm text-[#707070]">
-                {hallDetails.capacity}
+                {hallDetails.capacities.men_hall.range}
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function HallDetails({ hallDetails }: { hallDetails: IHall }) {
                 قاعة السيدات
               </h4>
               <p className="font-medium text-xs md:text-sm text-[#707070]">
-                {hallDetails.capacity}
+                {hallDetails.capacities.women_hall.range}
               </p>
             </div>
           </div>
@@ -121,10 +121,10 @@ export default function HallDetails({ hallDetails }: { hallDetails: IHall }) {
                             }`}
                           >
                             <div className="font-semibold text-sm w-fit">
-                              {item.label}
+                              {item.name}
                             </div>
                             <div className="font-medium text-sm text-center text-[#707070] w-fit">
-                              {item.value}
+                              {item.value ?? "متاح "}
                             </div>
                           </div>
                         ))}

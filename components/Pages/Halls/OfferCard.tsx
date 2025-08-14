@@ -1,8 +1,15 @@
-import Image from "next/image";
 import React from "react";
-import { IOffer } from "../Home/OffersSection";
 
-export default function OfferCard({ offer }: { offer: IOffer }) {
+export default function OfferCard({
+  offer,
+}: {
+  offer: {
+    title: string;
+    description: string;
+    starts_at: string; // ISO date string
+    ends_at: string; // ISO date string
+  };
+}) {
   return (
     <div className="bg-white flex flex-col lg:flex-row gap-5 rounded-lg overflow-hidden w-full p-5 border-2">
       {/* Image Section */}
@@ -22,7 +29,7 @@ export default function OfferCard({ offer }: { offer: IOffer }) {
             {offer.title}
           </h3>
           <h5 className="text-base text-[#990645] font-bold">
-            العرض ساري حتى {offer.endDate}
+            العرض ساري حتى {offer.ends_at}
           </h5>
         </div>
 
@@ -30,14 +37,14 @@ export default function OfferCard({ offer }: { offer: IOffer }) {
           {offer.description}
         </p>
 
-        <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm font-medium text-[#707070]">
+        {/* <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm font-medium text-[#707070]">
           {offer.options.map((option: string, index: number) => (
             <li key={index} className="flex items-start">
               <span className="font-medium ml-2">•</span>
               <span>{option}</span>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

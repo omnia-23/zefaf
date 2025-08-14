@@ -1,7 +1,7 @@
 import React from "react";
 import { Heart, Share2Icon, Star } from "lucide-react";
 import TabsSections from "./TabsSections";
-import { IHall } from "@/services/halls";
+import { IHall } from "@/types/hall";
 
 export default function HallData({ hallDetails }: { hallDetails: IHall }) {
   return (
@@ -16,7 +16,7 @@ export default function HallData({ hallDetails }: { hallDetails: IHall }) {
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 my-3 font-medium w-full">
             <div className="flex items-center gap-6 flex-wrap">
               <div>
-                <span>{hallDetails.capacity} شخص</span>
+                <span>{hallDetails.capacities.overall.range}</span>
               </div>
               <div className="flex items-center gap-1 text-[#990645]">
                 <svg
@@ -27,12 +27,12 @@ export default function HallData({ hallDetails }: { hallDetails: IHall }) {
                 >
                   <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z" />
                 </svg>
-                <span>{hallDetails.address}</span>
+                <span>{hallDetails.location.address}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Star className="w-5 h-5 text-green-500" />
                 <span className="text-green-600 font-semibold">
-                  {hallDetails.rating ?? 4.5}
+                  {hallDetails.stars ?? 4.5}
                 </span>
               </div>
             </div>

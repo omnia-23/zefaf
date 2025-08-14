@@ -1,36 +1,7 @@
+import { IHall } from "@/types/hall";
+
 // services/halls.ts
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-export interface IHall {
-  id: number;
-  name: string;
-  city: {
-    id: number;
-    name: string;
-  };
-  area?: string;
-  address: string;
-  description: string;
-  price?: number;
-  capacity: number;
-  rating?: number;
-  images: { url: string; sort: number }[];
-  amenities?: string[];
-  bedrooms?: number;
-  lat: string;
-  lng: string;
-  main_category: {
-    title: string;
-    slug: string;
-  };
-  restaurant: boolean;
-  slug: string;
-  features?: {
-    id: number;
-    label: string;
-    value: string;
-  }[];
-}
 
 export interface HallsResponse {
   data: IHall[];
