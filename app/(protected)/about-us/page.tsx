@@ -1,7 +1,15 @@
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import { Quote } from "lucide-react";
-import Head from "next/head";
 import Image from "next/image";
+
+export const metadata = {
+  title: "عالم زفاف - من نحن",
+  description: "تعرف على عالم زفاف ورسالتنا لخدمة المقبلين على الزواج",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 export default function AboutUs() {
   interface Testimonial {
     title: string;
@@ -53,15 +61,6 @@ export default function AboutUs() {
   ];
   return (
     <div className="min-h-screen">
-      <Head>
-        <title>عالم زفاف - من نحن</title>
-        <meta
-          name="description"
-          content="تعرف على عالم زفاف ورسالتنا لخدمة المقبلين على الزواج"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       {/* Header Section */}
       <HeaderSection
         title="من نحن"
@@ -99,20 +98,20 @@ export default function AboutUs() {
         <div className="my-20">
           <div className="flex items-center gap-1 mb-4">
             <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
-            <h2 className="text-black text-xl font-medium">كيف بدأ زفاف.نت؟</h2>
+            <h2 className="text-black text-xl font-medium">كيف بدأ عالم زفاف؟</h2>
           </div>
 
           <div className="my-4 text-lg text-gray-600">
             <p>
-              زفاف.نت هو الإصدار العربي لمجموعة بيرادور العالمية المالكة لأكبر
+              عالم زفاف هو الإصدار العربي لمجموعة بيرادور العالمية المالكة لأكبر
               موقعين في عالم التخطيط للزفاف في كلّ من المانيا و تركيا. وكان لابد
-              من نقل هذه التجربة المميزة للعالم العربي, فكان زفاف.نت الذي بدأ
+              من نقل هذه التجربة المميزة للعالم العربي, فكان عالم زفاف الذي بدأ
               عام 2015 و استقطب مئات الآلاف من المقبلين على الزواج حتى هذه
               اللحظة, وأصبح الدليل الأول لخدمات الزفاف في الوطن العربي والوحيد
               الذي يتيح للزوار التصفح عبر الويب و الموبايل أيضاً.
             </p>
             <p>
-              زفاف.نت اليوم هو دليل تخطيط حفلات الزفاف الرائد في الشرق الأوسط
+              عالم زفاف اليوم هو دليل تخطيط حفلات الزفاف الرائد في الشرق الأوسط
               وشمال أفريقيا. يستطيع العرسان استكشاف المئات من مزودي خدمات الزفاف
               في مدنهم والتواصل معهم مباشرة بطريقة بسيطة ومريحة للحصول على أفضل
               الأسعار والعروض.

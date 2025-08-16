@@ -1,5 +1,4 @@
 "use client";
-import Head from "next/head";
 import { useState } from "react";
 import { MapPinIcon } from "lucide-react";
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
@@ -8,6 +7,15 @@ import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import HallCard from "@/components/Pages/Halls/HallCard";
 import { useHalls } from "@/hooks/useHalls";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "قصور الأفراح - العقارات",
+  description: "أفضل قصور الأفراح والعقارات",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
 
 export default function PropertyListing() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -54,12 +62,6 @@ export default function PropertyListing() {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
-      <Head>
-        <title>قصور الأفراح - العقارات</title>
-        <meta name="description" content="أفضل قصور الأفراح والعقارات" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       {/* Header Section */}
       <HeaderSection
         title="قصور الأفراح"
