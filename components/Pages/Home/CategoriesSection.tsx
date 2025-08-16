@@ -1,81 +1,83 @@
 "use client";
 import React, { useState } from "react";
 import { CategoryCard } from "./CategoryCard";
+import { useCategories } from "@/hooks/useCategories";
+import Skeleton from "react-loading-skeleton";
 
-const categories = [
-  {
-    title: "قصور الأفراح",
-    count: 10,
-    // count: data?.halls?.length || 10,
-    image: "/images/hotels.png",
-    alt: "Wedding Halls",
-  },
-  {
-    title: "الفنادق",
-    count: 10,
-    image: "/images/halls.png",
-    alt: "Hotels",
-  },
-  {
-    title: "الاستراحات",
-    count: 10,
-    image: "/images/resorts.png",
-    alt: "Resorts",
-  },
-  {
-    title: "قصور الأفراح",
-    count: 10,
-    image: "/images/hotels.png",
-    alt: "Wedding Halls",
-  },
-  {
-    title: "الاستراحات",
-    count: 10,
-    image: "/images/resorts.png",
-    alt: "Resorts",
-  },
-];
+// const categories = [
+//   {
+//     title: "قصور الأفراح",
+//     count: 10,
+//     // count: data?.halls?.length || 10,
+//     image: "/images/hotels.png",
+//     alt: "Wedding Halls",
+//   },
+//   {
+//     title: "الفنادق",
+//     count: 10,
+//     image: "/images/halls.png",
+//     alt: "Hotels",
+//   },
+//   {
+//     title: "الاستراحات",
+//     count: 10,
+//     image: "/images/resorts.png",
+//     alt: "Resorts",
+//   },
+//   {
+//     title: "قصور الأفراح",
+//     count: 10,
+//     image: "/images/hotels.png",
+//     alt: "Wedding Halls",
+//   },
+//   {
+//     title: "الاستراحات",
+//     count: 10,
+//     image: "/images/resorts.png",
+//     alt: "Resorts",
+//   },
+// ];
 
 const CategoriesSection = () => {
-  // const { categories, error, isLoading } = useCategories();
+  const { categories, error, isLoading } = useCategories();
   const [showAll, setShowAll] = useState(false);
 
   // Loading state
-  // if (isLoading) {
-  //   return (
-  //     <section className="container mx-auto py-12 px-4 lg:px-8">
-  //       <div className="flex flex-col gap-6 mb-12">
-  //         <Skeleton width={200} height={30} />
-  //         <Skeleton width={500} height={20} />
-  //       </div>
-  //       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-  //         {[...Array(3)].map((_, i) => (
-  //           <Skeleton key={i} height={400} className="rounded-lg" />
-  //         ))}
-  //       </div>
-  //     </section>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <section className="container mx-auto py-12 px-4 lg:px-8">
+        <div className="flex flex-col gap-6 mb-12">
+          <Skeleton width={200} height={30} />
+          <Skeleton width={500} height={20} />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[...Array(3)].map((_, i) => (
+            <Skeleton key={i} height={400} className="rounded-lg" />
+          ))}
+        </div>
+      </section>
+    );
+  }
 
-  // // Error state
-  // if (error) {
-  //   return (
-  //     <section className="container mx-auto py-12 px-4 lg:px-8 text-center">
-  //       <div className="bg-red-50 text-red-600 p-4 rounded-lg inline-block">
-  //         <p>حدث خطأ أثناء تحميل الفئات</p>
-  //       </div>
-  //     </section>
-  //   );
-  // }
+  // Error state
+  if (error) {
+    return (
+      <section className="container mx-auto py-12 px-4 lg:px-8 text-center">
+        <div className="bg-red-50 text-red-600 p-4 rounded-lg inline-block">
+          <p>حدث خطأ أثناء تحميل الفئات</p>
+        </div>
+      </section>
+    );
+  }
 
-  // // Empty state
-  // if (!categories || categories.length === 0) {
-  //   return (
-  //     <section className="container mx-auto py-12 px-4 lg:px-8 text-center">
-  //       <p className="text-gray-500">لا توجد فئات متاحة حالياً</p>
-  //     </section>
-  //   );
-  // }
+  // Empty state
+  if (!categories || categories.length === 0) {
+    return (
+      <section className="container mx-auto py-12 px-4 lg:px-8 text-center">
+        <p className="text-gray-500">لا توجد فئات متاحة حالياً</p>
+      </section>
+    );
+  }
 
   // Determine which categories to show
   const displayedCategories = showAll ? categories : categories.slice(0, 3);

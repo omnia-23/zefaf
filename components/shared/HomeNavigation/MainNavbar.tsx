@@ -120,7 +120,7 @@ const MainNavbar = () => {
           </div>
 
           <div className="mt-4 lg:mt-[45x] w-full flex justify-start container lg:px-0">
-            <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg md:text-2xl lg:text-[56px] font-extrabold leading-[50px] lg:leading-[100px]">
+            <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg md:text-2xl lg:text-[54px] font-extrabold leading-[50px] lg:leading-[100px]">
               <span className="text-[#DB0962] ml-1">عالم زفاف,</span>
               <span className="text-white">
                 الدليل الأكبر لجميع

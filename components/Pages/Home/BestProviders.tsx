@@ -73,7 +73,7 @@ const BestProviders = () => {
           <div className="flex items-center gap-4">
             <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
             <h2 className="text-[color:var(--Text-Color,#221F20)] text-2xl sm:text-3xl font-bold">
-              أفضل مزودي قاعات وصالات الأفراح
+              أفضل مزودي خدمات
             </h2>
           </div>
           <p className="text-gray-600 text-sm sm:text-base max-w-2xl">

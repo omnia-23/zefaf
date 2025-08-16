@@ -23,13 +23,13 @@ const page = () => {
       <CategoriesSection />
       <WeddingServices />
       <JoinUs />
-      <HotelsSection />
+      {/* <HotelsSection /> */}
       <FamousCities />
       <OffersSection />
       {/* <AllViews />        //  commented out for now */}
-      <Palaces />
+      {/* <Palaces /> */}
       <BlogsSection />
-      <OurTeam />
+      {/* <OurTeam /> */}
       {/* <OurServicesSection /> */}
       <Footer />
     </>
