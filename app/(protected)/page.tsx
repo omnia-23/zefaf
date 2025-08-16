@@ -7,8 +7,9 @@ import {
   BlogsSection,
   CategoriesSection,
 } from "@/components/Pages/Home";
+import BestProviders from "@/components/Pages/Home/BestProviders";
 import FamousCities from "@/components/Pages/Home/FamousCities";
-import OurTeam from "@/components/Pages/Home/OueTeam";
+import OurTeam from "@/components/Pages/Home/OurTeam";
 import Footer from "@/components/shared/Footer";
 import MainNavbar from "@/components/shared/HomeNavigation/MainNavbar";
 
@@ -18,6 +19,7 @@ const page = () => {
   return (
     <>
       <MainNavbar />
+      <BestProviders />
       <CategoriesSection />
       <WeddingServices />
       <JoinUs />

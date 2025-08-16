@@ -1,14 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import Image from "next/image";
-import { useCategories } from "@/hooks/useCategories";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import { CategoryCard } from "./CategoryCard";
 
 const categories = [

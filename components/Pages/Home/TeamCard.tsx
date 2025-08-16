@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { Member } from "./OueTeam";
+import { Member } from "./OurTeam";
 
 export default function TeamCard({ member }: { member: Member }) {
   return (
