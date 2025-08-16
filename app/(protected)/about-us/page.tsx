@@ -102,7 +102,7 @@ export default function AboutUs() {
             <h2 className="text-black text-xl font-medium">كيف بدأ زفاف.نت؟</h2>
           </div>
 
-          <div className="my-4 text-lg">
+          <div className="my-4 text-lg text-gray-600">
             <p>
               زفاف.نت هو الإصدار العربي لمجموعة بيرادور العالمية المالكة لأكبر
               موقعين في عالم التخطيط للزفاف في كلّ من المانيا و تركيا. وكان لابد
@@ -123,9 +123,9 @@ export default function AboutUs() {
             <Image
               src="/images/aboutus.png"
               alt="about-us"
-              width={600}
-              height={486}
-              className="w-full max-h-[460px] object-cover object-center rounded-lg"
+              width={1328}
+              height={504}
+              className="w-full max-h-[500px] object-center rounded-lg"
             />
           </div>
         </div>
