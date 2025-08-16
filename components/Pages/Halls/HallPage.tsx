@@ -13,6 +13,7 @@ export default function HallPage() {
     bedrooms: "",
     city: "",
     area: "",
+    hasOffer: false,
   });
 
   const [selectedKey, setSelectedKey] = useState("1");

@@ -6,6 +6,7 @@ export default function SideBarFilters({
   selectedFilters,
 }: {
   selectedFilters: {
+    hasOffer: boolean;
     bedrooms: string;
     city: string;
     area: string;
@@ -15,6 +16,7 @@ export default function SideBarFilters({
       bedrooms: string;
       city: string;
       area: string;
+      hasOffer: boolean;
     }>
   ) => void;
 }) {
@@ -98,6 +100,27 @@ export default function SideBarFilters({
               ))}
             </div>
           )} */}
+        </div>
+
+        <div className="mb-6">
+          <div className="flex items-center justify-between p-3">
+            <span className="text-gray-700">عروض وخصومات</span>
+            <div className="relative inline-block w-14 h-8">
+              <input
+                id="offer-toggle"
+                type="checkbox"
+                checked={selectedFilters.hasOffer}
+                onChange={(e) => onFilterChange({ hasOffer: e.target.checked })}
+                className="peer appearance-none w-full h-full bg-gray-200 rounded-full checked:bg-blue-600 cursor-pointer transition-colors duration-200"
+              />
+              <label
+                htmlFor="offer-toggle"
+                className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-sm transition-transform duration-200 peer-checked:translate-x-6 cursor-pointer flex items-center justify-center"
+              >
+                <span className="sr-only">عروض وخصومات</span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
