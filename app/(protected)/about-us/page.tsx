@@ -1,9 +1,56 @@
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
+import { Quote } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
-import { FaRibbon, FaHandshake, FaHeart } from "react-icons/fa";
-
 export default function AboutUs() {
+  interface Testimonial {
+    title: string;
+    description: string;
+    author: string;
+    image: string;
+  }
+
+  const testimonials: Testimonial[] = [
+    {
+      title: "خدمة جدا جدا",
+      description:
+        "لوريم إيبسوم هو ببساطة نص وهمي لصناعة الطباعة والتنضيد. لقد كان لوريم إيبسوم هو ببساطة نص وهمي لصناعة الطباعة والتنضيد.",
+      author: "ساره باسم",
+      image: "/images/sara.png",
+    },
+    {
+      title: "إنها تجربة حقا مميزة",
+      description:
+        "لوريم إيبسوم هو ببساطة نص وهمي لصناعة الطباعة والتنضيد. لقد كان لوريم إيبسوم هو ببساطة نص وهمي لصناعة الطباعة والتنضيد.",
+      author: "ساره باسم",
+      image: "/images/sara.png",
+    },
+    {
+      title: "خدمة جدا جدا",
+      description:
+        "لوريم إيبسوم هو ببساطة نص وهمي لصناعة الطباعة والتنضيد. لقد كان لوريم إيبسوم هو ببساطة نص وهمي لصناعة الطباعة والتنضيد.",
+      author: "ساره باسم",
+      image: "/images/sara.png",
+    },
+  ];
+
+  const aboutus = [
+    {
+      title: "هدفنا",
+      description:
+        "لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم",
+    },
+    {
+      title: "مهمتنا",
+      description:
+        "لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم",
+    },
+    {
+      title: "مبادئنا",
+      description:
+        "لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم",
+    },
+  ];
   return (
     <div className="min-h-screen">
       <Head>
@@ -27,198 +74,111 @@ export default function AboutUs() {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16 max-w-7xl">
-        {/* Hero Section */}
-        <div className="flex flex-col lg:flex-row gap-12 items-center mb-20">
-          {/* Image */}
-          <div className="w-full lg:w-1/2">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl h-[500px]">
-              <Image
-                src="/images/aboutus.png"
-                alt="عالم زفاف من نحن"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#DB0962]/10 to-transparent"></div>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
+          {aboutus.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className="rounded-md bg-[#FDF3F7] p-6 shadow-sm hover:shadow-md transition"
+              >
+                <div className="flex items-center gap-1 mb-4">
+                  <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
+                  <h2 className="text-[color:var(--Primary,#DB0962)] text-xl font-medium">
+                    {index + 1 < 10 ? `0${index + 1}` : index + 1}
+                  </h2>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="my-20">
+          <div className="flex items-center gap-1 mb-4">
+            <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
+            <h2 className="text-black text-xl font-medium">كيف بدأ زفاف.نت؟</h2>
           </div>
 
-          {/* Text Content */}
-          <div className="lg:w-1/2 space-y-8">
-            <h1 className="text-2xl md:text-4xl font-bold text-[#2E2E2E] leading-tight">
-              نصنع لحظات <span className="text-[#DB0962]">تبقى للأبد</span>
-            </h1>
+          <div className="my-4 text-lg">
+            <p>
+              زفاف.نت هو الإصدار العربي لمجموعة بيرادور العالمية المالكة لأكبر
+              موقعين في عالم التخطيط للزفاف في كلّ من المانيا و تركيا. وكان لابد
+              من نقل هذه التجربة المميزة للعالم العربي, فكان زفاف.نت الذي بدأ
+              عام 2015 و استقطب مئات الآلاف من المقبلين على الزواج حتى هذه
+              اللحظة, وأصبح الدليل الأول لخدمات الزفاف في الوطن العربي والوحيد
+              الذي يتيح للزوار التصفح عبر الويب و الموبايل أيضاً.
+            </p>
+            <p>
+              زفاف.نت اليوم هو دليل تخطيط حفلات الزفاف الرائد في الشرق الأوسط
+              وشمال أفريقيا. يستطيع العرسان استكشاف المئات من مزودي خدمات الزفاف
+              في مدنهم والتواصل معهم مباشرة بطريقة بسيطة ومريحة للحصول على أفضل
+              الأسعار والعروض.
+            </p>
+          </div>
 
-            <div className="space-y-6 text-[#555] leading-relaxed text-lg">
-              <p>
-                عالم زفاف هو منصة رائدة في المملكة العربية السعودية، تأسس برؤية
-                واضحة لتحويل تجربة التخطيط للزفاف من مهمة معقدة إلى رحلة سلسة
-                وممتعة. نربط بين العرسان وأفضل مزودي خدمات الزفاف بلمسة من
-                الابتكار والجودة.
+          <div className="flex justify-center">
+            <Image
+              src="/images/aboutus.png"
+              alt="about-us"
+              width={600}
+              height={486}
+              className="w-full max-h-[460px] object-cover object-center rounded-lg"
+            />
+          </div>
+        </div>
+
+        <div className="py-12 bg-white" dir="rtl">
+          <div className="max-w-6xl mx-auto px-4">
+            {/* Section Header */}
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                آراء عملائنا المميزين
+              </h2>
+              <p className="text-gray-600 mt-2">
+                استمع إلى تجارب عملائنا الذين يشاركون رضاهم عن خدماتنا المميزة
               </p>
-
-              <p>
-                نؤمن بأن كل تفصيل في حفل الزفاف يحمل قصة، ونسعى جاهدين لنجعل
-                قصتكم فريدة كما تستحقون. من خلال أدواتنا الذكية وخبراتنا
-                الواسعة، نوفر لكم كل ما تحتاجونه لتحقيق حفل زفاف أحلامكم.
-              </p>
             </div>
-          </div>
-        </div>
 
-        {/* Our Story */}
-        <div className="bg-white rounded-2xl shadow-lg p-12 mb-20 relative overflow-hidden">
-          <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-[#FFF0F5] z-0"></div>
-          <div className="relative z-10">
-            <h2 className="text-3xl font-bold text-[#2E2E2E] mb-8 text-center">
-              قصتنا
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="space-y-6 text-[#555] leading-relaxed text-lg">
-                <p>
-                  بدأت رحلتنا عام 2015 بفريق صغير من خبراء التخطيط للزفاف
-                  والمطورين التقنيين الذين لاحظوا التحديات التي تواجه العرسان في
-                  البحث عن خدمات الزفاف المناسبة.
-                </p>
-                <p>
-                  اليوم، نحن فخورون بأننا أصبحنا المنصة الأكثر ثقة في السعودية
-                  لتخطيط الزفاف، حيث ساعدنا أكثر من 50,000 عريس وعروسة في تحقيق
-                  حفل زفافهم المثالي.
-                </p>
-              </div>
-              <div className="space-y-6 text-[#555] leading-relaxed text-lg">
-                <p>
-                  نتميز بشبكة واسعة من الشراكات مع أفضل الفنادق والقاعات ومزودي
-                  الخدمات في المملكة، مع ضمان الجودة والموثوقية في كل تفصيل
-                  نقدمه لكم.
-                </p>
-                <p>
-                  فريقنا من الخبراء يعمل دائماً على تطوير أدوات وخدمات جديدة
-                  لتسهيل كل خطوة من رحلتكم، بدءاً من التخطيط وحتى ليلة الحفل.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+            {/* Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {testimonials.map((item, index) => (
+                <div
+                  key={index}
+                  className="rounded-lg bg-[#FDF3F7] p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+                >
+                  {/* Quote Icon */}
+                  <div className="text-[color:var(--Primary,#DB0962)] text-4xl mb-4">
+                    <Quote />
+                  </div>
 
-        {/* Values Section */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-[#2E2E2E] mb-16 text-center">
-            ما يميزنا
-          </h2>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Vision Card */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-[#DB0962]">
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-6 text-4xl text-[#DB0962]">
-                  <FaRibbon />
+                  {/* Author */}
+                  <div className="flex items-center gap-3 mt-6">
+                    <Image
+                      src={item.image}
+                      alt={item.author}
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <span className="font-semibold text-gray-900">
+                      {item.author}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-[#2E2E2E] mb-4">
-                  الرؤية
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  أن نكون الوجهة الأولى للزفاف في المنطقة، بإعادة تعريف تجربة
-                  التخطيط للزفاف عبر حلول رقمية مبتكرة تواكب رؤية 2030.
-                </p>
-              </div>
-            </div>
-
-            {/* Mission Card */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-[#8B5A2B]">
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-6 text-4xl text-[#8B5A2B]">
-                  <FaHandshake />
-                </div>
-                <h3 className="text-2xl font-bold text-[#2E2E2E] mb-4">
-                  الرسالة
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  تمكين العرسان من اتخاذ قرارات واثقة عبر منصة شاملة توفر
-                  الشفافية، التنوع، والجودة في كل خدمة نقدمها.
-                </p>
-              </div>
-            </div>
-
-            {/* Values Card */}
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-[#E83E8C]">
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-6 text-4xl text-[#E83E8C]">
-                  <FaHeart />
-                </div>
-                <h3 className="text-2xl font-bold text-[#2E2E2E] mb-4">
-                  قيمنا
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  الأصالة، الإبداع، الشغف، والتميز. نضع تجربة العميل أولاً ونسعى
-                  لتحقيق أعلى معايير الجودة في كل تفصيل.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* How We Help */}
-        <div className="bg-gradient-to-r from-[#FFF0F5] to-[#F8F4FF] rounded-2xl p-12 mb-20">
-          <h2 className="text-3xl font-bold text-[#2E2E2E] mb-8 text-center">
-            كيف نساعدكم؟
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div>
-              <h3 className="text-2xl font-semibold text-[#DB0962] mb-6">
-                للعرسان
-              </h3>
-              <ul className="space-y-4 text-[#555]">
-                <li className="flex items-start gap-3">
-                  <span className="text-[#DB0962] font-bold">✓</span>
-                  <span>منصة واحدة لكل احتياجات زفافكم</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#DB0962] font-bold">✓</span>
-                  <span>أدوات ذكية لمقارنة الأسعار والتقييمات</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#DB0962] font-bold">✓</span>
-                  <span>حجوزات مباشرة مع أفضل مزودي الخدمات</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#DB0962] font-bold">✓</span>
-                  <span>نصائح وإرشادات من خبراء الزفاف</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#DB0962] font-bold">✓</span>
-                  <span>عروض حصرية وتخفيضات خاصة لأعضائنا</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-semibold text-[#8B5A2B] mb-6">
-                لمزودي الخدمات
-              </h3>
-              <ul className="space-y-4 text-[#555]">
-                <li className="flex items-start gap-3">
-                  <span className="text-[#8B5A2B] font-bold">✓</span>
-                  <span>منصة لعرض خدماتكم على آلاف العرسان</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#8B5A2B] font-bold">✓</span>
-                  <span>أدوات تسويقية متقدمة لزيادة الحجوزات</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#8B5A2B] font-bold">✓</span>
-                  <span>نظام إدارة حجوزات متكامل</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#8B5A2B] font-bold">✓</span>
-                  <span>تحليلات وأبحاث سوقية لخدمات الزفاف</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#8B5A2B] font-bold">✓</span>
-                  <span>فرص للتواصل مع شركاء جدد في المجال</span>
-                </li>
-              </ul>
+              ))}
             </div>
           </div>
         </div>
