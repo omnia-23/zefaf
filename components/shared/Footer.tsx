@@ -85,33 +85,33 @@ const Footer = () => {
           url: "mailto:Sales@Zafaf.sa",
         },
       ],
-      // socialMedia: [
-      //   {
-      //     platform: "Snapchat",
-      //     url: "https://www.snapchat.com/add/zafaf.sa",
-      //     icon: "/images/footer/snapchat.png",
-      //   },
-      //   {
-      //     platform: "X-twitter",
-      //     url: "https://x.com/zafafsa1",
-      //     icon: "/images/footer/x.png",
-      //   },
-      //   {
-      //     platform: "Instagram",
-      //     url: "https://www.instagram.com/zafaf.sa1",
-      //     icon: "/images/footer/instagram.png",
-      //   },
-      //   {
-      //     platform: "Tiktok",
-      //     url: "https://www.tiktok.com/@zafaf.sa",
-      //     icon: "/images/footer/tiktok.png",
-      //   },
-      //   {
-      //     platform: "Whatsapp",
-      //     url: "https://wa.me/966553773356",
-      //     icon: "/images/footer/whatsapp.png",
-      //   },
-      // ],
+      socialMedia: [
+        {
+          platform: "Snapchat",
+          url: "https://www.snapchat.com/add/zafaf.sa",
+          icon: "/images/footer/snapchat.svg",
+        },
+        {
+          platform: "X-twitter",
+          url: "https://x.com/zafafsa1",
+          icon: "/images/footer/x.png",
+        },
+        {
+          platform: "Instagram",
+          url: "https://www.instagram.com/zafaf.sa1",
+          icon: "/images/footer/Instagram.svg",
+        },
+        {
+          platform: "Tiktok",
+          url: "https://www.tiktok.com/@zafaf.sa",
+          icon: "/images/footer/tiktok.svg",
+        },
+        {
+          platform: "Whatsapp",
+          url: "https://wa.me/966553773356",
+          icon: "/images/footer/whatsapp.png",
+        },
+      ],
     },
     copyright:
       "© ٢٠٢٤ عالم زفاف — جميع الحقوق محفوظة. تم التطوير بواسطة فريق التطوير.",
@@ -198,25 +198,25 @@ const Footer = () => {
             </ul>
 
             {/* Social Media */}
-            {/* <div className="flex justify-center md:justify-end gap-3 mt-4">
+            <div className="flex justify-center md:justify-start gap-1 mt-4">
               {footerData.contactInfo.socialMedia.map((social, index) => (
                 <Link
                   key={index}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-200 transition-colors"
+                  className="w-10 h-10 rounded flex items-center justify-center hover:bg-gray-200 transition-colors"
                   aria-label={social.platform}
                 >
                   <Image
                     src={social.icon}
                     alt={social.platform}
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                   />
                 </Link>
               ))}
-            </div> */}
+            </div>
           </div>
         </div>
 
