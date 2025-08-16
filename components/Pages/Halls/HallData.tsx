@@ -39,7 +39,7 @@ export default function HallData({ hallDetails }: { hallDetails: IHall }) {
           </div>
 
           <div className="text-[#990645] font-bold text-xl md:text-2xl mt-2">
-            {hallDetails.pricing.range ?? 100}
+            {hallDetails.pricing?.range ?? 100}
           </div>
         </div>
 
