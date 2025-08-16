@@ -8,7 +8,7 @@ type BreadcrumbItem = {
 
 interface HeaderSectionProps {
   title: string;
-  description: string;
+  description?: string;
   breadcrumbs: BreadcrumbItem[];
 }
 

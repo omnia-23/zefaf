@@ -154,7 +154,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
 
   return (
     <div
-      className="sticky top-24 w-full md:px-4 lg:max-w-sm md:mx-auto h-fit"
+      className="sticky top-12 w-full md:px-4 lg:max-w-sm md:mx-auto h-fit"
       dir="rtl"
     >
       <div className="lg:shadow-md rounded-lg p-4 md:p-6 bg-white">

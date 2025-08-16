@@ -29,7 +29,7 @@ export default function HallPage({ params }: { params: { slug: string } }) {
     <div>
       <HeaderSection
         title={hall.name}
-        description={hall.description}
+        // description={hall.description}
         breadcrumbs={[
           { label: "الرئيسية", href: "/" },
           { label: "قصور الأفراح", href: "/halls" },
