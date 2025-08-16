@@ -5,7 +5,6 @@ import { Dropdown } from "@/components/shared/Dropdown";
 import toast from "react-hot-toast";
 import { FormInputsType } from "@/types/hall";
 
-
 const BookingForm = ({ hallId }: { hallId: number }) => {
   const { user } = useAuth();
 
@@ -136,7 +135,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     if (validateForm()) {
       console.log("Form Data:", formData);
       console.log("User Data:", user);
-      
+
       toast.success("تم إرسال طلب الحجز بنجاح!");
       setFormData({
         eventType: "",
@@ -154,7 +153,10 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
   };
 
   return (
-    <div className="w-full md:px-4 lg:max-w-sm md:mx-auto" dir="rtl">
+    <div
+      className="sticky top-24 w-full md:px-4 lg:max-w-sm md:mx-auto h-fit"
+      dir="rtl"
+    >
       <div className="lg:shadow-md rounded-lg p-4 md:p-6 bg-white">
         <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
           {/* User Information (only shown if not logged in) */}
