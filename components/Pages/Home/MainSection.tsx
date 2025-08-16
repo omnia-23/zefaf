@@ -59,19 +59,19 @@ const MainSection = () => {
         <div className="flex items-center gap-4">
           <span className="w-6 h-[5px] rounded-lg bg-[color:var(--Primary,#DB0962)]"></span>
           <p className="text-[color:var(--Text-Color,#221F20)] text-2xl font-bold leading-[normal]">
-            قاعات الزفاف
+            جميع الفئات
           </p>
         </div>
         <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl">
-          عالم زفاف يوفر لك اجمل قاعات الزفاف التي تناسب كل الأذواق، مع خيارات
-          متنوعة تضمن حصولك على قاعة مثالية ليومك المميز.
+          عالم زفاف يوفر لك اجمل الفئات التي تناسب كل الأذواق، مع خيارات متنوعة
+          تضمن حصولك على الفئة مثالية ليومك المميز.
         </p>
       </div>
 
       {/* Slider Section */}
       <div className="w-full px-4 lg:px-0">
         <Swiper
-          spaceBetween={20}
+          spaceBetween={16}
           slidesPerView={1}
           breakpoints={{
             640: {
@@ -81,7 +81,7 @@ const MainSection = () => {
               slidesPerView: 2,
             },
             1024: {
-              slidesPerView: 2,
+              slidesPerView: 3,
             },
           }}
           autoplay={{
@@ -89,11 +89,12 @@ const MainSection = () => {
             disableOnInteraction: false,
           }}
           modules={[Autoplay]}
+          loop
           className="mySwiper"
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <div className="relative h-[468px]">
+              <div className="relative h-[400px]">
                 <div
                   className="absolute top-0 rounded-lg right-0 w-full h-full"
                   style={{

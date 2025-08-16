@@ -14,6 +14,8 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
+import { useCities } from "@/hooks/useCities";
+import { useCategories } from "@/hooks/useCategories";
 
 // Define types for items
 interface SelectOption {
@@ -21,27 +23,23 @@ interface SelectOption {
   value: string;
 }
 
-const cities: SelectOption[] = [
-  { label: "الرياض", value: "riyadh" },
-  { label: "جدة", value: "jeddah" },
-  { label: "مكة", value: "mecca" },
-  { label: "المدينة", value: "medina" },
-  { label: "الدمام", value: "dammam" },
-  { label: "الخبر", value: "khobar" },
-];
-
-const categories: SelectOption[] = [
-  { label: "فنادق", value: "hotels" },
-  { label: "قصور أفراح", value: "palaces" },
-  { label: "قاعات احتفالات", value: "halls" },
-  { label: "حدائق ومساحات خارجية", value: "outdoor" },
-];
-
 const HomeSearchTabs = () => {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("search");
+
+  const { cities: citiesList } = useCities(1);
+  const { categories } = useCategories();
+  const cityOptions: SelectOption[] = citiesList.map((c) => ({
+    label: c.name,
+    value: c.name, // or maybe slug if you have one
+  }));
+
+  const categoriesOptions: SelectOption[] = categories.map((c) => ({
+    label: c.title,
+    value: c.slug, // or maybe slug if you have one
+  }));
 
   const getLabel = (
     list: SelectOption[],
@@ -55,7 +53,6 @@ const HomeSearchTabs = () => {
     if (!selectedCategory || !selectedCity) return;
 
     const query = new URLSearchParams({
-      // category: selectedCategory,
       search: selectedCity,
     }).toString();
 
@@ -102,7 +99,7 @@ const HomeSearchTabs = () => {
                 >
                   <span className="flex-1 text-right" dir="rtl">
                     {getLabel(
-                      categories,
+                      categoriesOptions,
                       selectedCategory,
                       "فنادق، قصور أفراح......"
                     )}
@@ -117,7 +114,7 @@ const HomeSearchTabs = () => {
                 className="text-right text-white bg-black/80 border-0 rounded-md"
                 dir="rtl"
               >
-                {categories.map((category) => (
+                {categoriesOptions.map((category) => (
                   <MenuItem
                     placeholder=""
                     onPointerEnterCapture={() => {}}
@@ -155,7 +152,11 @@ const HomeSearchTabs = () => {
                   }`}
                 >
                   <span className="flex-1 text-right" dir="rtl">
-                    {getLabel(cities, selectedCity, "الرياض، جدة، مكة......")}
+                    {getLabel(
+                      cityOptions,
+                      selectedCity,
+                      "الرياض، جدة، مكة......"
+                    )}
                   </span>
                   <ChevronDown className="w-5 h-5 text-gray-400" />
                 </Button>
@@ -167,7 +168,7 @@ const HomeSearchTabs = () => {
                 className="text-right text-white bg-black/80 border-0 rounded-md"
                 dir="rtl"
               >
-                {cities.map((city) => (
+                {cityOptions.map((city) => (
                   <MenuItem
                     placeholder=""
                     onPointerEnterCapture={() => {}}

@@ -4,7 +4,12 @@ export interface IHall {
   slug: string;
   description: string;
   stars: number;
-  price?: number;
+  pricing: {
+    min: number;
+    max: number;
+    currency: string;
+    range: string;
+  };
   location: {
     country: {
       id: number;

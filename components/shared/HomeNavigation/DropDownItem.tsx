@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   Collapse,
   Typography,
@@ -33,50 +33,58 @@ const HallsIcon = () => (
   </svg>
 );
 
-export const navListMenuItems = [
-  {
-    title: "قصور الأفراح",
-    description: "Find the perfect solution for your needs.",
-    icon: SquaresPlusIcon,
-    image: "/images/bannerEachPage.png",
-    link: "/halls",
-  },
-  {
-    title: "الفنادق",
-    description: "Meet and learn about our dedication",
-    icon: UserGroupIcon,
-    image: "/images/banner.png",
-    link: "/hotels",
-  },
-  {
-    title: "الاستراحات",
-    description: "Find the perfect solution for your needs.",
-    icon: Bars4Icon,
-    image: "/images/1440×1024.png",
-    link: "/resorts",
-  },
-  {
-    title: "قاعات الزفاف",
-    description: "Find the perfect solution for your needs.",
-    icon: HallsIcon,
-    image: "/images/1440×1024.png",
-    link: "/wedding-venues",
-  },
-];
+// export const navListMenuItems = [
+//   {
+//     title: "قصور الأفراح",
+//     description: "Find the perfect solution for your needs.",
+//     icon: SquaresPlusIcon,
+//     image: "/images/bannerEachPage.png",
+//     link: "/halls",
+//   },
+//   {
+//     title: "الفنادق",
+//     description: "Meet and learn about our dedication",
+//     icon: UserGroupIcon,
+//     image: "/images/banner.png",
+//     link: "/hotels",
+//   },
+//   {
+//     title: "الاستراحات",
+//     description: "Find the perfect solution for your needs.",
+//     icon: Bars4Icon,
+//     image: "/images/1440×1024.png",
+//     link: "/resorts",
+//   },
+//   {
+//     title: "قاعات الزفاف",
+//     description: "Find the perfect solution for your needs.",
+//     icon: HallsIcon,
+//     image: "/images/1440×1024.png",
+//     link: "/wedding-venues",
+//   },
+// ];
 
 export function DropDownItem({
   title = "Contact Us",
   starterIcon,
+  subMenu,
   mainLink = "#",
 }: {
   title?: string;
   starterIcon?: string;
+  subMenu: {
+    title: string;
+    description?: string;
+    icon: React.ReactNode; // <- expects an element
+    image?: string;
+    link: string;
+  }[];
   mainLink?: string;
 }) {
   // const [isSmallScreen, setIsSmallScreen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [selectedItem, setSelectedItem] = React.useState(navListMenuItems[0]);
+  const [selectedItem, setSelectedItem] = React.useState(subMenu[0]);
   const onlyWidth = useWindowWidth();
 
   // console.log({ onlyWidth });
@@ -86,47 +94,46 @@ export function DropDownItem({
   //         () => window.innerWidth <= 960 && setIsSmallScreen(true)
   //     );
   // }, []);
-  const renderItems = navListMenuItems.map(
-    ({ icon, title, description, link }, key) => (
-      <a href={link} key={key}>
-        <MenuItem
-          placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-          onMouseEnter={() => {
-            if (onlyWidth > 960) {
-              setSelectedItem(navListMenuItems[key]);
-            }
-          }}
-          onMouseLeave={() => {
-            if (onlyWidth > 960) {
-              setSelectedItem(navListMenuItems[0]);
-            }
-          }}
-          className={`flex items-center gap-3 p-0 rounded-lg !font-bold text-[#db0962] hover:bg-gray-200`}
-        >
-          <div className="flex items-center justify-center rounded-lg p-2 ">
-            {React.createElement(icon, {
-              strokeWidth: 2,
-              className: `h-6 w-6 text-white`,
-            })}
-          </div>
-          <div>
-            <Typography
-              placeholder=""
-              onPointerEnterCapture={() => {}}
-              onPointerLeaveCapture={() => {}}
-              variant="h6"
-              color="blue-gray"
-              className={`font-noto flex items-center text-sm !font-bold text-white`}
-            >
-              {title}
-            </Typography>
-          </div>
-        </MenuItem>
-      </a>
-    )
-  );
+  const renderItems = subMenu.map(({ icon, title, description, link }, key) => (
+    <a href={link} key={key}>
+      <MenuItem
+        placeholder=""
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
+        onMouseEnter={() => {
+          if (onlyWidth > 960) {
+            setSelectedItem(subMenu[key]);
+          }
+        }}
+        onMouseLeave={() => {
+          if (onlyWidth > 960) {
+            setSelectedItem(subMenu[0]);
+          }
+        }}
+        className={`flex items-center gap-3 p-0 rounded-lg !font-bold text-[#db0962] hover:bg-gray-200`}
+      >
+        <div className="flex items-center justify-center rounded-lg p-2 ">
+          {icon}
+          {/* {React.createElement(icon, {
+            strokeWidth: 2,
+            className: `h-6 w-6 text-white`,
+          })} */}
+        </div>
+        <div>
+          <Typography
+            placeholder=""
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
+            variant="h6"
+            color="blue-gray"
+            className={`font-noto flex items-center text-sm !font-bold text-white`}
+          >
+            {title}
+          </Typography>
+        </div>
+      </MenuItem>
+    </a>
+  ));
 
   return (
     <div>

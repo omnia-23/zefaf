@@ -8,6 +8,7 @@ import {
   Palaces,
   BlogsSection,
 } from "@/components/Pages/Home";
+import OurTeam from "@/components/Pages/Home/OueTeam";
 import Footer from "@/components/shared/Footer";
 import MainNavbar from "@/components/shared/HomeNavigation/MainNavbar";
 
@@ -25,7 +26,8 @@ const page = () => {
       {/* <AllViews />        //  commented out for now */}
       <Palaces />
       <BlogsSection />
-      <OurServicesSection />
+      <OurTeam />
+      {/* <OurServicesSection /> */}
       <Footer />
     </>
   );

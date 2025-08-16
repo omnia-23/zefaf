@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { Hotel } from "./HotelsSection";
 import HeartIcon from "@/public/images/heart.svg";
 import { RenderHTML } from "@/components/shared";
 import { Palace } from "./WeddingPalaces";
