@@ -88,9 +88,9 @@ const MainNavbar = () => {
                       placeholder=""
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
-                      className="font-noto flex w-[120px] h-10 text-white bg-transparent  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
+                      className="font-noto flex min-w-[120px] h-10 text-white bg-transparent  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
-                      انضم الينا
+                      انضم كمقدم خدمة
                     </Button>
                   </Link>
                   <Link href="/auth/register">
@@ -100,7 +100,7 @@ const MainNavbar = () => {
                       onPointerLeaveCapture={() => {}}
                       className="font-noto flex min-w-[120px] w-fit h-10 text-white bg-transparent flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
-                      إنشاء حساب
+                      تسجيل دخول العرسان
                     </Button>
                   </Link>
                 </>
@@ -118,7 +118,7 @@ const MainNavbar = () => {
               التخطيط لحفل زفافك يبدأ الآن!
             </p>
           </div>
- 
+
           <div className="mt-4 lg:mt-[45x] w-full flex justify-start container lg:px-0">
             <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg md:text-2xl lg:text-[56px] font-extrabold leading-[50px] lg:leading-[100px]">
               <span className="text-[#DB0962] ml-1">عالم زفاف,</span>

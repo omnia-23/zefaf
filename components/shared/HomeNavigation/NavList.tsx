@@ -101,14 +101,14 @@ const navListItems = [
       },
     ],
   },
-  {
-    id: 5,
-    title: "اكتشف",
-    url: "/discover",
-    icon: "/images/nav/gps.svg",
-    isDropDown: false,
-    subMenu: [],
-  },
+  // {
+  //   id: 5,
+  //   title: "اكتشف",
+  //   url: "/discover",
+  //   icon: "/images/nav/gps.svg",
+  //   isDropDown: false,
+  //   subMenu: [],
+  // },
   {
     id: 6,
     title: "عروض خاصة",
@@ -119,7 +119,7 @@ const navListItems = [
   },
   {
     id: 7,
-    title: "خطط لحفل زفافك",
+    title: "اتصل بنا",
     url: "/plan-your-wedding",
     icon: "/images/nav/wedding-rings.svg",
     isDropDown: false,

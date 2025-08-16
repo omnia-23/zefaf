@@ -1,15 +1,7 @@
 "use client";
 import useSWR from "swr";
 import { fetchCategories } from "@/services/categories";
-
-export interface ICategory {
-  id: number;
-  title: string;
-  slug: string;
-  subtitle: string;
-  icon: string;
-  is_active: number;
-}
+import { ICategory } from "@/types/category";
 
 const fetcher = async (): Promise<ICategory[]> => {
   const response = await fetchCategories();

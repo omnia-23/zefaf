@@ -63,24 +63,24 @@ export default function NavBar() {
                 </>
               ) : (
                 <>
-                  <Link href="/auth/login">
+                  <Link href="/auth/register">
                     <Button
                       placeholder=""
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
-                      className="font-noto flex w-[120px] h-10 text-black  bg-transparent shadow-none  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
+                      className="font-noto flex min-w-[120px] h-10 text-black  bg-transparent shadow-none  flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
-                      تسجيل الدخول
+                      تسجيل دخول العرسان
                     </Button>
                   </Link>
-                  <Link href="/auth/register">
+                  <Link href="/auth/joinus">
                     <Button
                       placeholder=""
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
                       className="font-noto flex min-w-[120px] w-fit h-10 text-black  bg-transparent shadow-none flex-col justify-center items-center gap-2 border border-[color:var(--Neutral-White,#FFF)] px-4 py-2 rounded-lg border-solid"
                     >
-                      إنشاء حساب
+                      انضم كمقدم خدمة
                     </Button>
                   </Link>
                 </>

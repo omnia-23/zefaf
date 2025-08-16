@@ -24,7 +24,7 @@ const JoinUs = () => {
             زفاف.نت، أنت أيضاً يمكنك إضافة عملك والتواصل مع العرسان بسهولة!
           </p>
           <div>
-            <a href="/company-register">
+            <a href="/joinus">
               <button className="h-12 px-5 sm:px-6 py-3 rounded-lg text-white bg-[color:var(--Primary,#DB0962)] text-sm sm:text-base">
                 اضف شركتك
               </button>

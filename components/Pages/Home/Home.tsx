@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import MainSection from "./MainSection";
+import CategoriesSection from "./CategoriesSection";
 import OffersSection from "./OffersSection";
 import WeddingServices from "./WeddingServices";
 import JoinUs from "./JoinUs";
@@ -13,7 +13,7 @@ import AllViews from "./AllViews";
 const Home = () => {
   return (
     <div>
-      <MainSection />
+      <CategoriesSection />
       <WeddingServices />
       <JoinUs />
       <Hotels />

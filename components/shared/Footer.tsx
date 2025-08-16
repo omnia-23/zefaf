@@ -63,15 +63,15 @@ const Footer = () => {
         },
         {
           text: "فستان الزفاف",
-          url: "https://zafaf.sa/listing-category/%d9%81%d8%b3%d8%aa%d8%a7%d9%86-%d8%a7%d9%84%d8%b2%d9%81%d8%a7%d9%81/",
+          url: "",
         },
         {
           text: "عبايات الزفاف",
-          url: "https://zafaf.sa/listing-category/%d8%b9%d8%a8%d8%a7%d9%8a%d8%a7%d8%aa-%d8%a7%d9%84%d8%b2%d9%81%d8%a7%d9%81/",
+          url: "",
         },
         {
           text: "فساتين الخطوبة",
-          url: "https://zafaf.sa/listing-category/%d9%81%d8%b3%d8%a7%d8%aa%d9%8a%d9%86-%d8%a7%d9%84%d8%b3%d9%87%d8%b1%d8%a9-%d9%88%d8%a7%d9%84%d8%ae%d8%b7%d9%88%d8%a8%d8%a9/",
+          url: "",
         },
       ],
     },
