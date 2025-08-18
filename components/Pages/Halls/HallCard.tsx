@@ -5,7 +5,6 @@ import React from "react";
 import { IHall } from "@/types/hall";
 
 export default function HallCard({ hall }: { hall: IHall }) {
-  // console.log({ hall });
   const router = useRouter();
 
   return (
@@ -15,18 +14,17 @@ export default function HallCard({ hall }: { hall: IHall }) {
     >
       <div className="flex flex-col md:flex-row">
         {/* Image */}
-        <div className="w-full md:w-1/3 relative rounded-lg overflow-hidden aspect-[4/3] md:aspect-auto md:h-full">
+        <div className="w-full md:w-1/3 relative rounded-lg overflow-hidden aspect-[4/3]">
           <Image
-            width={500}
-            height={700}
             src={`${hall.media.cover}`}
             alt={hall.name}
+            fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
-          <button className="absolute top-3 right-3 p-1 bg-white rounded-full shadow-md hover:bg-gray-50">
+          {/* <button className="absolute top-3 right-3 p-1 bg-white rounded-full shadow-md hover:bg-gray-50">
             <Heart className="w-4 h-4 text-gray-600" />
-          </button>
+          </button> */}
         </div>
 
         {/* Content */}
@@ -35,10 +33,20 @@ export default function HallCard({ hall }: { hall: IHall }) {
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between gap-2">
               <h3 className="text-base sm:text-lg font-bold">{hall.name}</h3>
-              <h5 className="text-[#990645] font-bold text-base sm:text-lg">
-                1000 - 700 ر.س
-              </h5>
+
+              <div className="flex items-center gap-7">
+                <button className="bg-[#990645] text-white px-4 py-2 rounded-full text-sm font-medium">
+                  اطلب السعر
+                </button>
+                <button className="p-1 bg-white rounded-full shadow-lg hover:bg-gray-50">
+                  <Heart className="w-5 h-5 text-[#990645] " />
+                </button>
+              </div>
             </div>
+
+            <h5 className="text-[#990645] font-bold text-base sm:text-lg">
+              {hall.pricing?.range}
+            </h5>
 
             {/* Location + Rating + Capacity */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-sm">
@@ -69,7 +77,9 @@ export default function HallCard({ hall }: { hall: IHall }) {
                 </svg>
                 <span className="text-green-600 font-semibold">(4.8)</span>
               </div>
-              <div className="text-sm text-gray-600">{hall.capacities.overall.range} شخص</div>
+              <div className="text-sm text-gray-600">
+                {hall.capacities.overall.range}
+              </div>
             </div>
           </div>
 

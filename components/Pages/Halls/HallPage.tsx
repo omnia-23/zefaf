@@ -10,10 +10,14 @@ import { useHalls } from "@/hooks/useHalls";
 
 export default function HallPage() {
   const [selectedFilters, setSelectedFilters] = useState({
-    bedrooms: "",
+    eventType: "halls",
+    country: "",
     city: "",
-    area: "",
     hasOffer: false,
+    minPrice: 0,
+    maxPrice: 0,
+    minCapacity: 0,
+    maxCapacity: 0,
   });
 
   const [selectedKey, setSelectedKey] = useState("1");
@@ -27,6 +31,7 @@ export default function HallPage() {
     isReachingEnd,
     size,
     setSize,
+    mutate,
   } = useHalls({
     ...selectedFilters,
     sort: selectedKey,
@@ -71,9 +76,10 @@ export default function HallPage() {
           <SideBarFilters
             onFilterChange={handleFilterChange}
             selectedFilters={selectedFilters}
+            // onSearch={handleSearch} // Pass the search handler
           />
 
-          {/* Main Content Area */}
+          {/* Rest of your component remains the same */}
           <div className="lg:w-3/4">
             {/* Results Header */}
             <div className="flex items-center justify-between mb-6">

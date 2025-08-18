@@ -1,5 +1,7 @@
-import { ChevronDown } from "lucide-react";
-import React from "react";
+import { Dropdown } from "@/components/shared/Dropdown";
+import { useCities } from "@/hooks/useCities";
+import { useCountry } from "@/hooks/useCountry";
+import React, { useState } from "react";
 
 export default function SideBarFilters({
   onFilterChange,
@@ -7,121 +9,159 @@ export default function SideBarFilters({
 }: {
   selectedFilters: {
     hasOffer: boolean;
-    bedrooms: string;
+    eventType: string;
     city: string;
-    area: string;
+    country: string;
+    minPrice: number;
+    maxPrice: number;
+    minCapacity: number;
+    maxCapacity: number;
   };
   onFilterChange: (
     newFilters: Partial<{
-      bedrooms: string;
+      eventType: string;
       city: string;
-      area: string;
+      country: string;
       hasOffer: boolean;
+      minPrice: number;
+      maxPrice: number;
+      minCapacity: number;
+      maxCapacity: number;
     }>
   ) => void;
 }) {
+  const [localFilters, setLocalFilters] = useState(selectedFilters);
+
+  const eventTypes = [
+    { label: "قصور الأفراح", value: "halls" },
+    { label: "قصور زفاف", value: "wedding palaces" },
+  ];
+
+  const { countries } = useCountry();
+  const { cities } = useCities(Number(localFilters.country));
+
+  const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setLocalFilters((prev) => ({ ...prev, [name]: Number(value) || 0 }));
+  };
+
+  const handleDropdownChange = (field: string) => (value: string) => {
+    setLocalFilters((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleToggleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalFilters((prev) => ({ ...prev, hasOffer: e.target.checked }));
+  };
+
+  const handleSearch = () => {
+    onFilterChange(localFilters);
+  };
+
   return (
     <div className="lg:w-1/4">
-      <div className="bg-white rounded-lg shadow-sm p-6 sticky top-4">
-        <h3 className="text-lg font-semibold mb-6 text-gray-800">
-          قاعات الزفاف
-        </h3>
+      <div className="bg-white rounded-lg shadow-sm p-6 space-y-6 sticky top-4">
+        {/* Event Type Filter */}
+        <Dropdown
+          options={eventTypes}
+          value={localFilters.eventType}
+          onChange={handleDropdownChange("eventType")}
+          placeholder="اختر نوع المناسبة"
+        />
 
-        {/* Bedrooms Filter */}
-        <div className="mb-6">
-          <button
-            // onClick={() => toggleFilter("bedrooms")}
-            className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <span className="text-gray-700">قصور الأفراح</span>
-            <ChevronDown
-              //  ${isFilterOpen.bedrooms ? "rotate-180" : ""}
-              className={`w-4 h-4 text-gray-500 transition-transform
-              `}
-            />
-          </button>
-          {/* {isFilterOpen.bedrooms && (
-            <div className="mt-2 space-y-2 pr-4">
-              {["جميع الغرف", "1 غرفة", "2 غرفة", "3+ غرف"].map((option) => (
-                <label key={option} className="flex items-center">
-                  <input type="checkbox" className="ml-2" />
-                  <span className="text-sm text-gray-600">{option}</span>
-                </label>
-              ))}
-            </div>
-          )} */}
-        </div>
+        {/* Country Filter */}
+        <Dropdown
+          options={countries.map((country) => ({
+            label: country.name,
+            value: country.id.toString(),
+          }))}
+          value={localFilters.country}
+          onChange={handleDropdownChange("country")}
+          placeholder="اختر البلد"
+        />
 
         {/* City Filter */}
-        <div className="mb-6">
-          <button
-            // onClick={() => toggleFilter("city")}
-            className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <span className="text-gray-700">المدينة</span>
-            <ChevronDown
-              //  ${isFilterOpen.city ? "rotate-180" : ""}
-              className={`w-4 h-4 text-gray-500 transition-transform
-                 `}
-            />
-          </button>
-          {/* {isFilterOpen.city && (
-            <div className="mt-2 space-y-2 pr-4">
-              {["الرياض", "جدة", "الدمام", "مكة"].map((city) => (
-                <label key={city} className="flex items-center">
-                  <input type="checkbox" className="ml-2" />
-                  <span className="text-sm text-gray-600">{city}</span>
-                </label>
-              ))}
-            </div>
-          )} */}
-        </div>
+        <Dropdown
+          options={cities.map((city) => ({
+            label: city.name,
+            value: city.id.toString(),
+          }))}
+          value={localFilters.city}
+          onChange={handleDropdownChange("city")}
+          placeholder="اختر المنطقة"
+        />
 
-        {/* Area Filter */}
-        <div className="mb-6">
-          <button
-            // onClick={() => toggleFilter("area")}
-            className="w-full flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <span className="text-gray-700">المنطقة</span>
-            <ChevronDown
-              //  ${isFilterOpen.area ? "rotate-180" : ""}
-              className={`w-4 h-4 text-gray-500 transition-colors
-              `}
+        {/* Price Range Filter */}
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium text-gray-700">نطاق السعر</h4>
+          <div className="flex gap-2">
+            <input
+              type="number"
+              name="minPrice"
+              value={localFilters.minPrice}
+              onChange={handleRangeChange}
+              placeholder="الحد الأدنى"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm"
             />
-          </button>
-          {/* {isFilterOpen.area && (
-            <div className="mt-2 space-y-2 pr-4">
-              {["الشمال", "الجنوب", "الشرق", "الغرب"].map((area) => (
-                <label key={area} className="flex items-center">
-                  <input type="checkbox" className="ml-2" />
-                  <span className="text-sm text-gray-600">{area}</span>
-                </label>
-              ))}
-            </div>
-          )} */}
-        </div>
-
-        <div className="mb-6">
-          <div className="flex items-center justify-between p-3">
-            <span className="text-gray-700">عروض وخصومات</span>
-            <div className="relative inline-block w-14 h-8">
-              <input
-                id="offer-toggle"
-                type="checkbox"
-                checked={selectedFilters.hasOffer}
-                onChange={(e) => onFilterChange({ hasOffer: e.target.checked })}
-                className="peer appearance-none w-full h-full bg-gray-200 rounded-full checked:bg-blue-600 cursor-pointer transition-colors duration-200"
-              />
-              <label
-                htmlFor="offer-toggle"
-                className="absolute top-1 left-1 w-6 h-6 bg-white rounded-full shadow-sm transition-transform duration-200 peer-checked:translate-x-6 cursor-pointer flex items-center justify-center"
-              >
-                <span className="sr-only">عروض وخصومات</span>
-              </label>
-            </div>
+            <input
+              type="number"
+              name="maxPrice"
+              value={localFilters.maxPrice}
+              onChange={handleRangeChange}
+              placeholder="الحد الأقصى"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm"
+            />
           </div>
         </div>
+
+        {/* Capacity Range Filter */}
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium text-gray-700">سعة القاعة</h4>
+          <div className="flex gap-2">
+            <input
+              type="number"
+              name="minCapacity"
+              value={localFilters.minCapacity}
+              onChange={handleRangeChange}
+              placeholder="الحد الأدنى"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm"
+            />
+            <input
+              type="number"
+              name="maxCapacity"
+              value={localFilters.maxCapacity}
+              onChange={handleRangeChange}
+              placeholder="الحد الأقصى"
+              className="w-full p-2 border border-gray-300 rounded-md text-sm"
+            />
+          </div>
+        </div>
+
+        {/* Offers Filter */}
+        <div className="flex items-center justify-between pt-2">
+          <span className="text-sm font-medium text-gray-700">
+            عروض وخصومات
+          </span>
+          <div className="relative inline-block w-11 h-5">
+            <input
+              id="has-offer-toggle"
+              type="checkbox"
+              checked={localFilters.hasOffer}
+              onChange={handleToggleChange}
+              className="peer appearance-none w-11 h-5 bg-gray-50 border border-gray-300 rounded-full checked:bg-pink-600 cursor-pointer transition-colors duration-300"
+            />
+            <label
+              htmlFor="has-offer-toggle"
+              className="absolute top-0 left-0 w-5 h-5 bg-white rounded-full border border-slate-300 shadow-sm transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-pink-600 cursor-pointer"
+            ></label>
+          </div>
+        </div>
+
+        <button
+          onClick={handleSearch}
+          className="w-full bg-[#DB0962] text-white py-2 px-4 rounded-lg hover:bg-[#B80852] transition-colors"
+        >
+          بحث
+        </button>
       </div>
     </div>
   );

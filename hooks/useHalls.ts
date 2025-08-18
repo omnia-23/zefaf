@@ -4,10 +4,14 @@ import { IHall } from "@/types/hall";
 import { fetchHalls } from "@/services/halls";
 
 export const useHalls = (filters: {
-  bedrooms?: string;
+  eventType?: string;
   city?: string;
   area?: string;
   sort?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  minCapacity?: number;
+  maxCapacity?: number;
 }) => {
   const getKey = (
     pageIndex: number,
@@ -22,12 +26,12 @@ export const useHalls = (filters: {
     };
   };
 
-  const fetcher = async ({ filters }: { key: string; filters: any }) => {
-    const { data, total } = await fetchHalls(filters);
+  const fetcher = async (params: { key: string; filters: any }) => {
+    const { data, total } = await fetchHalls(params.filters);
     return { data, total };
   };
 
-  const { data, error, size, setSize, isValidating, mutate } = useSWRInfinite(
+  const { data, error, size, setSize, mutate } = useSWRInfinite(
     getKey,
     fetcher,
     {

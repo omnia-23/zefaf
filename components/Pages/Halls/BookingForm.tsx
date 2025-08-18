@@ -238,7 +238,10 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
               }`}
             >
               <Dropdown
-                options={eventTypes}
+                options={eventTypes.map((type) => ({
+                  label: type,
+                  value: type,
+                }))}
                 value={formData.eventType}
                 onChange={(value) => handleInputChange("eventType", value)}
                 placeholder="اختر نوع المناسبة"
@@ -284,7 +287,10 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
               }`}
             >
               <Dropdown
-                options={guestCounts}
+                options={guestCounts.map((count) => ({
+                  label: count,
+                  value: count,
+                }))}
                 value={formData.guestCount}
                 onChange={(value) => handleInputChange("guestCount", value)}
                 placeholder="اختر عدد المدعوين"
@@ -308,7 +314,10 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
               }`}
             >
               <Dropdown
-                options={budgetRanges}
+                options={budgetRanges.map((range) => ({
+                  label: range,
+                  value: range,
+                }))}
                 value={formData.budget}
                 onChange={(value) => handleInputChange("budget", value)}
                 placeholder="اختر الميزانية"
