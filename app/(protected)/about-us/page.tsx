@@ -1,4 +1,5 @@
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
+import OurTeam from "@/components/Pages/Home/OurTeam";
 import { Quote } from "lucide-react";
 import Image from "next/image";
 
@@ -61,7 +62,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div>
       {/* Header Section */}
       <HeaderSection
         title="من نحن"
@@ -132,9 +133,8 @@ export default function AboutUs() {
           </div>
         </div>
 
-        <div className="py-12 bg-white" dir="rtl">
+        {/* <div className="py-12 bg-white" dir="rtl">
           <div className="max-w-6xl mx-auto px-4">
-            {/* Section Header */}
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
                 آراء عملائنا المميزين
@@ -144,19 +144,16 @@ export default function AboutUs() {
               </p>
             </div>
 
-            {/* Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((item, index) => (
                 <div
                   key={index}
                   className="rounded-lg bg-[#FDF3F7] p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between"
                 >
-                  {/* Quote Icon */}
                   <div className="text-[color:var(--Primary,#DB0962)] text-4xl mb-4">
                     <Quote />
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1">
                     <h3 className="text-xl font-bold mb-2 text-gray-900">
                       {item.title}
@@ -166,7 +163,6 @@ export default function AboutUs() {
                     </p>
                   </div>
 
-                  {/* Author */}
                   <div className="flex items-center gap-3 mt-6">
                     <Image
                       src={item.image}
@@ -183,7 +179,9 @@ export default function AboutUs() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
+
+        {/* <OurTeam /> */}
 
         {/* CTA Section */}
         <div className="text-center py-16">
