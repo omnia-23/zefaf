@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import useSWR from "swr";
 import OfferCard from "./OfferCard";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Autoplay } from "swiper/modules";

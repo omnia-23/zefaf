@@ -1,15 +1,12 @@
 import {
-  HotelsSection,
-  JoinUs,
   OffersSection,
   WeddingServices,
-  Palaces,
   BlogsSection,
   CategoriesSection,
 } from "@/components/Pages/Home";
 import BestProviders from "@/components/Pages/Home/BestProviders";
 import FamousCities from "@/components/Pages/Home/FamousCities";
-import OurTeam from "@/components/Pages/Home/OurTeam";
+import OffersSlider from "@/components/Pages/Home/OffersSlider";
 import Footer from "@/components/shared/Footer";
 import MainNavbar from "@/components/shared/HomeNavigation/MainNavbar";
 
@@ -22,7 +19,7 @@ const page = () => {
       <BestProviders />
       <CategoriesSection />
       <WeddingServices />
-      <JoinUs />
+      <OffersSlider />
       {/* <HotelsSection /> */}
       <FamousCities />
       <OffersSection />

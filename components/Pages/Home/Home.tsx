@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import CategoriesSection from "./CategoriesSection";
 import OffersSection from "./OffersSection";
 import WeddingServices from "./WeddingServices";
-import JoinUs from "./JoinUs";
+import JoinUs from "./OffersSlider";
 import Hotels from "./HotelsSection";
 import Palaces from "./WeddingPalaces";
 import PopularArticles from "./BlogsSection";
