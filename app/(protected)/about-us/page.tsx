@@ -1,6 +1,5 @@
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import OurTeam from "@/components/Pages/Home/OurTeam";
-import { Quote } from "lucide-react";
 import Image from "next/image";
 
 export const metadata = {
@@ -62,7 +61,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <div>
+    <>
       {/* Header Section */}
       <HeaderSection
         title="من نحن"
@@ -181,7 +180,7 @@ export default function AboutUs() {
           </div>
         </div> */}
 
-        {/* <OurTeam /> */}
+        <OurTeam />
 
         {/* CTA Section */}
         <div className="text-center py-16">
@@ -202,6 +201,6 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

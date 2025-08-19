@@ -3,6 +3,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import TeamCard from "./TeamCard";
+import "swiper/css";
 
 export interface Member {
   name: string;
@@ -52,7 +53,7 @@ const OurTeam = () => {
   // );
 
   return (
-    <section className="lg:min-h-[650px]">
+    <section>
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto py-10 lg:py-[120px]">
         {/* Section Header */}
         <div className="w-full flex flex-col gap-6">
@@ -71,7 +72,7 @@ const OurTeam = () => {
           </div>
         </div>
 
-        <div className="mt-10 w-[90%] mx-auto">
+        <div className="mt-10 w-full mx-auto">
           <Swiper
             spaceBetween={10}
             breakpoints={{
