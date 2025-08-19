@@ -7,7 +7,7 @@ import Image from "next/image";
 import logo from "@/public/images/new-logo.svg";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
-import HomeSearchTabs from "./HomeSearchTabs";
+import HomeSection from "../MainSection";
 
 const MainNavbar = () => {
   const { user, logout } = useAuth();
@@ -19,30 +19,25 @@ const MainNavbar = () => {
         backgroundImage: "url(/images/Home-Banner.svg)",
       }}
     >
-      <div
-        style={{ borderColor: "#88888848" }}
-        className="mx-auto w-full pb-6"
-        id="header"
-      >
-        <div className="container mx-auto w-full px-4 lg:px-8 py-4">
-          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
+      <div className="mx-auto w-full pb-6" id="header">
+        <div className="max-w-[95%] mx-auto w-full py-4">
+          <div className="w-full flex items-center justify-between">
             {/* Logo */}
             <div className="flex justify-center md:justify-start w-full md:w-auto">
               <Image
-                width={200}
-                height={40}
+                width={300}
+                height={50}
                 src={logo}
                 alt="Zafaf Logo"
-                className="w-[200px] h-[40px]"
-                style={{ width: "200px", height: "40px" }}
+                className="w-[280px] h-auto"
               />
             </div>
 
+            <MainMenuDefault />
             <div className="flex flex-row gap-2 items-start">
               {/* Mobile Menu */}
-              <div className="block lg:hidden">
-                <MainMenuDefault />
-              </div>
+              {/* <div className="block lg:hidden"> */}
+              {/* </div> */}
               <Button
                 placeholder=""
                 onPointerEnterCapture={() => {}}
@@ -109,32 +104,11 @@ const MainNavbar = () => {
           </div>
         </div>
 
-        <div className="lg:block hidden">
+        {/* <div className="lg:block hidden">
           <MainMenuDefault />
-        </div>
-        <div className="px-4 container lg:px-12 flex flex-col w-full">
-          <div className="mt-[40px] lg:mt-[70px] w-full flex justify-start">
-            <p className="text-[color:var(--Neutral-White,#FFF)] text-right [leading-trim:both] [text-edge:cap] text-2xl font-medium leading-[normal]">
-              التخطيط لحفل زفافك يبدأ الآن!
-            </p>
-          </div>
+        </div> */}
 
-          <div className="mt-4 lg:mt-[45x] w-full flex justify-start container lg:px-0">
-            <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg md:text-2xl lg:text-[54px] font-extrabold leading-[50px] lg:leading-[100px]">
-              <span className="text-[#DB0962] ml-1">عالم زفاف,</span>
-              <span className="text-white">
-                الدليل الأكبر لجميع
-                <br className="inline-flex" />
-                خدمات حفل الزفاف في السعودية.
-              </span>
-            </p>
-          </div>
-
-          {/* search tabs */}
-          <div className="mt-8">
-            <HomeSearchTabs />
-          </div>
-        </div>
+        <HomeSection />
       </div>
     </section>
   );

@@ -14,15 +14,7 @@ export function MainMenuDefault() {
   }, []);
 
   return (
-    <div
-      style={{
-        borderColor: "#88888848",
-        borderLeftColor: "transparent",
-        borderRightColor: "transparent",
-        borderTopColor: "#88888848",
-      }}
-      className="md:w-full border-solid border z-50"
-    >
+    <div className="md:w-full z-50">
       <Navbar
         placeholder=""
         onPointerEnterCapture={() => {}}
