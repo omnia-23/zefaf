@@ -3,14 +3,20 @@ import HomeSearchTabs from "./HomeNavigation/HomeSearchTabs";
 const HomeSection = () => {
   return (
     <div className="px-4 container lg:px-12 flex flex-col w-full">
-      <div className="mt-[40px] lg:mt-[50px] w-full flex justify-start">
-        <p className="text-[color:var(--Neutral-White,#FFF)] text-right [leading-trim:both] [text-edge:cap] text-2xl font-medium leading-[normal]">
+      {/* Small headline */}
+      <div className="mt-10 lg:mt-12 w-full flex justify-start">
+        <p className="text-white text-right text-lg sm:text-xl md:text-2xl font-medium leading-snug">
           التخطيط لحفل زفافك يبدأ الآن!
         </p>
       </div>
 
-      <div className="mt-4 lg:mt-[45x] w-full flex justify-start container lg:px-0">
-        <p className="text-white text-right [leading-trim:both] [text-edge:cap] text-lg md:text-2xl lg:text-[54px] font-extrabold leading-[50px] lg:leading-[100px]">
+      {/* Main headline */}
+      <div className="mt-4 lg:mt-10 w-full flex justify-start container lg:px-0">
+        <p
+          className="text-white text-right font-extrabold 
+                 text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl
+                 leading-8 sm:leading-10 md:leading-[50px] lg:leading-[80px] xl:leading-[100px]"
+        >
           <span className="text-[#DB0962] ml-1">عالم زفاف,</span>
           <span className="text-white">
             الدليل الأكبر لجميع
