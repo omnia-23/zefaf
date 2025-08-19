@@ -12,6 +12,7 @@ import {
   MenuList,
   MenuItem,
   Button,
+  Input,
 } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import { useCities } from "@/hooks/useCities";
@@ -28,6 +29,8 @@ const HomeSearchTabs = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("search");
+  const [categorySearch, setCategorySearch] = useState("");
+  const [citySearch, setCitySearch] = useState("");
 
   const { cities: citiesList } = useCities(1);
   const { categories } = useCategories();
@@ -40,6 +43,14 @@ const HomeSearchTabs = () => {
     label: c.title,
     value: c.slug, // or maybe slug if you have one
   }));
+
+  // Filtered options
+  const filteredCategories = categoriesOptions.filter((c) =>
+    c.label.toLowerCase().includes(categorySearch.toLowerCase())
+  );
+  const filteredCities = cityOptions.filter((c) =>
+    c.label.toLowerCase().includes(citySearch.toLowerCase())
+  );
 
   const getLabel = (
     list: SelectOption[],
@@ -74,6 +85,14 @@ const HomeSearchTabs = () => {
     }
   };
 
+  const handleCategoryInputClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  const handleCityInputClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   const data = [
     {
       label: "إبحث الأن",
@@ -85,7 +104,12 @@ const HomeSearchTabs = () => {
             <h3 className="text-[#CFCFCF] text-lg mb-1 text-right" dir="rtl">
               ما الذي تبحث عنه؟
             </h3>
-            <Menu placement="bottom-start">
+            <Menu
+              dismiss={{
+                itemPress: false,
+              }}
+              placement="bottom-start"
+            >
               <MenuHandler>
                 <Button
                   placeholder=""
@@ -111,25 +135,47 @@ const HomeSearchTabs = () => {
                 placeholder=""
                 onPointerEnterCapture={() => {}}
                 onPointerLeaveCapture={() => {}}
-                className="text-right text-white bg-black/80 border-0 rounded-md"
+                className="placeholder:text-white text-right text-white bg-black/80 border-0 rounded-md 
+                         max-h-72 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 
+                         scrollbar-track-transparent hover:scrollbar-thumb-pink-500"
                 dir="rtl"
               >
-                {categoriesOptions.map((category) => (
-                  <MenuItem
-                    placeholder=""
-                    onPointerEnterCapture={() => {}}
-                    onPointerLeaveCapture={() => {}}
-                    key={category.value}
-                    onClick={() => setSelectedCategory(category.value)}
-                    className={`text-sm ${
-                      selectedCategory === category.value
-                        ? "text-pink-500 font-bold"
-                        : ""
-                    }`}
-                  >
-                    {category.label}
-                  </MenuItem>
-                ))}
+                {/* 🔍 Search input */}
+                <Input
+                  placeholder="ابحث..."
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
+                  label="ابحث..."
+                  crossOrigin={undefined}
+                  value={categorySearch}
+                  onClick={handleCategoryInputClick}
+                  onChange={(e) => setCategorySearch(e.target.value)}
+                  className="w-full p-3 text-sm rounded-md bg-black/40 text-white placeholder:text-white outline-white focus:outline-none border border-white"
+                />
+
+                {/* Filtered list */}
+                {filteredCategories.length > 0 ? (
+                  filteredCategories.map((category) => (
+                    <MenuItem
+                      placeholder=""
+                      onPointerEnterCapture={() => {}}
+                      onPointerLeaveCapture={() => {}}
+                      key={category.value}
+                      onClick={() => setSelectedCategory(category.value)}
+                      className={`text-sm ${
+                        selectedCategory === category.value
+                          ? "text-pink-500 font-bold"
+                          : ""
+                      }`}
+                    >
+                      {category.label}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <p className="text-center text-gray-400 py-2 text-sm">
+                    لا توجد نتائج
+                  </p>
+                )}
               </MenuList>
             </Menu>
           </div>
@@ -139,7 +185,12 @@ const HomeSearchTabs = () => {
             <h3 className="text-[#CFCFCF] text-lg mb-1 text-right" dir="rtl">
               المدينة
             </h3>
-            <Menu placement="bottom-start">
+            <Menu
+              dismiss={{
+                itemPress: false,
+              }}
+              placement="bottom-start"
+            >
               <MenuHandler>
                 <Button
                   placeholder=""
@@ -165,25 +216,45 @@ const HomeSearchTabs = () => {
                 placeholder=""
                 onPointerEnterCapture={() => {}}
                 onPointerLeaveCapture={() => {}}
-                className="text-right text-white bg-black/80 border-0 rounded-md"
+                className="text-right text-white bg-black/80 border-0 rounded-md max-h-72 overflow-y-auto"
                 dir="rtl"
               >
-                {cityOptions.map((city) => (
-                  <MenuItem
-                    placeholder=""
-                    onPointerEnterCapture={() => {}}
-                    onPointerLeaveCapture={() => {}}
-                    key={city.value}
-                    onClick={() => setSelectedCity(city.value)}
-                    className={`text-sm ${
-                      selectedCity === city.value
-                        ? "text-pink-500 font-bold"
-                        : ""
-                    }`}
-                  >
-                    {city.label}
-                  </MenuItem>
-                ))}
+                {/* 🔍 Search input */}
+                <Input
+                  placeholder="ابحث..."
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
+                  label="ابحث..."
+                  crossOrigin={undefined}
+                  value={citySearch}
+                  onClick={handleCityInputClick}
+                  onChange={(e) => setCitySearch(e.target.value)}
+                  className="w-full p-3 text-sm rounded-md bg-black/40 text-white placeholder:text-white outline-white focus:outline-none border border-white"
+                />
+
+                {/* Filtered list */}
+                {filteredCities.length > 0 ? (
+                  filteredCities.map((city) => (
+                    <MenuItem
+                      placeholder=""
+                      onPointerEnterCapture={() => {}}
+                      onPointerLeaveCapture={() => {}}
+                      key={city.value}
+                      onClick={() => setSelectedCity(city.value)}
+                      className={`text-sm ${
+                        selectedCity === city.value
+                          ? "text-pink-500 font-bold"
+                          : ""
+                      }`}
+                    >
+                      {city.label}
+                    </MenuItem>
+                  ))
+                ) : (
+                  <p className="text-center text-gray-400 py-2 text-sm">
+                    لا توجد نتائج
+                  </p>
+                )}
               </MenuList>
             </Menu>
           </div>

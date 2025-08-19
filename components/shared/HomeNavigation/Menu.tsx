@@ -43,7 +43,7 @@ export function MainMenuDefault() {
         </div>
         <Collapse
           open={openNav}
-          className="absolute top-[175px] right-5 z-50 w-2/3 bg-black/90 text-white rounded-md shadow-lg border-0"
+          className="absolute top-[22%] right-5 z-50 w-2/3 bg-black/90 text-white rounded-md shadow-lg border-0"
         >
           <div className="p-2">
             <NavList />

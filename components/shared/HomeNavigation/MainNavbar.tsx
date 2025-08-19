@@ -29,11 +29,11 @@ const MainNavbar = () => {
                 height={50}
                 src={logo}
                 alt="Zafaf Logo"
-                className="w-[280px] h-auto"
+                className="w-[200px] lg:w-[250px] h-auto"
               />
             </div>
 
-            <div className="w-full flex items-center justify-between">
+            <div className="w-full flex items-center justify-between md:justify-end">
               <MainMenuDefault />
               <div className="flex flex-row gap-2 items-start">
                 <Button
