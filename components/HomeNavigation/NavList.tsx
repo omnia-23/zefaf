@@ -101,14 +101,6 @@ const navListItems = [
       },
     ],
   },
-  // {
-  //   id: 5,
-  //   title: "اكتشف",
-  //   url: "/discover",
-  //   icon: "/images/nav/gps.svg",
-  //   isDropDown: false,
-  //   subMenu: [],
-  // },
   {
     id: 6,
     title: "عروض خاصة",
@@ -119,7 +111,7 @@ const navListItems = [
   },
   {
     id: 7,
-    title:  "اتصل بنا",
+    title: "اتصل بنا",
     url: "/plan-your-wedding",
     icon: "/images/nav/wedding-rings.svg",
     isDropDown: false,
@@ -143,7 +135,10 @@ const navListItems = [
   },
 ];
 
-export function NavList() {
+export function NavList({ isWhiteBackground = false }) {
+  const textColor = isWhiteBackground ? "text-gray-900" : "text-white";
+  const hoverColor = isWhiteBackground ? "hover:text-[#db0962]" : "hover:text-[#db0962]";
+  
   return (
     <List
       placeholder=""
@@ -153,13 +148,14 @@ export function NavList() {
     >
       {navListItems.map(
         ({ id, title, url, icon, isDropDown, subMenu }, key) => (
-          <>
+          <React.Fragment key={id}>
             {isDropDown ? (
               <DropDownItem
                 title={title}
                 starterIcon={icon}
                 mainLink={url}
                 subMenu={subMenu}
+                isWhiteBackground={isWhiteBackground}
               />
             ) : (
               <Typography
@@ -168,30 +164,27 @@ export function NavList() {
                 onPointerLeaveCapture={() => {}}
                 as="a"
                 href={url}
-                key={key}
                 variant="small"
-                color="blue-gray"
-                className="font-noto !font-bold text-black !bg-transparent !hover:bg-transparent"
+                className={`font-noto !font-bold !bg-transparent !hover:bg-transparent ${textColor}`}
               >
                 <ListItem
-                  key={id}
                   placeholder=""
                   onPointerEnterCapture={() => {}}
                   onPointerLeaveCapture={() => {}}
-                  className="flex items-center gap-2 py-2 pr-4 !bg-transparent text-black hover:text-[#db0962]"
+                  className={`flex items-center gap-2 py-2 pr-4 !bg-transparent ${textColor} ${hoverColor}`}
                 >
                   <Image
                     width={24}
                     height={24}
                     src={icon}
                     alt={title}
-                    className="w-6 h-6"
+                    className={`w-6 h-6 ${isWhiteBackground ? "filter invert" : ""}`}
                   />
                   {title}
                 </ListItem>
               </Typography>
             )}
-          </>
+          </React.Fragment>
         )
       )}
     </List>

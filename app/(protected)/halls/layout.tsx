@@ -1,11 +1,11 @@
-import Footer from "@/components/shared/Footer";
-import NavBar from "@/components/shared/PageNavigation/NavBar";
 import React from "react";
+import Navbar from "@/components/HomeNavigation/Navbar";
+import Footer from "@/components/shared/Footer";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <NavBar />
+      <Navbar />
       {children}
       <Footer />
     </>

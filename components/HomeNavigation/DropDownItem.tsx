@@ -9,11 +9,6 @@ import {
   MenuItem,
 } from "@material-tailwind/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import {
-  Bars4Icon,
-  SquaresPlusIcon,
-  UserGroupIcon,
-} from "@heroicons/react/24/solid";
 import { useWindowWidth } from "@react-hook/window-size";
 
 // const HallsIcon = () => (
@@ -69,31 +64,32 @@ export function DropDownItem({
   starterIcon,
   subMenu,
   mainLink = "#",
+  isWhiteBackground = false,
 }: {
   title?: string;
   starterIcon?: string;
   subMenu: {
     title: string;
     description?: string;
-    icon: React.ReactNode; // <- expects an element
+    icon: React.ReactNode;
     image?: string;
     link: string;
   }[];
   mainLink?: string;
+  isWhiteBackground?: boolean;
 }) {
-  // const [isSmallScreen, setIsSmallScreen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(subMenu[0]);
   const onlyWidth = useWindowWidth();
 
-  // console.log({ onlyWidth });
-  // React.useEffect(() => {
-  //     window.addEventListener(
-  //         "resize",
-  //         () => window.innerWidth <= 960 && setIsSmallScreen(true)
-  //     );
-  // }, []);
+  // Dynamic colors based on background
+  const textColor = isWhiteBackground ? "text-gray-900" : "text-white";
+  const hoverColor = "hover:text-[#db0962]";
+  const menuBgColor = isWhiteBackground ? "bg-white" : "bg-black/50";
+  const menuItemHoverBg = isWhiteBackground
+    ? "hover:bg-gray-100"
+    : "hover:bg-gray-700";
 
   const renderItems = subMenu.map(({ icon, title, description, link }, key) => (
     <a href={link} key={key}>
@@ -111,14 +107,10 @@ export function DropDownItem({
             setSelectedItem(subMenu[0]);
           }
         }}
-        className={`flex items-center gap-3 p-0 rounded-lg !font-bold text-[#db0962] hover:bg-gray-200`}
+        className={`flex items-center gap-3 p-0 rounded-lg !font-bold ${textColor} ${menuItemHoverBg}`}
       >
-        <div className="flex items-center justify-center rounded-lg p-2 ">
+        <div className="flex items-center justify-center rounded-lg p-2 text-[#db0962]">
           {icon}
-          {/* {React.createElement(icon, {
-            strokeWidth: 2,
-            className: `h-6 w-6 text-white`,
-          })} */}
         </div>
         <div>
           <Typography
@@ -126,8 +118,7 @@ export function DropDownItem({
             onPointerEnterCapture={() => {}}
             onPointerLeaveCapture={() => {}}
             variant="h6"
-            color="blue-gray"
-            className={`font-noto flex items-center text-sm !font-bold text-white`}
+            className={`font-noto flex items-center text-sm !font-bold ${textColor}`}
           >
             {title}
           </Typography>
@@ -141,7 +132,6 @@ export function DropDownItem({
       <Menu
         open={isMenuOpen}
         handler={setIsMenuOpen}
-        // allowHover={onlyWidth > 960}
         offset={{ mainAxis: 20 }}
         placement="bottom"
       >
@@ -151,19 +141,25 @@ export function DropDownItem({
             onPointerEnterCapture={() => {}}
             onPointerLeaveCapture={() => {}}
             variant="small"
-            className="font-noto font-medium !text-white !bg-transparent !hover:bg-transparent outline-none border-none"
+            className={`font-noto font-medium !bg-transparent !hover:bg-transparent outline-none border-none ${textColor}`}
           >
             <ListItem
               placeholder=""
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
-              className="font-noto flex !font-bold items-center gap-2 py-2 pr-4 !bg-transparent !text-black hover:text-[#db0962] outline-none border-none"
+              className={`font-noto flex !font-bold items-center gap-2 py-2 pr-4 !bg-transparent ${textColor} ${hoverColor} outline-none border-none`}
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
               {starterIcon && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={starterIcon} alt={title} className="w-6 h-6" />
+                <img
+                  src={starterIcon}
+                  alt={title}
+                  className={`w-6 h-6 ${
+                    isWhiteBackground ? "filter invert" : ""
+                  }`}
+                />
               )}
 
               {title}
@@ -171,13 +167,13 @@ export function DropDownItem({
                 strokeWidth={2.5}
                 className={`hidden h-3 w-3 transition-transform lg:block ${
                   isMenuOpen ? "rotate-180" : ""
-                }`}
+                } ${textColor}`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
                 className={`block h-3 w-3 transition-transform lg:hidden ${
                   isMobileMenuOpen ? "rotate-180" : ""
-                }`}
+                } ${textColor}`}
               />
             </ListItem>
           </Typography>
@@ -186,7 +182,7 @@ export function DropDownItem({
           placeholder=""
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
-          className="hidden bg-black/50 border-0 rounded-xl lg:block container w-fit"
+          className={`hidden ${menuBgColor} border-0 rounded-xl lg:block container w-fit`}
         >
           <ul className="flex flex-col gap-y-2 outline-none outline-0">
             {renderItems}
@@ -194,7 +190,9 @@ export function DropDownItem({
         </MenuList>
       </Menu>
       <div className="block lg:hidden">
-        <Collapse open={isMobileMenuOpen}>{renderItems}</Collapse>
+        <Collapse open={isMobileMenuOpen}>
+          <div className={`rounded-lg p-2 ${menuBgColor}`}>{renderItems}</div>
+        </Collapse>
       </div>
     </div>
   );

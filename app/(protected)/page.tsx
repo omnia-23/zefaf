@@ -1,3 +1,4 @@
+import React from "react";
 import {
   OffersSection,
   WeddingServices,
@@ -8,14 +9,14 @@ import BestProviders from "@/components/Pages/Home/BestProviders";
 import FamousCities from "@/components/Pages/Home/FamousCities";
 import OffersSlider from "@/components/Pages/Home/OffersSlider";
 import Footer from "@/components/shared/Footer";
-import MainNavbar from "@/components/shared/HomeNavigation/MainNavbar";
-
-import React from "react";
+import MainSection from "@/components/Pages/Home/HomeSection";
+import Navbar from "@/components/HomeNavigation/Navbar";
 
 const page = () => {
   return (
     <>
-      <MainNavbar />
+      <Navbar />
+      <MainSection />
       <BestProviders />
       <CategoriesSection />
       <WeddingServices />

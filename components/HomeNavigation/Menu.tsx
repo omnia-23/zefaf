@@ -3,7 +3,7 @@ import { Navbar, Collapse, IconButton } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavList } from "./NavList";
 
-export function MainMenuDefault() {
+export function MainMenuDefault({ isScrolled }: { isScrolled?: boolean }) {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -14,24 +14,16 @@ export function MainMenuDefault() {
   }, []);
 
   return (
-    <div
-      style={{
-        borderColor: "#88888848",
-        borderLeftColor: "transparent",
-        borderRightColor: "transparent",
-        borderTopColor: "#88888848",
-      }}
-      className="md:w-full border-solid border z-50"
-    >
+    <div className="z-50">
       <Navbar
         placeholder=""
         onPointerEnterCapture={() => {}}
         onPointerLeaveCapture={() => {}}
-        className="container mx-auto py-0 px-0 lg:py-4 bg-transparent shadow-none backdrop-filter-none border-none rounded-none "
+        className="container mx-auto py-0 px-0 lg:py-4 bg-transparent shadow-none backdrop-filter-none border-none rounded-none"
       >
         <div className="container mx-auto flex items-center justify-between">
           <div className="hidden lg:block">
-            <NavList />
+            <NavList isWhiteBackground={isScrolled} />
           </div>
           <IconButton
             placeholder=""
@@ -39,7 +31,7 @@ export function MainMenuDefault() {
             onPointerLeaveCapture={() => {}}
             variant="text"
             color="blue-gray"
-            className="lg:hidden py-0 px-2 border-0 text-black"
+            className="lg:hidden py-0 px-2 border-0 text-[#db0962]"
             onClick={() => setOpenNav(!openNav)}
           >
             {openNav ? (
@@ -51,9 +43,9 @@ export function MainMenuDefault() {
         </div>
         <Collapse
           open={openNav}
-          className="absolute top-[145px] right-5 z-50 w-2/3 bg-black/90 text-white rounded-md shadow-lg border-0"
+          className="lg:hidden absolute top-[90%] left-0 right-0 z-50 w-full bg-black/95 text-white rounded-none shadow-lg border-0 mt-1"
         >
-          <div className="p-2">
+          <div className="p-4">
             <NavList />
           </div>
         </Collapse>
