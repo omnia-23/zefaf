@@ -17,14 +17,6 @@ export default function HallPage({ params }: { params: { slug: string } }) {
 
   const footerItems = [
     {
-      label: "اطلب السعر",
-      // action: () => (window.location.href = `tel:${hall?.contact.phone}`),
-    },
-    {
-      icon: PhoneIcon,
-      action: () => (window.location.href = `tel:${hall?.contact.phone}`),
-    },
-    {
       icon: FaWhatsapp,
       isWhatsApp: true,
       action: () => {
@@ -36,6 +28,14 @@ export default function HallPage({ params }: { params: { slug: string } }) {
           "_blank"
         );
       },
+    },
+    {
+      icon: PhoneIcon,
+      action: () => (window.location.href = `tel:${hall?.contact.phone}`),
+    },
+    {
+      label: "اطلب السعر",
+      // action: () => (window.location.href = `tel:${hall?.contact.phone}`),
     },
   ];
 
@@ -79,7 +79,7 @@ export default function HallPage({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg h-14">
         <div className="flex justify-around items-center py-3 px-2">
           {footerItems.map((item, index) => (
             <button

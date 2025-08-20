@@ -14,7 +14,7 @@ const WhatsAppSticky = () => {
   };
 
   return (
-    <div className="fixed bottom-20 left-4 z-50 lg:bottom-6 lg:left-6">
+    <div className="fixed bottom-16 right-4 z-50 lg:bottom-6 lg:right-6">
       <button
         onClick={handleWhatsAppClick}
         className="flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-green-500 shadow-lg hover:bg-green-600 transition-colors duration-300 animate-bounce"
