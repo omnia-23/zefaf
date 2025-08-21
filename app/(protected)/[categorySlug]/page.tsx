@@ -1,5 +1,5 @@
 import HallPage from "@/components/Pages/Halls/HallPage";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
 // export const metadata: Metadata = {
 //   title: "قصور الأفراح",
@@ -9,6 +9,6 @@ import { Metadata } from "next";
 //   },
 // };
 
-export default function Page() {
-  return <HallPage />;
+export default function Page({ params }: { params: { categorySlug: string } }) {
+  return <HallPage params={params} />;
 }

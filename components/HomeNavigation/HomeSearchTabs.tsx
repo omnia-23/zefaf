@@ -41,7 +41,7 @@ const HomeSearchTabs = () => {
 
   const categoriesOptions: SelectOption[] = categories.map((c) => ({
     label: c.title,
-    value: c.slug, // or maybe slug if you have one
+    value: c.slug,
   }));
 
   // Filtered options
@@ -67,22 +67,8 @@ const HomeSearchTabs = () => {
       search: selectedCity,
     }).toString();
 
-    switch (selectedCategory) {
-      case "hotels":
-        router.push(`/hotels?${query}`);
-        break;
-      case "palaces":
-        router.push(`/palaces?${query}`);
-        break;
-      case "halls":
-        router.push(`/halls?${query}`);
-        break;
-      case "outdoor":
-        router.push(`/outdoor?${query}`);
-        break;
-      default:
-        router.push(`/search?${query}`);
-    }
+    // Since selectedCategory already contains the slug
+    router.push(`/${selectedCategory}?${query}`);
   };
 
   const handleCategoryInputClick = (e: React.MouseEvent) => {

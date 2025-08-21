@@ -1,4 +1,5 @@
 import { Dropdown } from "@/components/shared/Dropdown";
+import { useCategories } from "@/hooks/useCategories";
 import { useCities } from "@/hooks/useCities";
 import { useCountry } from "@/hooks/useCountry";
 import React, { useState } from "react";
@@ -32,12 +33,10 @@ export default function SideBarFilters({
 }) {
   const [localFilters, setLocalFilters] = useState(selectedFilters);
 
-  const eventTypes = [
-    { label: "قصور الأفراح", value: "halls" },
-    { label: "قصور زفاف", value: "wedding palaces" },
-  ];
+  const { categories } = useCategories();
 
   const { countries } = useCountry();
+  console.log({ countries });
   const { cities } = useCities(Number(localFilters.country));
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +61,10 @@ export default function SideBarFilters({
       <div className="bg-white rounded-lg shadow-sm p-6 space-y-6 sticky top-4">
         {/* Event Type Filter */}
         <Dropdown
-          options={eventTypes}
+          options={categories.map((category) => ({
+            label: category.title,
+            value: category.slug,
+          }))}
           value={localFilters.eventType}
           onChange={handleDropdownChange("eventType")}
           placeholder="اختر نوع المناسبة"

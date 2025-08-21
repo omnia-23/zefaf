@@ -8,9 +8,12 @@ import { Dropdown } from "antd";
 import HallCard from "@/components/Pages/Halls/HallCard";
 import { useHalls } from "@/hooks/useHalls";
 
-export default function HallPage() {
+export default function Page({ params }: { params: { categorySlug: string } }) {
+  const categorySlug = decodeURIComponent(params.categorySlug); 
+
+  console.log({ categorySlug });
   const [selectedFilters, setSelectedFilters] = useState({
-    eventType: "halls",
+    eventType: categorySlug ?? "halls", 
     country: "",
     city: "",
     hasOffer: false,
@@ -31,7 +34,6 @@ export default function HallPage() {
     isReachingEnd,
     size,
     setSize,
-    mutate,
   } = useHalls({
     ...selectedFilters,
     sort: selectedKey,
