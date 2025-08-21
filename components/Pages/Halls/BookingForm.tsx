@@ -14,7 +14,6 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     guestCount: "",
     budget: "",
     inquiry: "",
-    // Add fields for non-logged in users
     name: "",
     email: "",
     phone: "",
@@ -35,27 +34,27 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
   const [agreementError, setAgreementError] = useState("");
 
   const eventTypes = [
-    "حفل زفاف",
-    "مؤتمر",
-    "حفل تخرج",
-    "حفل عيد ميلاد",
-    "اجتماع عمل",
-    "مناسبة خاصة",
+    { label: "حفل زفاف", value: "wedding" },
+    { label: "مؤتمر", value: "conference" },
+    { label: "حفل تخرج", value: "graduation" },
+    { label: "حفل عيد ميلاد", value: "birthday" },
+    { label: "اجتماع عمل", value: "business" },
+    { label: "مناسبة خاصة", value: "other" },
   ];
 
   const guestCounts = [
-    "50 - 100",
-    "100 - 150",
-    "150 - 300",
-    "300 - 500",
-    "500+",
+    { label: "50 - 100", value: "50-100" },
+    { label: "100 - 150", value: "100-150" },
+    { label: "150 - 250", value: "150-250" },
+    { label: "250 - 500", value: "250-500" },
+    { label: "500+", value: "500-9999" },
   ];
 
   const budgetRanges = [
-    "1000 - 5000 ريال",
-    "5000 - 10000 ريال",
-    "10000 - 20000 ريال",
-    "20000+ ريال",
+    { label: "1000 - 5000 ريال", value: "1000-5000" },
+    { label: "5000 - 10000 ريال", value: "5000-10000" },
+    { label: "10000 - 20000 ريال", value: "10000-20000" },
+    { label: "20000+ ريال", value: "20000-999999" },
   ];
 
   const handleInputChange = (field: keyof FormInputsType, value: string) => {
@@ -64,7 +63,6 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
       [field]: value,
     }));
 
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({
         ...prev,
@@ -76,21 +74,19 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
   const validateForm = () => {
     const newErrors = { ...errors };
     let isValid = true;
+
     if (!formData.eventType) {
       newErrors.eventType = "يرجى اختيار نوع المناسبة";
       isValid = false;
     }
-
     if (!formData.date) {
       newErrors.date = "يرجى اختيار التاريخ";
       isValid = false;
     }
-
     if (!formData.guestCount) {
       newErrors.guestCount = "يرجى اختيار عدد المدعوين";
       isValid = false;
     }
-
     if (!formData.budget) {
       newErrors.budget = "يرجى اختيار الميزانية";
       isValid = false;
@@ -101,7 +97,6 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
         newErrors.name = "يرجى إدخال الاسم";
         isValid = false;
       }
-
       if (!formData.email) {
         newErrors.email = "يرجى إدخال البريد الإلكتروني";
         isValid = false;
@@ -109,7 +104,6 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
         newErrors.email = "يرجى إدخال بريد إلكتروني صحيح";
         isValid = false;
       }
-
       if (!formData.phone) {
         newErrors.phone = "يرجى إدخال رقم الهاتف";
         isValid = false;
@@ -119,7 +113,6 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
       }
     }
 
-    // Check agreement
     if (!isAgreed) {
       setAgreementError("يرجى الموافقة على الشروط والأحكام");
       isValid = false;
@@ -129,12 +122,34 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     return isValid;
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  // 🔥 Build API payload
+  const buildPayload = () => {
+    const [guestMin, guestMax] = formData.guestCount.split("-").map(Number);
+    const [budgetMin, budgetMax] = formData.budget.split("-").map(Number);
+
+    return {
+      hall_id: hallId,
+      contact_name: user?.name || formData.name,
+      contact_email: user?.email || formData.email,
+      contact_phone: user?.phone || formData.phone,
+      currency: "SAR",
+      notes: formData.inquiry,
+      event_date: formData.date,
+      occasions: [{ type: formData.eventType }],
+      guests: [{ min: guestMin, max: guestMax }],
+      budgets: [{ min: budgetMin, max: budgetMax }],
+    };
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("Form Data:", formData);
-      console.log("User Data:", user);
+      const payload = buildPayload();
+      console.log("🚀 Payload to API:", payload);
+
+      // TODO: send payload to API
+      // await createBooking(payload);
 
       toast.success("تم إرسال طلب الحجز بنجاح!");
       setFormData({
@@ -238,10 +253,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
               }`}
             >
               <Dropdown
-                options={eventTypes.map((type) => ({
-                  label: type,
-                  value: type,
-                }))}
+                options={eventTypes}
                 value={formData.eventType}
                 onChange={(value) => handleInputChange("eventType", value)}
                 placeholder="اختر نوع المناسبة"
@@ -287,10 +299,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
               }`}
             >
               <Dropdown
-                options={guestCounts.map((count) => ({
-                  label: count,
-                  value: count,
-                }))}
+                options={guestCounts}
                 value={formData.guestCount}
                 onChange={(value) => handleInputChange("guestCount", value)}
                 placeholder="اختر عدد المدعوين"
@@ -314,10 +323,7 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
               }`}
             >
               <Dropdown
-                options={budgetRanges.map((range) => ({
-                  label: range,
-                  value: range,
-                }))}
+                options={budgetRanges}
                 value={formData.budget}
                 onChange={(value) => handleInputChange("budget", value)}
                 placeholder="اختر الميزانية"

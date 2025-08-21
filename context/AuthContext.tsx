@@ -14,6 +14,7 @@ type User = {
   id: string | number;
   name: string;
   email: string;
+  phone: string;
 } | null;
 
 type RegisterData = {
@@ -62,6 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: user?.id ?? null,
         name: user?.name ?? null,
         email: user?.email ?? null,
+        phone: user?.phone ?? null,
       };
 
       setUser(userInfo);
@@ -100,6 +102,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: response.user.id,
         name: response.user.name,
         email: response.user.email,
+        phone: response.user.phone,
       };
 
       setUser(userInfo);
