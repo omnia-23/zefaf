@@ -4,7 +4,8 @@ export interface IHall {
   slug: string;
   description: string;
   stars: number;
-  pricing?: {
+
+  pricing: {
     min: number;
     max: number;
     currency: string;
@@ -37,12 +38,9 @@ export interface IHall {
     drinks: ICapacity;
   };
   media: {
-    cover: string;
-    gallery: {
-      url: string;
-      sort: number;
-    }[];
-  };
+    url: string;
+    sort: number;
+  }[];
   main_category: {
     title: string;
     slug: string;
@@ -69,6 +67,7 @@ export interface IHall {
       count: number;
     } | null;
   };
+  media_count: number;
   capacity_range: string;
 }
 

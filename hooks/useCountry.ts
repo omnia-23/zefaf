@@ -9,23 +9,23 @@ export interface ICountry {
 }
 
 // fetcher delegates directly to your service
-const fetcher = async (): Promise<ICountry[]> => {
+const fetcher = async (): Promise<{ count: number; countries: ICountry[] }> => {
   const response = await fetchCountries();
   return response.data;
 };
 
 export function useCountry() {
-  const { data, error, isLoading, mutate } = useSWR<ICountry[]>(
-    `/api/countries`,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      shouldRetryOnError: false,
-    }
-  );
+  const { data, error, isLoading, mutate } = useSWR<{
+    count: number;
+    countries: ICountry[];
+  }>(`/api/countries`, fetcher, {
+    revalidateOnFocus: false,
+    shouldRetryOnError: false,
+  });
 
   return {
-    countries: data ?? [],
+    countries: data?.countries ?? [],
+    count: data?.count ?? 0,
     isLoading,
     error,
     mutate,

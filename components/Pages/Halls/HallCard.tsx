@@ -16,7 +16,7 @@ export default function HallCard({ hall }: { hall: IHall }) {
         {/* Image */}
         <div className="w-full md:w-1/3 relative rounded-lg overflow-hidden aspect-[4/3]">
           <Image
-            src={`${hall.media.cover}`}
+            src={`${hall.media[0].url}`}
             alt={hall.name}
             fill
             className="object-cover"
