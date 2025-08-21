@@ -79,13 +79,27 @@ export interface ICapacity {
   range: string;
 }
 
+// Form state (what user fills in)
 export type FormInputsType = {
   eventType: string;
   date: string;
   guestCount: string;
   budget: string;
   inquiry: string;
-  name: string;
-  email: string;
-  phone: string;
+  contact_name: string;
+  contact_email: string;
+  contact_phone: string;
+};
+
+// API payload type
+export type BookingPayloadType = {
+  contact_name: string;
+  contact_contact_email: string;
+  contact_phone: string;
+  currency: string;
+  notes: string;
+  event_date: string;
+  occasions: { type: string }[];
+  guests: { min: number; max: number }[];
+  budgets: { min: number; max: number }[];
 };

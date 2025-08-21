@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Dropdown } from "@/components/shared/Dropdown";
 import toast from "react-hot-toast";
-import { FormInputsType } from "@/types/hall";
+import { BookingPayloadType, FormInputsType } from "@/types/hall";
+import { sendFormSubmit } from "@/services/halls";
 
-const BookingForm = ({ hallId }: { hallId: number }) => {
+const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
   const { user } = useAuth();
 
   const [formData, setFormData] = useState<FormInputsType>({
@@ -14,9 +15,9 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     guestCount: "",
     budget: "",
     inquiry: "",
-    name: "",
-    email: "",
-    phone: "",
+    contact_name: "",
+    contact_email: "",
+    contact_phone: "",
   });
 
   const [errors, setErrors] = useState<Record<keyof FormInputsType, string>>({
@@ -25,9 +26,9 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     guestCount: "",
     budget: "",
     inquiry: "",
-    name: "",
-    email: "",
-    phone: "",
+    contact_name: "",
+    contact_email: "",
+    contact_phone: "",
   });
 
   const [isAgreed, setIsAgreed] = useState(false);
@@ -93,22 +94,24 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
     }
 
     if (!user) {
-      if (!formData.name) {
-        newErrors.name = "يرجى إدخال الاسم";
+      if (!formData.contact_name) {
+        newErrors.contact_name = "يرجى إدخال الاسم";
         isValid = false;
       }
-      if (!formData.email) {
-        newErrors.email = "يرجى إدخال البريد الإلكتروني";
+      if (!formData.contact_email) {
+        newErrors.contact_email = "يرجى إدخال البريد الإلكتروني";
         isValid = false;
-      } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-        newErrors.email = "يرجى إدخال بريد إلكتروني صحيح";
+      } else if (!/^\S+@\S+\.\S+$/.test(formData.contact_email)) {
+        newErrors.contact_email = "يرجى إدخال بريد إلكتروني صحيح";
         isValid = false;
       }
-      if (!formData.phone) {
-        newErrors.phone = "يرجى إدخال رقم الهاتف";
+      if (!formData.contact_phone) {
+        newErrors.contact_phone = "يرجى إدخال رقم الهاتف";
         isValid = false;
-      } else if (!/^\d{9,15}$/.test(formData.phone.replace(/[\s-+]/g, ""))) {
-        newErrors.phone = "يرجى إدخال رقم هاتف صحيح";
+      } else if (
+        !/^\d{9,15}$/.test(formData.contact_phone.replace(/[\s-+]/g, ""))
+      ) {
+        newErrors.contact_phone = "يرجى إدخال رقم هاتف صحيح";
         isValid = false;
       }
     }
@@ -123,15 +126,14 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
   };
 
   // 🔥 Build API payload
-  const buildPayload = () => {
+  const buildPayload = (): BookingPayloadType => {
     const [guestMin, guestMax] = formData.guestCount.split("-").map(Number);
     const [budgetMin, budgetMax] = formData.budget.split("-").map(Number);
 
     return {
-      hall_id: hallId,
-      contact_name: user?.name || formData.name,
-      contact_email: user?.email || formData.email,
-      contact_phone: user?.phone || formData.phone,
+      contact_name: user?.name || formData.contact_name,
+      contact_contact_email: user?.email || formData.contact_email,
+      contact_phone: user?.phone || formData.contact_phone,
       currency: "SAR",
       notes: formData.inquiry,
       event_date: formData.date,
@@ -149,8 +151,8 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
       console.log("🚀 Payload to API:", payload);
 
       // TODO: send payload to API
-      // await createBooking(payload);
-
+      const res = await sendFormSubmit(hallSlug, payload);
+      console.log({ res });
       toast.success("تم إرسال طلب الحجز بنجاح!");
       setFormData({
         eventType: "",
@@ -158,9 +160,9 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
         guestCount: "",
         budget: "",
         inquiry: "",
-        name: "",
-        email: "",
-        phone: "",
+        contact_name: "",
+        contact_email: "",
+        contact_phone: "",
       });
     } else {
       toast.error("يرجى إصلاح الأخطاء في النموذج");
@@ -184,16 +186,18 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
                 </label>
                 <input
                   type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  value={formData.contact_name}
+                  onChange={(e) =>
+                    handleInputChange("contact_name", e.target.value)
+                  }
                   className={`w-full p-2 md:p-3 border ${
-                    errors.name ? "border-red-500" : "border-gray-300"
+                    errors.contact_name ? "border-red-500" : "border-gray-300"
                   } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base`}
                   placeholder="أدخل اسمك الكامل"
                 />
-                {errors.name && (
+                {errors.contact_name && (
                   <p className="mt-1 text-red-500 text-xs md:text-sm">
-                    {errors.name}
+                    {errors.contact_name}
                   </p>
                 )}
               </div>
@@ -205,16 +209,18 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
                 </label>
                 <input
                   type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  value={formData.contact_email}
+                  onChange={(e) =>
+                    handleInputChange("contact_email", e.target.value)
+                  }
                   className={`w-full p-2 md:p-3 border ${
-                    errors.email ? "border-red-500" : "border-gray-300"
+                    errors.contact_email ? "border-red-500" : "border-gray-300"
                   } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base`}
                   placeholder="أدخل بريدك الإلكتروني"
                 />
-                {errors.email && (
+                {errors.contact_email && (
                   <p className="mt-1 text-red-500 text-xs md:text-sm">
-                    {errors.email}
+                    {errors.contact_email}
                   </p>
                 )}
               </div>
@@ -226,16 +232,18 @@ const BookingForm = ({ hallId }: { hallId: number }) => {
                 </label>
                 <input
                   type="tel"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  value={formData.contact_phone}
+                  onChange={(e) =>
+                    handleInputChange("contact_phone", e.target.value)
+                  }
                   className={`w-full p-2 md:p-3 border ${
-                    errors.phone ? "border-red-500" : "border-gray-300"
+                    errors.contact_phone ? "border-red-500" : "border-gray-300"
                   } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base`}
                   placeholder="أدخل رقم هاتفك"
                 />
-                {errors.phone && (
+                {errors.contact_phone && (
                   <p className="mt-1 text-red-500 text-xs md:text-sm">
-                    {errors.phone}
+                    {errors.contact_phone}
                   </p>
                 )}
               </div>

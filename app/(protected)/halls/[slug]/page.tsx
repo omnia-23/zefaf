@@ -75,7 +75,7 @@ export default function HallPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Right column - Details and features */}
-          <BookingForm hallId={hall.id} />
+          <BookingForm hallSlug={hall.slug} />
         </div>
       </div>
 
