@@ -21,7 +21,7 @@ const navListItems = [
   {
     id: 2,
     title: "قاعات الزفاف",
-    url: "/wedding-venues",
+    url: "/listing-category/قاعات-الزفاف",
     icon: "/images/nav/wedding-invitation.svg",
     isDropDown: true,
     subMenu: [
@@ -51,7 +51,7 @@ const navListItems = [
   {
     id: 3,
     title: "خدمات الافراح",
-    url: "/wedding-services",
+    url: "/listing-category/wedding-services",
     icon: "/images/nav/group.svg",
     isDropDown: true,
     subMenu: [
@@ -80,7 +80,7 @@ const navListItems = [
   {
     id: 4,
     title: "صحة العروسين",
-    url: "/bride-groom-health",
+    url: "/listing-category/bride-groom-health",
     icon: "/images/Health.svg",
     isDropDown: true,
     subMenu: [
@@ -104,7 +104,7 @@ const navListItems = [
   {
     id: 6,
     title: "عروض خاصة",
-    url: "/special-offers",
+    url: "/listing-category/special-offers",
     icon: "/images/discount-2.svg",
     isDropDown: false,
     subMenu: [],
@@ -112,7 +112,7 @@ const navListItems = [
   {
     id: 7,
     title: "اتصل بنا",
-    url: "/plan-your-wedding",
+    url: "/listing-category/plan-your-wedding",
     icon: "/images/nav/wedding-rings.svg",
     isDropDown: false,
     subMenu: [],
@@ -120,7 +120,7 @@ const navListItems = [
   {
     id: 8,
     title: "المقالات",
-    url: "/blogs",
+    url: "/listing-category/blogs",
     icon: "/images/discount-2.svg",
     isDropDown: false,
     subMenu: [],
@@ -128,7 +128,7 @@ const navListItems = [
   {
     id: 9,
     title: "من نحن",
-    url: "/about-us",
+    url: "/listing-category/about-us",
     icon: "/images/nav/gps.svg",
     isDropDown: false,
     subMenu: [],
@@ -137,8 +137,10 @@ const navListItems = [
 
 export function NavList({ isWhiteBackground = false }) {
   const textColor = isWhiteBackground ? "text-gray-900" : "text-white";
-  const hoverColor = isWhiteBackground ? "hover:text-[#db0962]" : "hover:text-[#db0962]";
-  
+  const hoverColor = isWhiteBackground
+    ? "hover:text-[#db0962]"
+    : "hover:text-[#db0962]";
+
   return (
     <List
       placeholder=""
@@ -178,7 +180,9 @@ export function NavList({ isWhiteBackground = false }) {
                     height={24}
                     src={icon}
                     alt={title}
-                    className={`w-6 h-6 ${isWhiteBackground ? "filter invert" : ""}`}
+                    className={`w-6 h-6 ${
+                      isWhiteBackground ? "filter invert" : ""
+                    }`}
                   />
                   {title}
                 </ListItem>
