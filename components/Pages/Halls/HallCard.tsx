@@ -9,7 +9,7 @@ export default function HallCard({ hall }: { hall: IHall }) {
 
   return (
     <div
-      onClick={() => router.push(`/halls/${hall.slug}`)}
+      onClick={() => router.push(`/listing/${hall.slug}`)}
       className="cursor-pointer bg-white rounded-lg shadow-md overflow-hidden mb-6 hover:shadow-lg transition-shadow p-3 max-w-[954px] w-full"
     >
       <div className="flex flex-col md:flex-row">

@@ -8,4 +8,5 @@ export interface ICategory {
   index: string;
   description: string | null;
   service_provider_count: number;
+  images: string[];
 }

@@ -3,10 +3,10 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { useCities } from "@/hooks/useCities";
-import { ICity } from "@/types/city";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { CityCard } from "./CityCard";
+import { ICity } from "@/types/city";
 
 const FamousCities = () => {
   const { cities, isLoading, error, mutate } = useCities(1);

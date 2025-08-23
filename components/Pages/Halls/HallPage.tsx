@@ -9,11 +9,11 @@ import HallCard from "@/components/Pages/Halls/HallCard";
 import { useHalls } from "@/hooks/useHalls";
 
 export default function Page({ params }: { params: { categorySlug: string } }) {
-  const categorySlug = decodeURIComponent(params.categorySlug); 
+  const categorySlug = decodeURIComponent(params.categorySlug);
 
   console.log({ categorySlug });
   const [selectedFilters, setSelectedFilters] = useState({
-    eventType: categorySlug ?? "halls", 
+    eventType: categorySlug,
     country: "",
     city: "",
     hasOffer: false,

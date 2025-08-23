@@ -8,14 +8,11 @@ import {
 import BestProviders from "@/components/Pages/Home/BestProviders";
 import FamousCities from "@/components/Pages/Home/FamousCities";
 import OffersSlider from "@/components/Pages/Home/OffersSlider";
-import Footer from "@/components/shared/Footer";
 import MainSection from "@/components/Pages/Home/HomeSection";
-import Navbar from "@/components/HomeNavigation/Navbar";
 
 const page = () => {
   return (
     <>
-      <Navbar />
       <MainSection />
       <BestProviders />
       <CategoriesSection />
@@ -29,7 +26,6 @@ const page = () => {
       <BlogsSection />
       {/* <OurTeam /> */}
       {/* <OurServicesSection /> */}
-      <Footer />
     </>
   );
 };
