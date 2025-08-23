@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { Dropdown } from "@/components/shared/Dropdown";
 import toast from "react-hot-toast";
 import { BookingPayloadType, FormInputsType } from "@/types/hall";
 import { sendFormSubmit } from "@/services/halls";
+import { Dropdown } from "@/components/shared/Dropdown";
 
 const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
   const { user } = useAuth();
@@ -12,25 +12,17 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
   const [formData, setFormData] = useState<FormInputsType>({
     eventType: "",
     date: "",
-    guestCount: "",
-    budget: "",
+    guestMin: "",
+    guestMax: "",
+    budgetMin: "",
+    budgetMax: "",
     inquiry: "",
     contact_name: "",
     contact_email: "",
     contact_phone: "",
   });
 
-  const [errors, setErrors] = useState<Record<keyof FormInputsType, string>>({
-    eventType: "",
-    date: "",
-    guestCount: "",
-    budget: "",
-    inquiry: "",
-    contact_name: "",
-    contact_email: "",
-    contact_phone: "",
-  });
-
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isAgreed, setIsAgreed] = useState(false);
   const [agreementError, setAgreementError] = useState("");
 
@@ -43,37 +35,15 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
     { label: "مناسبة خاصة", value: "other" },
   ];
 
-  const guestCounts = [
-    { label: "50 - 100", value: "50-100" },
-    { label: "100 - 150", value: "100-150" },
-    { label: "150 - 250", value: "150-250" },
-    { label: "250 - 500", value: "250-500" },
-    { label: "500+", value: "500-9999" },
-  ];
-
-  const budgetRanges = [
-    { label: "1000 - 5000 ريال", value: "1000-5000" },
-    { label: "5000 - 10000 ريال", value: "5000-10000" },
-    { label: "10000 - 20000 ريال", value: "10000-20000" },
-    { label: "20000+ ريال", value: "20000-999999" },
-  ];
-
-  const handleInputChange = (field: keyof FormInputsType, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors((prev) => ({
-        ...prev,
-        [field]: "",
-      }));
+      setErrors((prev) => ({ ...prev, [field]: "" }));
     }
   };
 
   const validateForm = () => {
-    const newErrors = { ...errors };
+    const newErrors: Record<string, string> = {};
     let isValid = true;
 
     if (!formData.eventType) {
@@ -84,12 +54,13 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
       newErrors.date = "يرجى اختيار التاريخ";
       isValid = false;
     }
-    if (!formData.guestCount) {
-      newErrors.guestCount = "يرجى اختيار عدد المدعوين";
+
+    if (!formData.guestMin || !formData.guestMax) {
+      newErrors.guest = "يرجى إدخال عدد المدعوين (من / إلى)";
       isValid = false;
     }
-    if (!formData.budget) {
-      newErrors.budget = "يرجى اختيار الميزانية";
+    if (!formData.budgetMin || !formData.budgetMax) {
+      newErrors.budget = "يرجى إدخال الميزانية (من / إلى)";
       isValid = false;
     }
 
@@ -127,19 +98,20 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
 
   // 🔥 Build API payload
   const buildPayload = (): BookingPayloadType => {
-    const [guestMin, guestMax] = formData.guestCount.split("-").map(Number);
-    const [budgetMin, budgetMax] = formData.budget.split("-").map(Number);
-
     return {
       contact_name: user?.name || formData.contact_name,
-      contact_contact_email: user?.email || formData.contact_email,
+      contact_email: user?.email || formData.contact_email,
       contact_phone: user?.phone || formData.contact_phone,
       currency: "SAR",
       notes: formData.inquiry,
       event_date: formData.date,
       occasions: [{ type: formData.eventType }],
-      guests: [{ min: guestMin, max: guestMax }],
-      budgets: [{ min: budgetMin, max: budgetMax }],
+      guests: [
+        { min: Number(formData.guestMin), max: Number(formData.guestMax) },
+      ],
+      budgets: [
+        { min: Number(formData.budgetMin), max: Number(formData.budgetMax) },
+      ],
     };
   };
 
@@ -157,13 +129,16 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
       setFormData({
         eventType: "",
         date: "",
-        guestCount: "",
-        budget: "",
+        guestMin: "",
+        guestMax: "",
+        budgetMin: "",
+        budgetMax: "",
         inquiry: "",
         contact_name: "",
         contact_email: "",
         contact_phone: "",
       });
+      setIsAgreed(false);
     } else {
       toast.error("يرجى إصلاح الأخطاء في النموذج");
     }
@@ -298,49 +273,61 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
 
           {/* Guest Count */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
+            <label className="block text-gray-700 font-medium mb-1">
               عدد المدعوين
             </label>
-            <div
-              className={`${
-                errors.guestCount ? "border border-red-500 rounded-lg" : ""
-              }`}
-            >
-              <Dropdown
-                options={guestCounts}
-                value={formData.guestCount}
-                onChange={(value) => handleInputChange("guestCount", value)}
-                placeholder="اختر عدد المدعوين"
+            <div className="flex gap-2">
+              <input
+                type="number"
+                placeholder="من"
+                value={formData.guestMin}
+                onChange={(e) => handleInputChange("guestMin", e.target.value)}
+                className={`w-1/2 p-2 border ${
+                  errors.guest ? "border-red-500" : "border-gray-300"
+                } rounded-lg`}
+              />
+              <input
+                type="number"
+                placeholder="إلى"
+                value={formData.guestMax}
+                onChange={(e) => handleInputChange("guestMax", e.target.value)}
+                className={`w-1/2 p-2 border ${
+                  errors.guest ? "border-red-500" : "border-gray-300"
+                } rounded-lg`}
               />
             </div>
-            {errors.guestCount && (
-              <p className="mt-1 text-red-500 text-xs md:text-sm">
-                {errors.guestCount}
-              </p>
+            {errors.guest && (
+              <p className="mt-1 text-red-500 text-xs">{errors.guest}</p>
             )}
           </div>
 
-          {/* Budget */}
+          {/* Budget Range */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1 md:mb-2 text-sm md:text-base">
+            <label className="block text-gray-700 font-medium mb-1">
               ميزانية المناسبة
             </label>
-            <div
-              className={`${
-                errors.budget ? "border border-red-500 rounded-lg" : ""
-              }`}
-            >
-              <Dropdown
-                options={budgetRanges}
-                value={formData.budget}
-                onChange={(value) => handleInputChange("budget", value)}
-                placeholder="اختر الميزانية"
+            <div className="flex gap-2">
+              <input
+                type="number"
+                placeholder="من"
+                value={formData.budgetMin}
+                onChange={(e) => handleInputChange("budgetMin", e.target.value)}
+                className={`w-1/2 p-2 border ${
+                  errors.budget ? "border-red-500" : "border-gray-300"
+                } rounded-lg`}
+              />
+              <input
+                type="number"
+                placeholder="إلى"
+                value={formData.budgetMax}
+                onChange={(e) => handleInputChange("budgetMax", e.target.value)}
+                className={`w-1/2 p-2 border ${
+                  errors.budget ? "border-red-500" : "border-gray-300"
+                } rounded-lg`}
               />
             </div>
             {errors.budget && (
-              <p className="mt-1 text-red-500 text-xs md:text-sm">
-                {errors.budget}
-              </p>
+              <p className="mt-1 text-red-500 text-xs">{errors.budget}</p>
             )}
           </div>
 

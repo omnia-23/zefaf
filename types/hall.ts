@@ -83,8 +83,10 @@ export interface ICapacity {
 export type FormInputsType = {
   eventType: string;
   date: string;
-  guestCount: string;
-  budget: string;
+  guestMin: string;
+  guestMax: string;
+  budgetMin: string;
+  budgetMax: string;
   inquiry: string;
   contact_name: string;
   contact_email: string;
@@ -94,7 +96,7 @@ export type FormInputsType = {
 // API payload type
 export type BookingPayloadType = {
   contact_name: string;
-  contact_contact_email: string;
+  contact_email: string;
   contact_phone: string;
   currency: string;
   notes: string;
