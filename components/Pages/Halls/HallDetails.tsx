@@ -5,14 +5,17 @@ import dressIcon from "@/public/images/halls/dress.svg";
 import foodIcon from "@/public/images/halls/fork-and-spoon.svg";
 import drinkIcon from "@/public/images/halls/drink.svg";
 import { IHall } from "@/types/hall";
+import { RenderHTML } from "@/components/shared";
 
 export default function HallDetails({ hallDetails }: { hallDetails: IHall }) {
   return (
     <div className="font-noto text-black px-4 md:px-0">
       {/* description */}
-      <p className="font-normal text-[#707070] text-sm md:text-base">
-        {hallDetails.description}
-      </p>
+
+      <RenderHTML
+        htmlContent={hallDetails.description}
+        className="font-normal text-[#707070]"
+      />
 
       {/* hotel capcity */}
       <div className="mt-8 md:mt-14">

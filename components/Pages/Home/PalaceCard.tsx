@@ -81,7 +81,8 @@ export default function PalaceCard({ palace }: { palace: Palace }) {
 
           {/* Description */}
           <p className="text-gray-500 text-sm">
-            <RenderHTML htmlContent={palace.description} renderInTable={true} />
+            {palace.description}
+            {/* <RenderHTML htmlContent={palace.description} renderInTable={true} /> */}
           </p>
         </div>
       </a>
