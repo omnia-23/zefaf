@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { IHall } from "@/types/hall";
+import { RenderHTML } from "@/components/shared";
 
 export default function HallCard({ hall }: { hall: IHall }) {
   const router = useRouter();
@@ -85,7 +86,11 @@ export default function HallCard({ hall }: { hall: IHall }) {
 
           {/* Description */}
           <p className="text-gray-500 text-base font-normal line-clamp-4">
-            {hall.description}
+            {/* {hall.description} */}
+            <RenderHTML
+              className="text-gray-500"
+              htmlContent={hall.description}
+            />
           </p>
         </div>
       </div>
