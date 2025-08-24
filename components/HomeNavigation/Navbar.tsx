@@ -50,7 +50,7 @@ export const Navbar = () => {
             />
           </div>
 
-          <div className="w-full flex items-center justify-between md:justify-end">
+          <div className="w-full flex items-center justify-between">
             <MainMenuDefault isScrolled={shouldHaveWhiteBg} />
             <div className="flex flex-row gap-2 items-start">
               {/* <Button
