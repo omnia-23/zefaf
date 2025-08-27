@@ -9,6 +9,37 @@ import { useOffers } from "@/hooks/useOffers";
 const OffersSlider = () => {
   const { offers, isLoading, error } = useOffers();
 
+  const slides = [
+    {
+      title: "انضم الينا",
+      description:
+        "في كل عام يتواصل أكثر من 300 ألف عريس وعروس مع الشركات المسجلة في زفاف.نت، أنت أيضاً يمكنك إضافة عملك والتواصل مع العرسان بسهولة!",
+      buttonText: "اضف شركتك",
+      image: "/images/joinus/banner.png",
+    },
+    {
+      title: "شركاء النجاح",
+      description:
+        "انضم إلى شبكة من الشركات الناجحة في قطاع الأفراح. نوفر لك الأدوات والتقنيات لتنمية عملك.",
+      buttonText: "تعرف أكثر",
+      image: "/images/bannerEachPage.png", // Fixed double slash
+    },
+    {
+      title: "عروض خاصة",
+      description:
+        "احصل على خصومات حصرية عند انضمامك إلى منصتنا هذا الشهر. فرصتك للوصول إلى آلاف العملاء المحتملين!",
+      buttonText: "استفد من العروض",
+      image: "/images/joinus/banner.png",
+    },
+    {
+      title: "شركاء النجاح",
+      description:
+        "انضم إلى شبكة من الشركات الناجحة في قطاع الأفراح. نوفر لك الأدوات والتقنيات لتنمية عملك.",
+      buttonText: "تعرف أكثر",
+      image: "/images/bannerEachPage.png", // Fixed double slash
+    },
+  ];
+
   // ✅ Handle loading
   if (isLoading) {
     return (
@@ -55,16 +86,16 @@ const OffersSlider = () => {
         loop
         grabCursor
       >
-        {filteredOffers.map((offer, index) => (
+        {slides?.map((slide, index) => (
           <SwiperSlide key={index} className="h-full w-full !px-0">
             <div
               className="w-full h-full relative bg-cover bg-center"
               style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${offer.image}')`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${slide.image}')`,
               }}
             >
               <Link
-                href={offer.link ?? "/offers"}
+                href={"listing/فندق-بوتيك-المشرق"}
                 className="block h-full w-full"
               />
             </div>
