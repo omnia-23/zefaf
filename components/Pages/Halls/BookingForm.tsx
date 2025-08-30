@@ -165,7 +165,7 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
                   onChange={(e) =>
                     handleInputChange("contact_name", e.target.value)
                   }
-                  className={`w-full p-2 md:p-3 border ${
+                  className={`w-full p-2 border ${
                     errors.contact_name ? "border-red-500" : "border-gray-300"
                   } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base`}
                   placeholder="أدخل اسمك الكامل"
@@ -188,7 +188,7 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
                   onChange={(e) =>
                     handleInputChange("contact_email", e.target.value)
                   }
-                  className={`w-full p-2 md:p-3 border ${
+                  className={`w-full p-2 border ${
                     errors.contact_email ? "border-red-500" : "border-gray-300"
                   } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base`}
                   placeholder="أدخل بريدك الإلكتروني"
@@ -211,7 +211,7 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
                   onChange={(e) =>
                     handleInputChange("contact_phone", e.target.value)
                   }
-                  className={`w-full p-2 md:p-3 border ${
+                  className={`w-full p-2  border ${
                     errors.contact_phone ? "border-red-500" : "border-gray-300"
                   } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base`}
                   placeholder="أدخل رقم هاتفك"
@@ -259,7 +259,7 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
                 type="date"
                 value={formData.date}
                 onChange={(e) => handleInputChange("date", e.target.value)}
-                className={`w-full p-2 md:p-3 border ${
+                className={`w-full p-2 border ${
                   errors.date ? "border-red-500" : "border-gray-300"
                 } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base`}
               />
@@ -341,7 +341,7 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
               onChange={(e) => handleInputChange("inquiry", e.target.value)}
               placeholder="أكتب إستفسارك هنا..."
               rows={3}
-              className={`w-full p-2 md:p-3 border ${
+              className={`w-full p-2   border ${
                 errors.inquiry ? "border-red-500" : "border-gray-300"
               } rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent resize-none text-sm md:text-base`}
             />
@@ -380,7 +380,7 @@ const BookingForm = ({ hallSlug }: { hallSlug: string }) => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 md:py-3 px-4 md:px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 text-sm md:text-base"
+            className="w-full bg-pink-600 hover:bg-pink-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 text-sm md:text-base"
           >
             احجز الآن
           </button>

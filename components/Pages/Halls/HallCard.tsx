@@ -85,13 +85,15 @@ export default function HallCard({ hall }: { hall: IHall }) {
           </div>
 
           {/* Description */}
-          <p className="text-gray-500 text-base font-normal line-clamp-4">
-            {/* {hall.description} */}
-            <RenderHTML
-              className="text-gray-500"
-              htmlContent={hall.description}
-            />
-          </p>
+          <RenderHTML
+            maxLines={4}
+            seeMore={false}
+            className="text-gray-500 text-base font-normal"
+            htmlContent={hall.description}
+          />
+          {/* <p className="text-gray-500 text-base font-normal line-clamp-4">
+            {hall.description}
+          </p> */}
         </div>
       </div>
     </div>

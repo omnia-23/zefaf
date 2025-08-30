@@ -67,7 +67,7 @@ export default function SideBarFilters({
           }))}
           value={localFilters.eventType}
           onChange={handleDropdownChange("eventType")}
-          placeholder="اختر نوع المناسبة"
+          placeholder="اختر نوع الخدمة"
         />
 
         {/* Country Filter */}

@@ -40,7 +40,7 @@ export const Dropdown = ({
   return (
     <div className="relative" ref={dropdownRef}>
       <div
-        className="w-full p-2 md:p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base cursor-pointer flex justify-between items-center"
+        className="w-full p-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent text-sm md:text-base cursor-pointer flex justify-between items-center"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{selectedOption?.label || placeholder}</span>

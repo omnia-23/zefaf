@@ -61,18 +61,20 @@ export default function HallData({ hallDetails }: { hallDetails: IHall }) {
             </svg>
           </a>
 
-          <div className="w-fit p-2 rounded-full shadow hover:bg-gray-100 transition-colors cursor-pointer">
-            <Share2Icon color="#990645" className="w-5 h-5" />
-          </div>
-          <div className="w-fit p-2 rounded-full shadow hover:bg-gray-100 transition-colors cursor-pointer">
-            <Heart color="#990645" className="w-5 h-5" />
-          </div>
           <a
             href={`tel:{hallDetails.contact.phone}`} // replace with hotel number
             className="w-fit p-2 rounded-full shadow hover:bg-gray-100 transition-colors cursor-pointer block"
           >
             <Phone color="#990645" className="w-5 h-5" />
           </a>
+
+          <div className="w-fit p-2 rounded-full shadow hover:bg-gray-100 transition-colors cursor-pointer">
+            <Share2Icon color="#990645" className="w-5 h-5" />
+          </div>
+
+          <div className="w-fit p-2 rounded-full shadow hover:bg-gray-100 transition-colors cursor-pointer">
+            <Heart color="#990645" className="w-5 h-5" />
+          </div>
         </div>
       </div>
 

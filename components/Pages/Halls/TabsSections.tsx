@@ -36,7 +36,7 @@ export default function TabsSections({ hallDetails }: { hallDetails: IHall }) {
     {
       label: "التقييمات",
       value: "reviews",
-      body: <ReviewsSection reviews={hallDetails.stats.ratings} />,
+      body: <ReviewsSection reviews={hallDetails.stats} />,
     },
     {
       label: "الأسئلة المتداولة",

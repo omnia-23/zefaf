@@ -11,7 +11,6 @@ export default function RootLayout({
     <>
       <Navbar />
       {children}
-      <WhatsAppSticky />
       <Footer />
     </>
   );

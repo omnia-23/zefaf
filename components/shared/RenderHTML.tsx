@@ -1,14 +1,36 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import sanitizeHtml from "sanitize-html";
+
+const clampMap: Record<number, string> = {
+  1: "line-clamp-1",
+  2: "line-clamp-2",
+  3: "line-clamp-3",
+  4: "line-clamp-4",
+  5: "line-clamp-5",
+  6: "line-clamp-6",
+};
 
 export const RenderHTML = memo(
   ({
     htmlContent = "",
     className = "",
+    maxLines = 5, // default show 5 lines
+    seeMore = true,
   }: {
     htmlContent?: string;
     className?: string;
+    maxLines?: number;
+    seeMore?: boolean;
   }) => {
+    const [expanded, setExpanded] = useState(false);
+    const [style, setStyle] = useState("");
+
+    useEffect(() => {
+      const line = expanded ? "line-clamp-none" : `line-clamp-${maxLines}`;
+      console.log({ line });
+      setStyle(line);
+    }, [expanded, maxLines]);
+
     const sanitizedContent = sanitizeHtml(htmlContent || "", {
       allowedTags: [
         // Text
@@ -72,7 +94,6 @@ export const RenderHTML = memo(
         "aside",
         "hr",
       ],
-
       allowedAttributes: {
         a: ["href", "name", "target", "rel"],
         img: ["src", "alt", "width", "height"],
@@ -88,18 +109,31 @@ export const RenderHTML = memo(
         ],
         audio: ["src", "controls", "autoplay", "muted", "loop"],
         source: ["src", "type"],
-        "*": ["class", "id", "style"], // allow styling attributes everywhere
+        "*": ["class", "id", "style"],
       },
-
-      // strip out scripts, styles, iframes, etc.
       disallowedTagsMode: "discard",
     });
 
     return (
-      <div
-        className={className}
-        dangerouslySetInnerHTML={{ __html: sanitizedContent }}
-      />
+      <div className="w-full">
+        {/* Render HTML */}
+        <div
+          className={`${className} text-gray-800 leading-relaxed transition-all duration-300 ${
+            expanded ? "line-clamp-none" : clampMap[maxLines] ?? "line-clamp-5"
+          }`}
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+        />
+
+        {/* Toggle Button */}
+        {seeMore && (
+          <span
+            onClick={() => setExpanded((prev) => !prev)}
+            className="cursor-pointer mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline focus:outline-none"
+          >
+            {expanded ? "عرض أقل" : "عرض المزيد"}
+          </span>
+        )}
+      </div>
     );
   }
 );

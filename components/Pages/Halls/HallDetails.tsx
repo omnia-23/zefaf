@@ -13,6 +13,7 @@ export default function HallDetails({ hallDetails }: { hallDetails: IHall }) {
       {/* description */}
 
       <RenderHTML
+        maxLines={6}
         htmlContent={hallDetails.description}
         className="font-normal text-[#707070]"
       />
