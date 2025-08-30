@@ -73,14 +73,6 @@ const HomeSearchTabs = () => {
     router.push(`/listing-category/${selectedCategory}?${query}`);
   };
 
-  const handleCategoryInputClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
-
-  const handleCityInputClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
-
   const data = [
     {
       label: "إبحث الأن",
@@ -96,6 +88,8 @@ const HomeSearchTabs = () => {
               open={categoryMenuOpen}
               handler={setCategoryMenuOpen}
               placement="bottom-start"
+              dismiss={{ itemPress: false }} // 👈 prevent auto close on clicks inside
+              allowHover={false} // 👈 prevent hover-trigger issues
             >
               <MenuHandler>
                 <Button
@@ -135,7 +129,8 @@ const HomeSearchTabs = () => {
                   label="ابحث..."
                   crossOrigin={undefined}
                   value={categorySearch}
-                  onClick={handleCategoryInputClick}
+                  onClick={(e) => e.stopPropagation()} // prevent menu close
+                  onFocus={(e) => e.stopPropagation()} // prevent menu close
                   onChange={(e) => setCategorySearch(e.target.value)}
                   className="w-full p-3 text-sm rounded-md bg-black/40 text-white placeholder:text-white outline-white focus:outline-none border border-white"
                 />
@@ -179,6 +174,8 @@ const HomeSearchTabs = () => {
               open={cityMenuOpen}
               handler={setCityMenuOpen}
               placement="bottom-start"
+              dismiss={{ itemPress: false }} // prevent auto-close
+              allowHover={false}
             >
               <MenuHandler>
                 <Button
@@ -215,8 +212,8 @@ const HomeSearchTabs = () => {
                   onPointerLeaveCapture={() => {}}
                   label="ابحث..."
                   crossOrigin={undefined}
-                  value={citySearch}
-                  onClick={handleCityInputClick}
+                  onClick={(e) => e.stopPropagation()} // prevent menu close
+                  onFocus={(e) => e.stopPropagation()} // prevent menu close
                   onChange={(e) => setCitySearch(e.target.value)}
                   className="w-full p-3 text-sm rounded-md bg-black/40 text-white placeholder:text-white outline-white focus:outline-none border border-white"
                 />

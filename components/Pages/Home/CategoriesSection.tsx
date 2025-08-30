@@ -80,7 +80,7 @@ const CategoriesSection = () => {
   }
 
   // Determine which categories to show
-  const displayedCategories = showAll ? categories : categories.slice(0, 3);
+  const displayedCategories = showAll ? categories : categories.slice(0, 6);
 
   return (
     <section className="container mx-auto py-12 px-4 lg:px-8">
@@ -91,10 +91,21 @@ const CategoriesSection = () => {
             جميع مزودى الخدمات
           </h2>
         </div>
+
+        {/* <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8"> */}
         <p className="text-gray-600 text-sm sm:text-base max-w-2xl">
           عالم زفاف يوفر لك افضل مزودى الخدمات التي تناسب كل الأذواق، مع خيارات
           متنوعة تضمن حصولك على الفئة مثالية ليومك المميز.
         </p>
+        {/* <div className="md:self-end">
+            <a
+              href="/offers"
+              className="text-[#AF074E] hover:text-[#8a063d] underline transition-colors text-sm font-medium"
+            >
+              عرض الكل
+            </a>
+          </div> */}
+        {/* </div> */}
       </div>
 
       {/* Categories Grid */}
@@ -105,14 +116,14 @@ const CategoriesSection = () => {
       </div>
 
       {/* Show More/Less Button */}
-      {categories.length > 3 && (
+      {categories.length > 6 && (
         <div className="flex justify-center mt-8">
-          <button
-            onClick={() => setShowAll(!showAll)}
+          <a
+            href="/listing-category/offers"
             className="bg-[#DB0962] text-white px-6 py-2 rounded-full hover:bg-[#C40856] transition-colors"
           >
-            {showAll ? "عرض أقل" : "عرض المزيد"}
-          </button>
+            عرض المزيد
+          </a>
         </div>
       )}
     </section>
