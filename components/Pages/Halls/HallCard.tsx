@@ -1,4 +1,4 @@
-import { Heart } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -23,6 +23,12 @@ export default function HallCard({ hall }: { hall: IHall }) {
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
+          <div className="absolute top-3 right-3">
+            <span className="flex items-center gap-1 bg-[#990645] text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
+              <Star className="w-3.5 h-3.5" fill="white" />
+              عرض خاص
+            </span>
+          </div>
           {/* <button className="absolute top-3 right-3 p-1 bg-white rounded-full shadow-md hover:bg-gray-50">
             <Heart className="w-4 h-4 text-gray-600" />
           </button> */}
