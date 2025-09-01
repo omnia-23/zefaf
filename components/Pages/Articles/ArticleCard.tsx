@@ -10,7 +10,7 @@ export default function ArticleCard({ article }: { article: IArticle }) {
 
   return (
     <div
-      onClick={() => router.push(`/listing/${article.slug}`)}
+      onClick={() => router.push(`/${article.slug}`)}
       className="group cursor-pointer bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300 max-w-[954px] w-full overflow-hidden"
     >
       {/* Image Section */}

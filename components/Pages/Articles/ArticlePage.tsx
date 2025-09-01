@@ -4,12 +4,13 @@ import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import { RenderHTML } from "@/components/shared";
 import AnotherArticles from "./AnotherArticles";
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const slug = decodeURIComponent(params.slug);
+export default function ArticlePage({ articleSlug }: { articleSlug: string }) {
+  const articleArabicSlug = decodeURIComponent(articleSlug);
   // const { hall, isLoading, error } = useHall(slug);
   // const [isOpen, setIsOpen] = useState(false);
 
-  console.log({ slug: params.slug });
+  console.log({ articleArabicSlug });
+  
   const article = {
     id: 1,
     title: "لوريوم ابيسوم",
@@ -161,7 +162,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         breadcrumbs={[
           { label: "الرئيسية", href: "/" },
           { label: "اكتشف", href: "/مقالات" },
-          { label: article.title, href: `/مقالات/${params.slug}` },
+          { label: article.title, href: `/${articleSlug}` },
         ]}
       />
 

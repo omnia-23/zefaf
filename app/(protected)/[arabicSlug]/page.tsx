@@ -1,3 +1,5 @@
+import AboutUsPage from "@/components/Pages/AboutUs";
+import ArticlePage from "@/components/Pages/Articles/ArticlePage";
 import ArticlesPage from "@/components/Pages/Articles/ArticlesPage";
 import { notFound } from "next/navigation";
 
@@ -6,9 +8,10 @@ export default function Page({ params }: { params: { arabicSlug: string } }) {
 
   console.log({ arabicSlug }); // 👉 should log "المقالات"
 
-  if (arabicSlug !== "المقالات") {
-    return notFound();
+  if (arabicSlug === "المقالات") {
+    return <ArticlesPage />;
+  } else if (arabicSlug === "من-نحن") {
+    return <AboutUsPage />;
   }
-
-  return <ArticlesPage />;
+  return <ArticlePage articleSlug={arabicSlug} />;
 }

@@ -128,7 +128,7 @@ const navListItems = [
   {
     id: 9,
     title: "من نحن",
-    url: "/about-us",
+    url: "/من-نحن",
     icon: "/images/nav/gps.svg",
     isDropDown: false,
     subMenu: [],
