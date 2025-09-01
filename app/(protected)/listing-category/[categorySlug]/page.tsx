@@ -1,5 +1,5 @@
-import HallPage from "@/components/Pages/Halls/HallPage";
-import ArticlesPage from "@/components/Pages/Articles/ArticlePage";
+import HallPage from "@/components/Pages/Halls/HallsPage";
+import ArticlesPage from "@/components/Pages/Articles/ArticlesPage";
 
 // import { Metadata } from "next";
 // export const metadata: Metadata = {
@@ -11,11 +11,5 @@ import ArticlesPage from "@/components/Pages/Articles/ArticlePage";
 // };
 
 export default function Page({ params }: { params: { categorySlug: string } }) {
-  const slug = decodeURIComponent(params.categorySlug);
-  console.log({ slug });
-  if (slug === "المقالات") {
-    return <ArticlesPage params={params} />;
-  }
-
   return <HallPage params={params} />;
 }

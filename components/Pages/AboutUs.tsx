@@ -10,7 +10,7 @@ export const metadata = {
   },
 };
 
-export default function AboutUs() {
+export default function AboutUsPage() {
   interface Testimonial {
     title: string;
     description: string;

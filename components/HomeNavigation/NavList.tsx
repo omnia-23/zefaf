@@ -120,7 +120,7 @@ const navListItems = [
   {
     id: 8,
     title: "المقالات",
-    url: "/listing-category/المقالات",
+    url: "/المقالات",
     icon: "/images/discount-2.svg",
     isDropDown: false,
     subMenu: [],
@@ -128,7 +128,7 @@ const navListItems = [
   {
     id: 9,
     title: "من نحن",
-    url: "/about-us",
+    url: "/من-نحن",
     icon: "/images/nav/gps.svg",
     isDropDown: false,
     subMenu: [],
