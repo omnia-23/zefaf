@@ -5,6 +5,8 @@ import SideBarFilters from "@/components/Pages/Articles/SideBarFilters";
 import ArticleCard from "./ArticleCard";
 import { IArticle } from "@/types/article";
 import { useArticles } from "@/hooks/useArticles";
+import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import ErrorMessage from "@/components/shared/ErrorMessage";
 
 export default function ArticlesPage() {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -99,6 +101,16 @@ export default function ArticlesPage() {
   //     slug: "slug-8",
   //   },
   // ];
+
+  // Handle loading states
+  if (isLoadingInitialData) {
+    return <LoadingSpinner />;
+  }
+
+  // Handle error
+  if (error) {
+    return <ErrorMessage message="فشل في تحميل المقالات" />;
+  }
 
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
