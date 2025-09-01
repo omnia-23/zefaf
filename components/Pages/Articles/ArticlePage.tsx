@@ -2,6 +2,7 @@
 import React from "react";
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import { RenderHTML } from "@/components/shared";
+import AnotherArticles from "./AnotherArticles";
 
 export default function ArticlePage({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug);
@@ -172,6 +173,8 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           htmlContent={article.description}
           seeMore={false}
         />
+
+        <AnotherArticles />
       </div>
     </div>
   );
