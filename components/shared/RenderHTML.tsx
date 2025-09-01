@@ -122,7 +122,14 @@ export const RenderHTML = memo(
       },
       allowedStyles: {
         "*": {
-          "*": [/^.*$/], // <-- wildcard: allow any property with any value
+          // allow any inline styles you need
+          color: [/^.*$/],
+          "font-size": [/^.*$/],
+          "background-color": [/^.*$/],
+          "text-align": [/^.*$/],
+          margin: [/^.*$/],
+          padding: [/^.*$/],
+          // you can add more properties here
         },
       },
       disallowedTagsMode: "discard",
