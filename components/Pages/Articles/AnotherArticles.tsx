@@ -1,27 +1,29 @@
 import React from "react";
 import ArticleCard from "./ArticleCard";
+import { IArticle } from "@/types/article";
 
-const articles = [
+const articles: IArticle[] = [
   {
     id: 1,
+    status: "active",
     title: "لوريوم ابيسوم",
-    description:
-      "لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم",
+    desc: "لوريم إيبسوم هو ببساطة نص وهمي صناعة الطباعة والتنضيد. لقد كان لوريم",
     image: "/images/Frame 18 (1).svg",
     slug: "slug-1",
   },
   {
     id: 2,
+    status: "active",
     title: "مقال تجريبي",
-    description: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة.",
+    desc: "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة.",
     image: "/images/Frame 18 (1).svg",
     slug: "slug-2",
   },
   {
     id: 3,
+    status: "active",
     title: "تجربة تصميم",
-    description:
-      "منذ القرن الخامس عشر، عندما قامت مطبعة مجهولة برص مجموعة من الأحرف.",
+    desc: "منذ القرن الخامس عشر، عندما قامت مطبعة مجهولة برص مجموعة من الأحرف.",
     image: "/images/Frame 18 (1).svg",
     slug: "slug-3",
   },
