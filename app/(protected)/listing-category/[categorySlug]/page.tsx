@@ -11,11 +11,5 @@ import ArticlesPage from "@/components/Pages/Articles/ArticlesPage";
 // };
 
 export default function Page({ params }: { params: { categorySlug: string } }) {
-  const slug = decodeURIComponent(params.categorySlug);
-  console.log({ slug });
-  if (slug === "المقالات") {
-    return <ArticlesPage params={params} />;
-  }
-
   return <HallPage params={params} />;
 }

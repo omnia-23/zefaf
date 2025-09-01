@@ -5,16 +5,9 @@ import SideBarFilters from "@/components/Pages/Articles/SideBarFilters";
 import ArticleCard from "./ArticleCard";
 import { IArticle } from "@/types/article";
 
-export default function ArticlesPage({
-  params,
-}: {
-  params: { categorySlug: string };
-}) {
-  const categorySlug = decodeURIComponent(params.categorySlug);
-  console.log({ categorySlug });
-
+export default function ArticlesPage() {
   const [selectedFilters, setSelectedFilters] = useState({
-    eventType: categorySlug,
+    eventType: "",
   });
 
   const [selectedKey, setSelectedKey] = useState("1");
