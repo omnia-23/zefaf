@@ -36,7 +36,7 @@ export default function ArticleCard({ article }: { article: IArticle }) {
           maxLines={2}
           seeMore={false}
           className="text-gray-600 text-sm leading-relaxed"
-          htmlContent={article.description}
+          htmlContent={article.desc}
         />
       </div>
     </div>

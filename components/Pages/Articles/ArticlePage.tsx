@@ -3,6 +3,7 @@ import React from "react";
 import HeaderSection from "@/components/Pages/Halls/HeaderSection";
 import { RenderHTML } from "@/components/shared";
 import AnotherArticles from "./AnotherArticles";
+import { IArticle } from "@/types/article";
 
 export default function ArticlePage({ articleSlug }: { articleSlug: string }) {
   const articleArabicSlug = decodeURIComponent(articleSlug);
@@ -10,11 +11,12 @@ export default function ArticlePage({ articleSlug }: { articleSlug: string }) {
   // const [isOpen, setIsOpen] = useState(false);
 
   console.log({ articleArabicSlug });
-  
-  const article = {
+
+  const article: IArticle = {
     id: 1,
     title: "لوريوم ابيسوم",
-    description: `
+    status: "draft",
+    desc: `
     <div class="article-desc" style="font-family: 'Noto Naskh Arabic', serif; direction: rtl; color: #1f2937;">
       <p style="margin:0 0 0.75rem; line-height:1.8; font-size:16px;  color: #db0962">
         لوريم إيبسوم هو ببساطة نص وهمي في صناعة الطباعة والتنضيد، يستخدم لملء الفراغات أثناء التصميم.
@@ -169,11 +171,7 @@ export default function ArticlePage({ articleSlug }: { articleSlug: string }) {
       <div className="container mx-auto px-4 py-10">
         {/* Main content area */}
 
-        <RenderHTML
-          seeAll={true}
-          htmlContent={article.description}
-          seeMore={false}
-        />
+        <RenderHTML seeAll={true} htmlContent={article.desc} seeMore={false} />
 
         <AnotherArticles />
       </div>

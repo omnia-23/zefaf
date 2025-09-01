@@ -23,8 +23,8 @@ export const useArticles = () => {
     page: number;
     limit: number;
   }) => {
-    const { data } = await fetchArticles();
-    return { data: data.blogs, total: data.total };
+    const { blogs } = await fetchArticles();
+    return { data: blogs.data, total: blogs.total };
   };
 
   const { data, error, size, setSize, mutate } = useSWRInfinite(
