@@ -46,11 +46,22 @@ export default function ArticlesPage({
 
   const blogs = [
     {
-      title: "",
-      description: "",
-      image: "",
+      title: "lorem2",
+      description: "lorem",
+      image: "/images/Frame 18 (1).svg",
+    },
+    {
+      title: "lorem2",
+      description: "lorem",
+      image: "/images/Frame 18 (1).svg",
+    },
+    {
+      title: "lorem2",
+      description: "lorem",
+      image: "/images/Frame 18 (1).svg",
     },
   ];
+
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
       {/* Header Section */}
