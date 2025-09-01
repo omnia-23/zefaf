@@ -83,7 +83,8 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
 
           {/* Description */}
           <p className="text-gray-500 text-sm line-clamp-3">
-            <RenderHTML htmlContent={hotel.description} renderInTable={true} />
+            {hotel.description}
+            {/* <RenderHTML htmlContent={hotel.description} renderInTable={true} /> */}
           </p>
         </div>
       </a>

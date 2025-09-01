@@ -31,6 +31,8 @@ const HomeSearchTabs = () => {
   const [activeTab, setActiveTab] = useState<string>("search");
   const [categorySearch, setCategorySearch] = useState("");
   const [citySearch, setCitySearch] = useState("");
+  const [categoryMenuOpen, setCategoryMenuOpen] = useState(false);
+  const [cityMenuOpen, setCityMenuOpen] = useState(false);
 
   const { cities: citiesList } = useCities(1);
   const { categories } = useCategories();
@@ -41,7 +43,7 @@ const HomeSearchTabs = () => {
 
   const categoriesOptions: SelectOption[] = categories.map((c) => ({
     label: c.title,
-    value: c.slug, // or maybe slug if you have one
+    value: c.slug,
   }));
 
   // Filtered options
@@ -67,30 +69,8 @@ const HomeSearchTabs = () => {
       search: selectedCity,
     }).toString();
 
-    switch (selectedCategory) {
-      case "hotels":
-        router.push(`/hotels?${query}`);
-        break;
-      case "palaces":
-        router.push(`/palaces?${query}`);
-        break;
-      case "halls":
-        router.push(`/halls?${query}`);
-        break;
-      case "outdoor":
-        router.push(`/outdoor?${query}`);
-        break;
-      default:
-        router.push(`/search?${query}`);
-    }
-  };
-
-  const handleCategoryInputClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
-
-  const handleCityInputClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+    // Since selectedCategory already contains the slug
+    router.push(`/listing-category/${selectedCategory}?${query}`);
   };
 
   const data = [
@@ -105,10 +85,11 @@ const HomeSearchTabs = () => {
               ما الذي تبحث عنه؟
             </h3>
             <Menu
-              dismiss={{
-                itemPress: false,
-              }}
+              open={categoryMenuOpen}
+              handler={setCategoryMenuOpen}
               placement="bottom-start"
+              dismiss={{ itemPress: false }} // 👈 prevent auto close on clicks inside
+              allowHover={false} // 👈 prevent hover-trigger issues
             >
               <MenuHandler>
                 <Button
@@ -148,7 +129,8 @@ const HomeSearchTabs = () => {
                   label="ابحث..."
                   crossOrigin={undefined}
                   value={categorySearch}
-                  onClick={handleCategoryInputClick}
+                  onClick={(e) => e.stopPropagation()} // prevent menu close
+                  onFocus={(e) => e.stopPropagation()} // prevent menu close
                   onChange={(e) => setCategorySearch(e.target.value)}
                   className="w-full p-3 text-sm rounded-md bg-black/40 text-white placeholder:text-white outline-white focus:outline-none border border-white"
                 />
@@ -161,7 +143,10 @@ const HomeSearchTabs = () => {
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
                       key={category.value}
-                      onClick={() => setSelectedCategory(category.value)}
+                      onClick={() => {
+                        setSelectedCategory(category.value);
+                        setCategoryMenuOpen(false); // 👈 close after choose
+                      }}
                       className={`text-sm ${
                         selectedCategory === category.value
                           ? "text-pink-500 font-bold"
@@ -186,10 +171,11 @@ const HomeSearchTabs = () => {
               المدينة
             </h3>
             <Menu
-              dismiss={{
-                itemPress: false,
-              }}
+              open={cityMenuOpen}
+              handler={setCityMenuOpen}
               placement="bottom-start"
+              dismiss={{ itemPress: false }} // prevent auto-close
+              allowHover={false}
             >
               <MenuHandler>
                 <Button
@@ -226,8 +212,8 @@ const HomeSearchTabs = () => {
                   onPointerLeaveCapture={() => {}}
                   label="ابحث..."
                   crossOrigin={undefined}
-                  value={citySearch}
-                  onClick={handleCityInputClick}
+                  onClick={(e) => e.stopPropagation()} // prevent menu close
+                  onFocus={(e) => e.stopPropagation()} // prevent menu close
                   onChange={(e) => setCitySearch(e.target.value)}
                   className="w-full p-3 text-sm rounded-md bg-black/40 text-white placeholder:text-white outline-white focus:outline-none border border-white"
                 />
@@ -240,7 +226,10 @@ const HomeSearchTabs = () => {
                       onPointerEnterCapture={() => {}}
                       onPointerLeaveCapture={() => {}}
                       key={city.value}
-                      onClick={() => setSelectedCity(city.value)}
+                      onClick={() => {
+                        setSelectedCity(city.value);
+                        setCityMenuOpen(false);
+                      }}
                       className={`text-sm ${
                         selectedCity === city.value
                           ? "text-pink-500 font-bold"

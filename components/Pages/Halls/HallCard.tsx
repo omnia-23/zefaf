@@ -3,20 +3,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { IHall } from "@/types/hall";
+import { RenderHTML } from "@/components/shared";
 
 export default function HallCard({ hall }: { hall: IHall }) {
   const router = useRouter();
 
   return (
     <div
-      onClick={() => router.push(`/halls/${hall.slug}`)}
+      onClick={() => router.push(`/listing/${hall.slug}`)}
       className="cursor-pointer bg-white rounded-lg shadow-md overflow-hidden mb-6 hover:shadow-lg transition-shadow p-3 max-w-[954px] w-full"
     >
       <div className="flex flex-col md:flex-row">
         {/* Image */}
         <div className="w-full md:w-1/3 relative rounded-lg overflow-hidden aspect-[4/3]">
           <Image
-            src={`${hall.media.cover}`}
+            src={`${hall.media[0].url}`}
             alt={hall.name}
             fill
             className="object-cover"
@@ -84,9 +85,15 @@ export default function HallCard({ hall }: { hall: IHall }) {
           </div>
 
           {/* Description */}
-          <p className="text-gray-500 text-base font-normal line-clamp-4">
+          <RenderHTML
+            maxLines={4}
+            seeMore={false}
+            className="text-gray-500 text-base font-normal"
+            htmlContent={hall.description}
+          />
+          {/* <p className="text-gray-500 text-base font-normal line-clamp-4">
             {hall.description}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

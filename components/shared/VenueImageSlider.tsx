@@ -6,14 +6,11 @@ import { Modal, Carousel } from "antd";
 export default function VenueImageSlider({
   images,
 }: {
-  images: {
-    cover: string;
-    gallery: { url: string; sort: number }[];
-  };
+  images: { url: string; sort: number }[];
 }) {
   // Create a single array of all images (cover first)
   const allImages = useMemo(
-    () => [{ url: images.cover, sort: 0 }, ...images.gallery],
+    () => [{ url: images[0].url, sort: 0 }, ...images],
     [images]
   );
 

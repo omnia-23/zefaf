@@ -1,5 +1,4 @@
-import Navbar from "@/components/HomeNavigation/Navbar";
-import Footer from "@/components/shared/Footer";
+import WhatsAppSticky from "@/components/WhatsAppSticky";
 
 export default function RootLayout({
   children,
@@ -8,9 +7,8 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <Navbar />
       {children}
-      <Footer />
+      <WhatsAppSticky />
     </>
   );
 }

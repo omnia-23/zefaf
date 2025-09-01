@@ -1,4 +1,4 @@
-import { FormInputsType, IHall } from "@/types/hall";
+import { BookingPayloadType, FormInputsType, IHall } from "@/types/hall";
 import axios from "axios";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -59,7 +59,7 @@ export const fetchHallBySlug = async (slug: string): Promise<HallResponse> => {
 
 export const sendFormSubmit = async (
   slug: string,
-  formData: FormInputsType
+  formData: BookingPayloadType
 ): Promise<any> => {
   if (!slug) throw new Error("Slug is required");
 

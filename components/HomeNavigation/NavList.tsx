@@ -21,7 +21,7 @@ const navListItems = [
   {
     id: 2,
     title: "قاعات الزفاف",
-    url: "/wedding-venues",
+    url: "/listing-category/قاعات-الزفاف",
     icon: "/images/nav/wedding-invitation.svg",
     isDropDown: true,
     subMenu: [
@@ -30,81 +30,81 @@ const navListItems = [
         description: "Find the perfect solution for your needs.",
         icon: <SquaresPlusIcon className="w-5 h-5" />,
         image: "/images/bannerEachPage.png",
-        link: "/halls",
+        link: "/listing-category/قصور-الأفراح",
       },
       {
         title: "قاعات الفنادق",
         description: "Meet and learn about our dedication",
         icon: <UserGroupIcon className="w-5 h-5" />,
         image: "/images/banner.png",
-        link: "/hotels",
+        link: "/listing-category/قاعات-الفنادق",
       },
       {
         title: "استراحات الزفاف",
         description: "Find the perfect solution for your needs.",
         icon: <Bars4Icon className="w-5 h-5" />,
         image: "/images/1440×1024.png",
-        link: "/resorts",
+        link: "/listing-category/استراحات-الزفاف",
       },
     ],
   },
   {
     id: 3,
     title: "خدمات الافراح",
-    url: "/wedding-services",
+    url: "/listing-category/wedding-services",
     icon: "/images/nav/group.svg",
     isDropDown: true,
     subMenu: [
       {
         title: "فساتين الزفاف والازياء",
         icon: <HeartIcon className="w-5 h-5" />,
-        link: "/wedding-services/dresses",
+        link: "/listing-category/dresses",
       },
       {
         title: "الاكسسوارات",
         icon: <HeartIcon className="w-5 h-5" />,
-        link: "/wedding-services/accessories",
+        link: "/listing-category/accessories",
       },
       {
         title: "الديكور",
         icon: <HeartIcon className="w-5 h-5" />,
-        link: "/wedding-services/decor",
+        link: "/listing-category/decor",
       },
       {
         title: "تنظيم الزفاف",
         icon: <HeartIcon className="w-5 h-5" />,
-        link: "/wedding-services/planning",
+        link: "/listing-category/planning",
       },
     ],
   },
   {
     id: 4,
     title: "صحة العروسين",
-    url: "/bride-groom-health",
+    url: "/listing-category/bride-groom-health",
     icon: "/images/Health.svg",
     isDropDown: true,
     subMenu: [
       {
         title: "التجميل والعناية",
         icon: <HeartIcon className="w-5 h-5" />,
-        link: "/health",
+        link: "/listing-category/health",
       },
       {
         title: "الشعر والمكياج",
         icon: <HeartIcon className="w-5 h-5" />,
-        link: "/health",
+        link: "/listing-category/health",
       },
       {
         title: "نقش حناء",
         icon: <HeartIcon className="w-5 h-5" />,
-        link: "/health",
+        link: "/listing-category/health",
       },
     ],
   },
   {
     id: 6,
     title: "عروض خاصة",
-    url: "/special-offers",
+    url: "/listing-category/special-offers",
     icon: "/images/discount-2.svg",
     isDropDown: false,
     subMenu: [],
@@ -112,7 +112,7 @@ const navListItems = [
   {
     id: 7,
     title: "اتصل بنا",
-    url: "/plan-your-wedding",
+    url: "/listing-category/plan-your-wedding",
     icon: "/images/nav/wedding-rings.svg",
     isDropDown: false,
     subMenu: [],
@@ -120,7 +120,7 @@ const navListItems = [
   {
     id: 8,
     title: "المقالات",
-    url: "/blogs",
+    url: "/listing-category/المقالات",
     icon: "/images/discount-2.svg",
     isDropDown: false,
     subMenu: [],
@@ -137,8 +137,10 @@ const navListItems = [
 
 export function NavList({ isWhiteBackground = false }) {
   const textColor = isWhiteBackground ? "text-gray-900" : "text-white";
-  const hoverColor = isWhiteBackground ? "hover:text-[#db0962]" : "hover:text-[#db0962]";
-  
+  const hoverColor = isWhiteBackground
+    ? "hover:text-[#db0962]"
+    : "hover:text-[#db0962]";
+
   return (
     <List
       placeholder=""
@@ -178,7 +180,9 @@ export function NavList({ isWhiteBackground = false }) {
                     height={24}
                     src={icon}
                     alt={title}
-                    className={`w-6 h-6 ${isWhiteBackground ? "filter invert" : ""}`}
+                    className={`w-6 h-6 ${
+                      isWhiteBackground ? "filter invert" : ""
+                    }`}
                   />
                   {title}
                 </ListItem>

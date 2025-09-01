@@ -101,7 +101,7 @@ const ContactInfo = () => {
         </div>
 
         {/* Team Section */}
-        <div className="bg-white rounded-lg">
+        {/* <div className="bg-white rounded-lg">
           <h3 className="text-xl font-bold text-gray-800 text-center mb-8">
             فريق العمل
           </h3>
@@ -131,7 +131,7 @@ const ContactInfo = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

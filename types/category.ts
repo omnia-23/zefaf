@@ -5,4 +5,8 @@ export interface ICategory {
   subtitle: string;
   icon: string;
   is_active: number;
+  index: string;
+  description: string | null;
+  service_provider_count: number;
+  images: string[];
 }

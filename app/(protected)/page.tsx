@@ -9,6 +9,8 @@ import BestProviders from "@/components/Pages/Home/BestProviders";
 import FamousCities from "@/components/Pages/Home/FamousCities";
 import OffersSlider from "@/components/Pages/Home/OffersSlider";
 import MainSection from "@/components/Pages/Home/HomeSection";
+import FeaturesSection from "@/components/Pages/Home/FeaturesSection";
+import WhatsAppSticky from "@/components/WhatsAppSticky";
 
 const page = () => {
   return (
@@ -16,7 +18,8 @@ const page = () => {
       <MainSection />
       <BestProviders />
       <CategoriesSection />
-      <WeddingServices />
+      <FeaturesSection />
+      {/* <WeddingServices /> */}
       <OffersSlider />
       {/* <HotelsSection /> */}
       <FamousCities />
@@ -26,6 +29,7 @@ const page = () => {
       <BlogsSection />
       {/* <OurTeam /> */}
       {/* <OurServicesSection /> */}
+      <WhatsAppSticky />
     </>
   );
 };

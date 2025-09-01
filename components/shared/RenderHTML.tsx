@@ -1,36 +1,140 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import sanitizeHtml from "sanitize-html";
+
+const clampMap: Record<number, string> = {
+  1: "line-clamp-1",
+  2: "line-clamp-2",
+  3: "line-clamp-3",
+  4: "line-clamp-4",
+  5: "line-clamp-5",
+  6: "line-clamp-6",
+};
 
 export const RenderHTML = memo(
   ({
     htmlContent = "",
-    renderInTable = false,
-    length = 150,
+    className = "",
+    maxLines = 5, // default show 5 lines
+    seeMore = true,
   }: {
     htmlContent?: string;
-    renderInTable?: boolean;
-    length?: number;
+    className?: string;
+    maxLines?: number;
+    seeMore?: boolean;
   }) => {
-    // Sanitize safely for server/client
+    const [expanded, setExpanded] = useState(false);
+    const [style, setStyle] = useState("");
+
+    useEffect(() => {
+      const line = expanded ? "line-clamp-none" : `line-clamp-${maxLines}`;
+      console.log({ line });
+      setStyle(line);
+    }, [expanded, maxLines]);
+
     const sanitizedContent = sanitizeHtml(htmlContent || "", {
-      allowedTags: sanitizeHtml.defaults.allowedTags.concat([
-        "img",
+      allowedTags: [
+        // Text
+        "p",
+        "br",
+        "span",
+        "strong",
+        "em",
+        "b",
+        "i",
+        "u",
+        "mark",
+        "small",
+        "blockquote",
+        "code",
+        "pre",
+
+        // Headings
         "h1",
         "h2",
-      ]),
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+
+        // Lists
+        "ul",
+        "ol",
+        "li",
+        "dl",
+        "dt",
+        "dd",
+
+        // Tables
+        "table",
+        "thead",
+        "tbody",
+        "tfoot",
+        "tr",
+        "th",
+        "td",
+
+        // Media
+        "img",
+        "figure",
+        "figcaption",
+        "video",
+        "audio",
+        "source",
+
+        // Links
+        "a",
+
+        // Layout / misc
+        "div",
+        "section",
+        "article",
+        "header",
+        "footer",
+        "nav",
+        "aside",
+        "hr",
+      ],
       allowedAttributes: {
-        a: ["href", "name", "target"],
+        a: ["href", "name", "target", "rel"],
         img: ["src", "alt", "width", "height"],
+        video: [
+          "src",
+          "controls",
+          "autoplay",
+          "muted",
+          "loop",
+          "poster",
+          "width",
+          "height",
+        ],
+        audio: ["src", "controls", "autoplay", "muted", "loop"],
+        source: ["src", "type"],
+        "*": ["class", "id", "style"],
       },
+      disallowedTagsMode: "discard",
     });
 
-    // Truncate if needed
-    const truncatedContent =
-      renderInTable && sanitizedContent.length > length
-        ? `${sanitizedContent.slice(0, length)}...`
-        : sanitizedContent;
+    return (
+      <div className="w-full">
+        {/* Render HTML */}
+        <div
+          className={`${className} text-gray-800 leading-relaxed transition-all duration-300 ${
+            expanded ? "line-clamp-none" : clampMap[maxLines] ?? "line-clamp-5"
+          }`}
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+        />
 
-    return <div dangerouslySetInnerHTML={{ __html: truncatedContent }} />;
+        {/* Toggle Button */}
+        {seeMore && (
+          <span
+            onClick={() => setExpanded((prev) => !prev)}
+            className="cursor-pointer mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline focus:outline-none"
+          >
+            {expanded ? "عرض أقل" : "عرض المزيد"}
+          </span>
+        )}
+      </div>
+    );
   }
 );
 

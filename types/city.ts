@@ -2,5 +2,6 @@ export interface ICity {
   id: number;
   name: string;
   country_id: number;
-  image?: string;
+  index: string | null;
+  image: string | null;
 }
