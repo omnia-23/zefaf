@@ -1,5 +1,5 @@
-import HallPage from "@/components/Pages/Halls/HallPage";
-import ArticlesPage from "@/components/Pages/Articles/ArticlePage";
+import HallPage from "@/components/Pages/Halls/HallsPage";
+import ArticlesPage from "@/components/Pages/Articles/ArticlesPage";
 
 // import { Metadata } from "next";
 // export const metadata: Metadata = {

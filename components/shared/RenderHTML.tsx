@@ -16,11 +16,13 @@ export const RenderHTML = memo(
     className = "",
     maxLines = 5, // default show 5 lines
     seeMore = true,
+    seeAll = false,
   }: {
     htmlContent?: string;
     className?: string;
     maxLines?: number;
     seeMore?: boolean;
+    seeAll?: boolean;
   }) => {
     const [expanded, setExpanded] = useState(false);
     const [style, setStyle] = useState("");
@@ -30,6 +32,13 @@ export const RenderHTML = memo(
       console.log({ line });
       setStyle(line);
     }, [expanded, maxLines]);
+
+    // Decide final clamp style
+    const clampClass = seeAll
+      ? "line-clamp-none" // always show all
+      : expanded
+      ? "line-clamp-none"
+      : clampMap[maxLines] ?? "line-clamp-5";
 
     const sanitizedContent = sanitizeHtml(htmlContent || "", {
       allowedTags: [
@@ -111,6 +120,11 @@ export const RenderHTML = memo(
         source: ["src", "type"],
         "*": ["class", "id", "style"],
       },
+      allowedStyles: {
+        "*": {
+          "*": [/^.*$/], // <-- wildcard: allow any property with any value
+        },
+      },
       disallowedTagsMode: "discard",
     });
 
@@ -118,17 +132,15 @@ export const RenderHTML = memo(
       <div className="w-full">
         {/* Render HTML */}
         <div
-          className={`${className} text-gray-800 leading-relaxed transition-all duration-300 ${
-            expanded ? "line-clamp-none" : clampMap[maxLines] ?? "line-clamp-5"
-          }`}
+          className={`${className} text-gray-800 leading-relaxed transition-all duration-300 ${clampClass}`}
           dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
 
-        {/* Toggle Button */}
-        {seeMore && (
+        {/* Show toggle only if seeMore is true and seeAll is false */}
+        {seeMore && !seeAll && (
           <span
-            onClick={() => setExpanded((prev) => !prev)}
-            className="cursor-pointer mt-2 text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline focus:outline-none"
+            className="mt-2 text-blue-500 hover:underline"
+            onClick={() => setExpanded(!expanded)}
           >
             {expanded ? "عرض أقل" : "عرض المزيد"}
           </span>
