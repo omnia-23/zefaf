@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { IProvider } from "./BestProviders";
+import { Star } from "lucide-react";
 
 export default function ProviderCard({ provider }: { provider: IProvider }) {
   return (
@@ -11,14 +12,23 @@ export default function ProviderCard({ provider }: { provider: IProvider }) {
           src={provider.image}
           alt={provider.title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        <div className="absolute top-2 left-2">
-          <span className="bg-white text-[#DB0962] px-2 py-1 rounded-full text-xs font-medium">
+        {/* Badges */}
+        <div className="absolute top-3 left-3">
+          <span className="bg-white text-[#DB0962] px-3 py-1 rounded-full text-xs font-medium shadow-sm">
             {provider.category}
           </span>
+        </div>
+        <div className="absolute top-3 right-3">
+          {provider.offers && (
+            <span className="flex items-center gap-1 bg-[#DB0962] text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
+              <Star className="w-3.5 h-3.5" fill="white" />
+              عرض خاص
+            </span>
+          )}
         </div>
       </div>
 
@@ -44,7 +54,7 @@ export default function ProviderCard({ provider }: { provider: IProvider }) {
       </div>
 
       {/* Hover Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/30">
+      <div className="cursor-pointer absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/30">
         <span className="bg-white text-[#DB0962] px-4 py-1.5 rounded-full font-medium hover:bg-[#DB0962] hover:text-white transition-colors text-sm">
           عرض التفاصيل
         </span>

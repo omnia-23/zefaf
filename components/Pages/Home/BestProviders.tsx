@@ -11,6 +11,7 @@ export interface IProvider {
   address: string;
   category: string;
   location: string;
+  offers: boolean;
 }
 
 const BestProviders = () => {
@@ -22,6 +23,7 @@ const BestProviders = () => {
       address: "الرياض, شارع العليا العام، حي العليا",
       category: "الفنادق",
       location: "الرياض",
+      offers: true,
     },
     {
       id: "2",
@@ -30,6 +32,7 @@ const BestProviders = () => {
       address: "الرياض, شارع العليا العام، حي العليا",
       category: "الفنادق",
       location: "الرياض",
+      offers: true,
     },
     {
       id: "3",
@@ -38,6 +41,7 @@ const BestProviders = () => {
       address: "الرياض, شارع العليا العام، حي العليا",
       category: "الفنادق",
       location: "الرياض",
+      offers: false,
     },
     {
       id: "4",
@@ -46,6 +50,7 @@ const BestProviders = () => {
       address: "الرياض, شارع العليا العام، حي العليا",
       category: "الفنادق",
       location: "الرياض",
+      offers: true,
     },
     {
       id: "5",
@@ -54,6 +59,7 @@ const BestProviders = () => {
       address: "الرياض, شارع العليا العام، حي العليا",
       category: "الفنادق",
       location: "الرياض",
+      offers: false,
     },
     {
       id: "6",
@@ -62,6 +68,7 @@ const BestProviders = () => {
       address: "الرياض, شارع العليا العام، حي العليا",
       category: "الفنادق",
       location: "الرياض",
+      offers: true,
     },
   ];
 
